@@ -1,0 +1,147 @@
+
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap" rel="stylesheet">
+<div class="pd-wrap">
+		<div class="container">
+
+
+			
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+				  <li class="breadcrumb-item"><a href="#">Home</a></li>
+				  <li class="breadcrumb-item"><a href="/libros">Libros</a></li>
+				  <li class="breadcrumb-item active" aria-current="page"  >{{libro?.titulo}}</li>
+				</ol>
+			  </nav>
+
+
+	     
+            <div class="card productcard"> 
+
+	        <div class="row">
+                
+	        	<div class="col-md-6">
+                    <div class="inner-card" > <img [src]="libro?.img" class="img img-fluid rounded cardpic"> </div>
+	        	</div>
+	        	<div class="col-md-6">
+	        		<div class="product-dtl">
+        				<div class="product-info">
+		        			<div class="product-name ">{{libro?.titulo}}</div>
+		        			
+						<div class="row "> 
+									<div class="col-sm ">  
+										<div class="row rowpadding ">
+
+										<p class="letrachica padding ">									
+												Autor:
+										</p>
+
+										
+										<a href="" >
+												{{libro?.autor.nombre}}
+										</a>
+										</div>
+
+
+									</div>
+
+									<div class="col-sm">
+										<div class="row rowpadding ">
+
+										
+										<p class="letrachica padding">									
+												Editorial:
+										</p>
+
+										<a href="" >
+												{{libro?.editorial.nombre}}
+										</a>
+										</div>
+
+						</div>
+
+						</div>
+
+		        			<div class="product-price-discount"><span>${{libro?.precio}}</span><span class="line-through">{{libro?.precio + 105}}</span></div>
+							
+		        		</div>
+	        		
+
+					<div class="card carddetalle">
+
+	        			<div class="row">
+	        				<div class="col-md-6">
+
+
+
+									<div class="letrachica">ISBN: {{libro?.isbn}}</div>
+									<div class="letrachica">Formato: {{libro?.formato}}</div>
+									<div class="letrachica">Idioma: {{libro?.idioma}}</div>
+									<div class="letrachica">Edición: {{libro?.edicion}}</div>
+
+
+                              
+	        				</div>
+
+						
+							<div class="col-md-6 align-self">
+
+
+							<div class="row paddingtopbottom">
+							    <div class="col-2">
+									<fa-icon [icon]="faTruck"></fa-icon>
+
+								</div>
+				
+								<div class="col-8 ">
+										<a class="" href="/#" >Costo de Envios</a>
+								</div>
+				
+							</div>
+
+							<div class="row paddingtopbottom">
+							    <div class="col-2">
+									<fa-icon [icon]="faCreditCard"></fa-icon>
+
+								</div>
+				
+								<div class="col-8  ">
+										<a class="" href="/#" >Medios de Pago</a>
+								</div>
+				
+							</div>
+						  
+						</div>
+						</div>
+
+	        		</div>
+
+	        			<div >
+	        				
+							<button (click)="addCart(libro)" class="btn" style="float:right;">Añadir al carrito</button>
+
+	        			</div>
+	        		</div>
+	        	</div>
+	        </div>
+	        <div class="product-info-tabs">
+		        <ul class="nav nav-tabs" id="myTab" role="tablist">
+				  	<li class="nav-item">
+				    	<a class="nav-link active" id="description-tab" data-toggle="tab"  role="tab" aria-controls="description" aria-selected="true">Descripción</a>
+				  	</li>
+				    <!--	<li class="nav-item">
+				  	<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews (0)</a>
+				  	</li> 
+					  -->
+				</ul>
+				<div class="tab-content" id="myTabContent">
+				  	<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                        {{libro?.descripcion}}				
+					  	</div>
+				  
+                </div>
+				</div>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,24 @@
+<div class=" mt-5 mb-5 d-flex justify-content-center align-items-center">
+    <div class="card productcard" >
+
+        <button [routerLink]= "['/libros', libro._id]">
+            <div class="inner-card" > <img [src]="libro.img" class="img img-fluid rounded"> </div>
+
+        </button>
+
+        <div class="card-body">
+
+            <div class="card-title productcard-title">
+                <h6>{{libro.titulo}} </h6>
+            </div>
+
+        </div>
+        
+
+    </div>
+</div>
+
+
+
+
+

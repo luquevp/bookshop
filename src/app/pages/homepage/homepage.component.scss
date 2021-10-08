@@ -1,0 +1,42 @@
+@font-face {
+    font-family: Eczar-Bold;
+    src: url('../../../assets/fonts/Eczar/Eczar-Bold.ttf');
+}
+
+
+.animatedf {
+    animation: fadeIn;
+    /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s;
+}
+.animatedfd {
+    animation: slideInDown;
+    /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s;
+}
+
+.align {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.margen {
+    margin-top: 20px;
+}
+
+.titulo {
+    color: #404040;
+    font-size: 40px;
+    font-weight: 700;
+    margin: 33px 0px;
+    text-align: center;
+    font-family: 'Eczar-Bold';
+}
+
+.ubic{
+    margin-bottom: 100px;
+    align-items: center;
+
+}
