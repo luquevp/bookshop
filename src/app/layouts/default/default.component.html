@@ -1,10 +1,12 @@
 
 <div style="height: 90vh; ">
 
+
+
     <mat-toolbar class="header">
         
 
-        <mat-toolbar-row class="animacion">
+        <mat-toolbar-row class="">
             <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
           <mat-icon style="color: white;">menu</mat-icon>
         </button>
@@ -18,11 +20,12 @@
 
             <div fxShow="true" fxHide.lt-md fxHide.lt-lg class="options">
                 <!-- The following menu items will be hidden on both SM and XS screen sizes 
-             <a class="option" mat-button [routerLink]="'/'"> Inicio </a> -->
+             <a class="option" mat-button [routerLink]="'/'"> Inicio </a>
              <a class="option" mat-button [routerLink]="'/comocomprar'"> Cómo Comprar  </a>
 
-                <a class="option" mat-button [routerLink]="'/libros'"> Libros </a>
-                <a class="option" mat-button [routerLink]="'/eventos'"> Eventos </a>
+                <a class="option" mat-button [routerLink]="'/eventos'"> Eventos </a>  -->
+                <a class="option" mat-button [routerLink]="'/categorias'"> Categorías </a>
+
                 <a class="option" mat-button [routerLink]="'/nosotros'"> Nosotros </a>
 
 
@@ -57,7 +60,11 @@
         </mat-sidenav>
         <mat-sidenav-content fxFlexFill>
             <!--             <app-cart *ngIf="openCart"></app-cart>
+
+                
  -->
+
+
             <router-outlet></router-outlet>
 
             <app-footer></app-footer>

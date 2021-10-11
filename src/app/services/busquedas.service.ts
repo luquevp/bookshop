@@ -44,34 +44,40 @@ export class BusquedasService {
     return resultados;
   }
 
-  buscar(
-      tipo: 'usuarios'|'medicos'|'clinicas',
-      termino: string
-    ) {
+  // buscar(
+  //     tipo: 'usuarios'|'medicos'|'clinicas',
+  //     termino: string
+  //   ) {
 
-    const url = `${ base_url }/todo/coleccion/${ tipo }/${ termino }`;
-    return this.http.get<any[]>( url, this.headers )
-            .pipe(
-              map( (resp: any ) => {
+  //   const url = `${ base_url }/todo/coleccion/${ tipo }/${ termino }`;
+  //   return this.http.get<any[]>( url, this.headers )
+  //           .pipe(
+  //             map( (resp: any ) => {
 
-                switch ( tipo ) {
-                  case 'usuarios':
-                    return this.transformarUsuarios( resp.resultados )
+  //               switch ( tipo ) {
+  //                 case 'usuarios':
+  //                   return this.transformarUsuarios( resp.resultados )
 
-                  case 'clinicas':
-                    return this.transformarClinicas( resp.resultados )
+  //                 case 'clinicas':
+  //                   return this.transformarClinicas( resp.resultados )
 
-                  case 'medicos':
-                     return this.transformarMedicos( resp.resultados )
+  //                 case 'medicos':
+  //                    return this.transformarMedicos( resp.resultados )
 
-                  default:
-                    return [];
-                }
+  //                 default:
+  //                   return [];
+  //               }
 
-              })
-            );
+  //             })
+  //           );
 
+  // }
+
+
+  buscarLibroAutor( termino:string){
+
+    const url = `${ base_url }/buscar/productos/tituloautor/${ termino }`;
+    return this.http.get( url)
   }
-
 
 }

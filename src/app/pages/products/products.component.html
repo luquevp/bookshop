@@ -1,6 +1,63 @@
+<app-search ></app-search>
+
 <div class="container animatedf">
 
+<!--
  <app-filtros></app-filtros>
-    <app-product></app-product>
+   -->
+ <div class="container">
+
+    <br>
+    <div class="card "  *ngIf="libros.length === 0 && autores.length === 0 ">
+        <div class="row">
+                
+            <div class="col-md-6">
+                <div class="inner-card" > <img src="../../../assets/images/not-found.png"> </div>
+            </div>
+            <div class="col-md-6">
+         <p>No se encontraron resultados :(</p>
+        </div>
+      </div>
+     
+
+
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5" *ngIf="libros.length > 0 || autores.length > 0" >
+
+
+
+
+        <div *ngFor="let libro of libros">
+            <div class="card-column">
+            <app-productcard [libro]="libro"></app-productcard> 
+            </div>
+        </div>
+
+        <div *ngFor="let autor of autores">
+    
+           <div class=" mt-5 mb-5 d-flex justify-content-center align-items-center">
+            <div class="card productcard" >
+        
+                <button [routerLink]= "['/libros', autor._id]">
+                    <div class="inner-card" > <img [src]="autor.img" class="img img-fluid rounded"> </div>
+        
+                </button>
+        
+                <div class="card-body">
+        
+                    <div class="card-title productcard-title">
+                        <h6>{{autor.titulo}} </h6>
+                    </div>
+        
+                </div>
+                
+        
+            </div>
+        </div>
+        
+
+        </div>
+
+    </div>
+</div>
 
 </div>

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Autor } from '../interfaces/item.interface';
+import { Observable, throwError } from 'rxjs';
+
 
 const base_url = environment.base_url;
 
@@ -12,21 +14,13 @@ const base_url = environment.base_url;
 })
 export class AutorService {
 
-  constructor( private http: HttpClient ) {
+  public _autores : Autor[];
 
+  private baseUrl: string = environment.base_url;
 
+  constructor( private http: HttpClient ) { }
 
-        
-
-   }
-
-   
-  cargarAutores() {
-
-    const url = `${ base_url }/autores`;
-    return this.http.get( url)
-              .pipe(
-                map( (resp: {ok: boolean, autores: Autor[] }) => resp.autores ) 
-              );
+  getAutores(): Observable<Autor[]> {
+    return this.http.get<Autor[]>(`${ this.baseUrl }/autores`);
   }
 }

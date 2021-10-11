@@ -15,6 +15,9 @@ import { ProductsComponent } from './pages/products/products.component';
 import { EventsComponent } from './pages/events/events.component';
 import { HowtobuyComponent } from './pages/HowToBuy/HowToBuy.component';
 import { ProductoidComponent } from './pages/productoid/productoid.component';
+import { BusquedasService } from './services/busquedas.service';
+import { SearchComponent } from './components/search/search.component';
+import { ProductComponent } from './components/product/product.component';
 
 
 const routes: Routes = [
@@ -22,7 +25,6 @@ const routes: Routes = [
 {path: '',  component: DefaultComponent,
 children: [
             {path: '', component: HomepageComponent},
-            {path: 'libros', component: ProductsComponent, },
             {path: 'carrito', component: CartdetalleComponent, },
             {path: 'mediosdepagoyenvio', component: MediosdepagoyenvioComponent, },
             {path: 'preguntasfrecuentes', component: PreguntasfrecuentesComponent, },
@@ -30,6 +32,10 @@ children: [
             {path: 'eventos', component: EventsComponent, },
             {path: 'comocomprar', component: HowtobuyComponent, },
             {path: 'libros/:id', component: ProductoidComponent, },
+            {path: 'libros/buscar/:termino', component: ProductsComponent, },
+            {path: 'libros', component: ProductsComponent, },
+
+
 
 
 

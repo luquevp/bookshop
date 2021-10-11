@@ -21,6 +21,38 @@
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
 
+.stockinfo{
+    background-color: rgb(134, 207, 236);
+    height: 15px;
+    padding-bottom: 25px;
+    align-items: center;
+    position: relative;
+    width: 80%;
+    
+
+}
+
+.stockinfo span{
+    
+    font-size: 12px;
+    color: black;
+    
+    
+
+}
+
+.stock {
+    position: relative;
+bottom: 3px;
+}
+
+.btncarrito {
+float: right;
+position: relative;
+align-self: flex-end;
+
+}
+
 .align{
     align-items: center;
     text-align: center;

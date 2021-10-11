@@ -24,7 +24,8 @@ export interface IItem {
 export interface Autor {
 
     _id?: number,
-    nombre?: string
+    nombre?: string,
+    libro?: IItem; 
 
 }
 
