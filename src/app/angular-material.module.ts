@@ -39,7 +39,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import { A11yModule } from '@angular/cdk/a11y';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatDividerModule } from '@angular/material/divider';
@@ -149,7 +148,6 @@ import {MatTreeModule} from '@angular/material/tree';
     MatTableModule,
     OverlayModule,
     PortalModule,
-    ScrollingModule,
    ],
    exports: [
     MatButtonModule,
@@ -211,7 +209,6 @@ import {MatTreeModule} from '@angular/material/tree';
     MatTableModule,
     OverlayModule,
     PortalModule,
-    ScrollingModule,
    ],
    providers: [
       MatDatepickerModule,

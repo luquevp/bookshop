@@ -8,7 +8,9 @@
     /*IMPORTANTE*/
     justify-content: center;
     align-items: center;
-    width: 370px;
+    position: relative;
+    display: flex;
+    bottom: 7px;
 }
 
 .iconos {
@@ -22,7 +24,10 @@
 
 .contentContainer {
     padding-top: 6px;
+
     justify-content: center;
+    display: flex;
+    position: relative;
 }
 
 .textContainer {
@@ -32,7 +37,7 @@
 
 .card-title {
     color: #414247;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 600;
     line-height: 30px;
     margin: -2px 0px 0px;
@@ -48,7 +53,7 @@
 
 .divider {
     width: 370px;
-    height: 79px;
+    height: 70px;
     background-color: #eae7e7;
     border-radius: 50px 0px 0px 50px;
     display: flex;

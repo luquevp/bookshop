@@ -77,7 +77,7 @@ export class BusquedasService {
   buscarLibroAutor( termino:string){
 
     const url = `${ base_url }/buscar/productos/tituloautor/${ termino }`;
-    return this.http.get( url)
+    return this.http.get<any[]>( url)
   }
 
 }

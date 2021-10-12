@@ -15,6 +15,13 @@ export class DividerdecoComponent implements OnInit {
 
 
   public dividers: Array<IDivider> = [{
+    
+      id: 2,
+      icon: faQuestionCircle,
+      title: 'Hace todas tus consultas',
+      content: 'en nuestras redes sociales.',
+    },
+    {
     id: 0,
     icon: faShippingFast,
     title: 'Hacemos envíos a todo el país.',
@@ -26,12 +33,7 @@ export class DividerdecoComponent implements OnInit {
     title: 'Recibimos todas las tarjetas',
     content: 'Debito y Credito.',
   },
-  {
-    id: 2,
-    icon: faQuestionCircle,
-    title: 'Hace tus consultas',
-    content: 'en nuestras redes sociales.',
-  }
+  
 
 ];
 

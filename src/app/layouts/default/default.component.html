@@ -1,7 +1,5 @@
 
-<div style="height: 90vh; ">
-
-
+<div>
 
     <mat-toolbar class="header">
         
@@ -44,7 +42,7 @@
     </mat-toolbar>
    
 
-    <mat-sidenav-container fxFlexFill>
+    <mat-sidenav-container style="background-color: white;" fxFlexFill>
         <mat-sidenav #sidenav class="sidenav">
             <mat-nav-list>
                 <!--  <a (click)="sidenav.toggle()" href="" mat-list-item>Salir</a> -->
@@ -65,20 +63,20 @@
  -->
 
 
-            <router-outlet></router-outlet>
+ <!-- <router-outlet (activate)="onActivate($event, outlet)" #outlet></router-outlet> -->
+ <router-outlet #outlet></router-outlet>
+ 
+ <app-footer></app-footer>
+ 
+ <app-whatsapp class="wppbtn"></app-whatsapp>
+ 
+ <div class="push"></div>
+ 
+ 
+</mat-sidenav-content>
 
-            <app-footer></app-footer>
-
-            <app-whatsapp class="wppbtn"></app-whatsapp>
-
-            <div class="push"></div>
-
-
-        </mat-sidenav-content>
-
-    </mat-sidenav-container>
+</mat-sidenav-container>
 
 
 
 </div>
-

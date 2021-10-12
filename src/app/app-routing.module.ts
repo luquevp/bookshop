@@ -18,6 +18,7 @@ import { ProductoidComponent } from './pages/productoid/productoid.component';
 import { BusquedasService } from './services/busquedas.service';
 import { SearchComponent } from './components/search/search.component';
 import { ProductComponent } from './components/product/product.component';
+import { EnviosComponent } from './pages/envios/envios.component';
 
 
 const routes: Routes = [
@@ -26,14 +27,15 @@ const routes: Routes = [
 children: [
             {path: '', component: HomepageComponent},
             {path: 'carrito', component: CartdetalleComponent, },
-            {path: 'mediosdepagoyenvio', component: MediosdepagoyenvioComponent, },
+            {path: 'mediosdepago', component: MediosdepagoyenvioComponent, },
+            {path: 'envios', component: EnviosComponent, },
+
             {path: 'preguntasfrecuentes', component: PreguntasfrecuentesComponent, },
             {path: 'nosotros', component: NosotrosComponent, },
             {path: 'eventos', component: EventsComponent, },
             {path: 'comocomprar', component: HowtobuyComponent, },
             {path: 'libros/:id', component: ProductoidComponent, },
-            {path: 'libros/buscar/:termino', component: ProductsComponent, },
-            {path: 'libros', component: ProductsComponent, },
+            {path: 'buscar/libros/:termino', component: ProductsComponent, },
 
 
 
@@ -52,7 +54,7 @@ children: [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'top'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

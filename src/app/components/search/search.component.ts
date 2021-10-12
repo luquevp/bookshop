@@ -29,7 +29,7 @@ export class SearchComponent implements OnInit {
           this.router.navigateByUrl(`/`)
         }
   
-      this.router.navigateByUrl(`/libros/buscar/${termino}`);
+      this.router.navigateByUrl(`/buscar/libros/${termino}`);
   
     }
   

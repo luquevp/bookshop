@@ -8,20 +8,30 @@
  <div class="container">
 
     <br>
-    <div class="card "  *ngIf="libros.length === 0 && autores.length === 0 ">
-        <div class="row">
-                
-            <div class="col-md-6">
-                <div class="inner-card" > <img src="../../../assets/images/not-found.png"> </div>
+
+    <div class="card" *ngIf="libros.length === 0 && autores.length === 0 ">
+    <div class="page-wrap d-flex flex-row align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <span class="display-1 d-block">:(</span>
+                    <br>
+                    <div class="mb-4 lead">No se encontraron resultados para tu busqueda.</div>
+                    <div class="">Prueba con otras palabras clave o dentro de las categorías :)</div>
+
+                    <a href="https://www.totoprayogo.com/#" class="btn btn-link">Back to Home</a>
+                </div>
             </div>
-            <div class="col-md-6">
-         <p>No se encontraron resultados :(</p>
         </div>
-      </div>
+    </div>
+    
+    </div>
+
      
 
 
-    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5" *ngIf="libros.length > 0 || autores.length > 0" >
+
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5"  *ngIf="libros.length > 0 || autores.length > 0"   >
 
 
 
@@ -53,10 +63,9 @@
         
             </div>
         </div>
-        
+       
 
         </div>
-
     </div>
 </div>
 
