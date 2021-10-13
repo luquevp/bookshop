@@ -1,0 +1,37 @@
+import { Component, OnInit } from '@angular/core';
+import { IItem, Autor } from '../../interfaces/item.interface';
+import { ProductsService } from '../../services/products.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BusquedasService } from '../../services/busquedas.service';
+import { switchMap } from 'rxjs/operators';
+
+@Component({
+  selector: 'app-editorial',
+  templateUrl: './editorial.component.html',
+  styleUrls: ['./editorial.component.scss']
+})
+export class EditorialComponent implements OnInit {
+
+  public libros: IItem[] = [];
+
+  public autores: Autor[] = [];
+
+
+
+  constructor(private productsService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router, private busquedasService: BusquedasService) { }
+
+
+  ngOnInit(): void {
+
+    
+    this.activatedRoute.params
+    .pipe(
+      switchMap( ( { termino} ) => this.busquedasService.getLibroPorEditorial(termino))
+      )
+    .subscribe((libros: any) => {console.log(libros);
+      this.libros = libros})
+
+
+   
+  }
+}

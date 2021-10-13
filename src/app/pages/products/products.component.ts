@@ -19,6 +19,7 @@ export class ProductsComponent implements OnInit {
 
   public autores: Autor[] = [];
 
+public terminoIngresado : string = "";
 
 
   constructor(private productsService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router, private busquedasService: BusquedasService) { }
@@ -37,9 +38,8 @@ export class ProductsComponent implements OnInit {
 
 
     this.busquedasService.buscarLibroAutor(termino).subscribe((resp: any) => {
-        // console.log(resp)
 
-
+this.terminoIngresado = termino;
       // this.libros = resp.libros;
       // this.autores = resp.autores;
 

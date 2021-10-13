@@ -37,7 +37,7 @@
 										</p>
 
 										
-										<a href="" >
+										<a [routerLink]= "['/autores', libro?.autor.nombre]" >
 												{{libro?.autor.nombre}}
 										</a>
 										</div>
@@ -53,7 +53,7 @@
 												Editorial:
 										</p>
 
-										<a href="" >
+										<a [routerLink]= "['/editoriales', libro?.editorial.nombre]" >
 												{{libro?.editorial.nombre}}
 										</a>
 										</div>

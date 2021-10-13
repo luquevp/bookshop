@@ -1,3 +1,4 @@
+
 <app-search ></app-search>
 
 <div class="container animatedf">
@@ -7,19 +8,18 @@
    -->
  <div class="container">
 
-   
     <br>
     <div class="card carddetalle" *ngIf="libros.length != 0">
 
         <div class="row" >
             <div  class="cantidad" *ngIf="libros.length === 1">
                 Se encontró {{libros.length}} resultado para 
-                <span>"{{terminoIngresado}}"</span>
+                <span>"{{libros[0].autor.nombre}}"</span>
             </div>
 
             <div  class="cantidad" *ngIf="libros.length > 1">
                 Se encontraron {{libros.length}} resultados para
-                <span id="termino">"{{terminoIngresado}}"</span>
+                <span>"{{libros[0].autor.nombre}}"</span>
             </div>
 
         </div>
@@ -36,7 +36,7 @@
                     <div class="mb-4 lead">No se encontraron resultados para tu busqueda.</div>
                     <div class="">Prueba con otras palabras clave o dentro de las categorías :)</div>
 
-                    <a href="https://www.totoprayogo.com/#" class="btn btn-link">Back to Home</a>
+                   <br>
                 </div>
             </div>
         </div>
@@ -59,30 +59,8 @@
             </div>
         </div>
 
-        <div *ngFor="let autor of autores">
-    
-           <div class=" mt-5 mb-5 d-flex justify-content-center align-items-center">
-            <div class="card productcard" >
-        
-                <button [routerLink]= "['/libros', autor._id]">
-                    <div class="inner-card" > <img [src]="autor.img" class="img img-fluid rounded"> </div>
-        
-                </button>
-        
-                <div class="card-body">
-        
-                    <div class="card-title productcard-title">
-                        <h6>{{autor.titulo}} </h6>
-                    </div>
-        
-                </div>
-                
-        
-            </div>
-        </div>
        
-
-        </div>
+   
     </div>
 </div>
 

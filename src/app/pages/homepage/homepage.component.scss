@@ -3,7 +3,9 @@
     src: url('../../../assets/fonts/Eczar/Eczar-Bold.ttf');
 }
 
-
+.back{
+    background-color: rgb(87,59,163); 
+}
 .animatedf {
     animation: fadeIn;
     /* referring directly to the animation's @keyframe declaration */
