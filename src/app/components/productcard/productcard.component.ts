@@ -38,7 +38,7 @@ public addCart(libro: IItem)
   public ver(libro: IItem)
   {
     this.selected = libro;
-    console.log(this.selected);
+    //console.log(this.selected);
   }
 
 

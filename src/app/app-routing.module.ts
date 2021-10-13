@@ -19,6 +19,8 @@ import { BusquedasService } from './services/busquedas.service';
 import { SearchComponent } from './components/search/search.component';
 import { ProductComponent } from './components/product/product.component';
 import { EnviosComponent } from './pages/envios/envios.component';
+import { AutorComponent } from './pages/autor/autor.component';
+import { EditorialComponent } from './pages/editorial/editorial.component';
 
 
 const routes: Routes = [
@@ -36,6 +38,11 @@ children: [
             {path: 'comocomprar', component: HowtobuyComponent, },
             {path: 'libros/:id', component: ProductoidComponent, },
             {path: 'buscar/libros/:termino', component: ProductsComponent, },
+            {path: 'autores/:termino', component: AutorComponent, },
+            {path: 'editoriales/:termino', component: EditorialComponent, },
+
+
+
 
 
 
@@ -54,7 +61,7 @@ children: [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'top'})],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy',  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

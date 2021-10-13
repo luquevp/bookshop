@@ -22,6 +22,9 @@ import { CommonModule } from '@angular/common';
  
 import { ToastrModule } from 'ngx-toastr';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AutorComponent } from './pages/autor/autor.component';
+import { EditorialComponent } from './pages/editorial/editorial.component';
+import { NotyfToast } from './notyf.toast';
 
 
 @NgModule({
@@ -30,6 +33,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     NopagefoundComponent,
     LoginComponent,
     RegisterComponent,
+    NotyfToast
 
 
 
@@ -52,6 +56,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     NgbPaginationModule,
     CommonModule,
     ToastrModule.forRoot({
+      toastComponent:NotyfToast,
       timeOut: 1700,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
@@ -68,7 +73,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
   ],
-  entryComponents: [],
+  entryComponents: [ NotyfToast],
   providers: [
 
 

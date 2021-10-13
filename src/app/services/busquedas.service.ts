@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { Usuario } from '../models/usuario.model';
 import { Clinica } from '../models/clinica.model';
 import { Medico } from '../models/medico.model';
+import { Observable } from 'rxjs';
+import { IItem } from '../interfaces/item.interface';
 
 const base_url = environment.base_url;
 
@@ -80,4 +82,14 @@ export class BusquedasService {
     return this.http.get<any[]>( url)
   }
 
+
+  
+  getLibroPorAutor( termino: string ):Observable<IItem> {
+    return this.http.get<IItem>(`${ base_url }/buscar/productos/autor/${ termino }`);
+  }
+
+  
+  getLibroPorEditorial( termino: string ):Observable<IItem> {
+    return this.http.get<IItem>(`${ base_url }/buscar/productos/editorial/${ termino }`);
+  }
 }

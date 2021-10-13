@@ -30,6 +30,8 @@ import { HowtobuyComponent } from '../../pages/HowToBuy/HowToBuy.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar'; 
 import { ProductoidComponent } from '../../pages/productoid/productoid.component';
 import { EnviosComponent } from '../../pages/envios/envios.component';
+import { AutorComponent } from '../../pages/autor/autor.component';
+import { EditorialComponent } from '../../pages/editorial/editorial.component';
 
 
 
@@ -52,8 +54,11 @@ import { EnviosComponent } from '../../pages/envios/envios.component';
     EventsComponent,
     HowtobuyComponent,
     ProductoidComponent,
-    EnviosComponent
-    
+    EnviosComponent,
+    AutorComponent,
+    EditorialComponent,
+
+
     
   
 
