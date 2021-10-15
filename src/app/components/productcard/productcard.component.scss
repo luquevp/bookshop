@@ -1,8 +1,17 @@
 body {
-    background-color: #a2dfe0
+    background-color: #a2dfe0;
+}
+.card-body{
+    padding: 0px;
+}
+.librotitulo{
+    font-family: 'Hammersmith One', sans-serif;   font-size: 15px;
 }
 
+.nombreautor{
+font-size: 12px;
 
+}
 
 .productcard {
     background-color: #fff;

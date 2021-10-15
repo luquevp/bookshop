@@ -32,6 +32,10 @@ import { ProductoidComponent } from '../../pages/productoid/productoid.component
 import { EnviosComponent } from '../../pages/envios/envios.component';
 import { AutorComponent } from '../../pages/autor/autor.component';
 import { EditorialComponent } from '../../pages/editorial/editorial.component';
+import { CategoriasComponent } from '../../pages/categorias/categorias.component';
+import { SubcatComponent } from '../../pages/subcat/subcat.component';
+
+
 
 
 
@@ -57,6 +61,9 @@ import { EditorialComponent } from '../../pages/editorial/editorial.component';
     EnviosComponent,
     AutorComponent,
     EditorialComponent,
+    CategoriasComponent,
+    SubcatComponent
+
 
 
     

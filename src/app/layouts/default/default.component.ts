@@ -5,6 +5,8 @@ import { CartService } from '../../services/cart.service';
 import { IItem } from '../../interfaces/item.interface';
 import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { ViewportScroller } from '@angular/common';
+import { CategoriasService } from '../../services/categorias.service';
+import { Categoria } from '../../interfaces/categoria.interface';
 
 @Component({
   selector: 'app-default',
@@ -18,20 +20,29 @@ export class DefaultComponent implements OnInit{
   public cantProducts:number = 0;
   // tslint:disable-next-line: no-inferrable-types
   public totalQuantity:number = 0;
+  categorias: Categoria[] = [];
 
-  //  onActivate(e, outlet){
-  //   console.log(outlet)
+
+   onActivate(e, outlet){
+    console.log(outlet)
     
-  //   outlet.scrollTop = 0;
-  // }
+    outlet.scrollTop = 0;
+  }
 
 
 
   constructor( private auth: AuthService,
                private router: Router ,
-               private _cartService:CartService) { }
+               private _cartService:CartService, private categoriasService : CategoriasService) { }
   
   ngOnInit() {
+
+    this.categoriasService.getCategorias()
+    .subscribe(categorias => {
+      console.log(categorias); 
+      this.categorias = categorias});
+
+
     this._cartService.currentDataCart$.subscribe(x=>{
       if(x)
       {
@@ -58,5 +69,16 @@ this.router.navigateByUrl('/login');
   public cart(){
     this.openCart = !this.openCart;
   }
+
+  buscar(termino: string) {
+
+    if (termino.length === 0) {
+      this.router.navigateByUrl(`/`)
+    }
+
+    this.router.navigateByUrl(`/categorias/${termino}`);
+
+  }
+
 
 }

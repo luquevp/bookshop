@@ -32,6 +32,9 @@ export class AutorComponent implements OnInit {
       this.libros = libros})
 
 
+      
+
+
    
   }
 

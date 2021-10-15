@@ -21,7 +21,17 @@
              <a class="option" mat-button [routerLink]="'/comocomprar'"> Cómo Comprar  </a>
 
                 <a class="option" mat-button [routerLink]="'/eventos'"> Eventos </a>  -->
-                <a class="option" mat-button [routerLink]="'/categorias'"> Categorías </a>
+                <div  class="dropdown opcion">
+                    <a class="btn option dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Categorías
+                    </a>
+                  
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                        <a class="dropdown-item" (click)="buscar(categoria.nombre)" *ngFor="let categoria of categorias" [value]="categoria.value" >{{categoria.nombre}}</a>
+               
+                    </div>
+                  </div>
 
                 <a class="option" mat-button [routerLink]="'/nosotros'"> Nosotros </a>
 
@@ -62,9 +72,9 @@
  -->
 
 
- <!-- <router-outlet (activate)="onActivate($event, outlet)" #outlet></router-outlet> -->
- <router-outlet #outlet></router-outlet>
- 
+ <router-outlet (activate)="onActivate($event, outlet)" #outlet></router-outlet> 
+
+
  <app-footer></app-footer>
  
  <app-whatsapp class="wppbtn"></app-whatsapp>

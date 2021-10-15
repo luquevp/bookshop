@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SearchComponent implements OnInit {
 
   faSearch = faSearch;
+  
 
   constructor( private activatedRoute : ActivatedRoute, private router:Router) { }
 

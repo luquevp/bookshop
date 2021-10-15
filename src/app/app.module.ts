@@ -22,9 +22,12 @@ import { CommonModule } from '@angular/common';
  
 import { ToastrModule } from 'ngx-toastr';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { AutorComponent } from './pages/autor/autor.component';
-import { EditorialComponent } from './pages/editorial/editorial.component';
+
 import { NotyfToast } from './notyf.toast';
+import { SubcatComponent } from './pages/subcat/subcat.component';
+import { MyLoaderComponent } from './components/my-loader/my-loader.component';
+import { LoaderService } from './services/loader.service';
+import { LoaderInterceptor } from './interceptors/loader-interceptor.service';
 
 
 @NgModule({
@@ -33,7 +36,11 @@ import { NotyfToast } from './notyf.toast';
     NopagefoundComponent,
     LoginComponent,
     RegisterComponent,
-    NotyfToast
+    NotyfToast,
+    MyLoaderComponent
+    
+    
+    
 
 
 
@@ -76,7 +83,8 @@ import { NotyfToast } from './notyf.toast';
   entryComponents: [ NotyfToast],
   providers: [
 
-
+    LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

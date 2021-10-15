@@ -17,15 +17,34 @@ export class CarritoComponent implements OnInit {
   // tslint:disable-next-line: no-inferrable-types
   public totalPrice:number = 0;
   public totalQuantity:number = 0;
-  constructor(private _cartService:CartService, private toastr: ToastrService, private usuarioService: UsuarioService, private router: Router) { }
+
+
+
+constructor(private _cartService:CartService, private toastr: ToastrService, private usuarioService: UsuarioService, private router: Router) { }
 
   ngOnInit() {
+
+  
+
     this._cartService.currentDataCart$.subscribe(x=>{
       if(x)
       {
         this.items = x;
         this.totalQuantity = x.length;
-        this.totalPrice = x.reduce((sum, current) => sum + (current.precio * current.quantity), 0);
+        this.totalPrice = x.reduce((sum, current) => sum + (current.precio * current.cantidad), 0);
+      }
+    })
+
+    
+  }
+  
+  onChange(){
+    this._cartService.currentDataCart$.subscribe(x=>{
+      if(x)
+      {
+        this.items = x;
+        this.totalQuantity = x.length;
+        this.totalPrice = x.reduce((sum, current) => sum + (current.precio * current.cantidad), 0);
       }
     })
   }

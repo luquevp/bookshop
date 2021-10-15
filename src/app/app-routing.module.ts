@@ -21,6 +21,8 @@ import { ProductComponent } from './components/product/product.component';
 import { EnviosComponent } from './pages/envios/envios.component';
 import { AutorComponent } from './pages/autor/autor.component';
 import { EditorialComponent } from './pages/editorial/editorial.component';
+import { CategoriasComponent } from './pages/categorias/categorias.component';
+import { SubcatComponent } from './pages/subcat/subcat.component';
 
 
 const routes: Routes = [
@@ -40,6 +42,11 @@ children: [
             {path: 'buscar/libros/:termino', component: ProductsComponent, },
             {path: 'autores/:termino', component: AutorComponent, },
             {path: 'editoriales/:termino', component: EditorialComponent, },
+            {path: 'categorias/:termino', component: CategoriasComponent, },
+            {path: 'subcategorias/:termino', component: SubcatComponent, },
+
+
+
 
 
 

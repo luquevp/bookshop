@@ -58,8 +58,6 @@ import {RouterModule} from '@angular/router';
     CarruselComponent,
     SearchComponent,
     
-    
-    
   ],
   imports: [
     CommonModule,

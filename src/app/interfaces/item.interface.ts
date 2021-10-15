@@ -3,7 +3,7 @@ export interface IItem {
 
 
     _id?: number,
-    titulo: string,
+    titulo?: string,
     descripcion?: string,
     isbn?: number,
     formato?: String,
@@ -14,12 +14,15 @@ export interface IItem {
     usuario?: Usuario,
     estado?: Boolean,
     precio?: number,
-    quantity?: number,
+    cantidad?: number,
     autor?: Autor,
     editorial?: Editorial
 
+    
 
 }
+
+
 
 export interface Autor {
 

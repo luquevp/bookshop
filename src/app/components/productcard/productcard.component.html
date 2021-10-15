@@ -1,4 +1,4 @@
-<div class=" mt-5 mb-5 d-flex justify-content-center align-items-center">
+<div class=" mt-2 mb-2 d-flex justify-content-center align-items-center">
     <div class="card productcard" >
 
         <button [routerLink]= "['/libros', libro._id]">
@@ -9,7 +9,9 @@
         <div class="card-body">
 
             <div class="card-title productcard-title">
-                <h6>{{libro.titulo}} </h6>
+                <div class="librotitulo">{{libro.titulo}} </div>
+                <div class="nombreautor">{{libro.autor.nombre}}</div>
+
             </div>
 
         </div>

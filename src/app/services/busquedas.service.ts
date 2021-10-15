@@ -8,6 +8,7 @@ import { Clinica } from '../models/clinica.model';
 import { Medico } from '../models/medico.model';
 import { Observable } from 'rxjs';
 import { IItem } from '../interfaces/item.interface';
+import { SubCategoria } from '../interfaces/categoria.interface';
 
 const base_url = environment.base_url;
 
@@ -92,4 +93,18 @@ export class BusquedasService {
   getLibroPorEditorial( termino: string ):Observable<IItem> {
     return this.http.get<IItem>(`${ base_url }/buscar/productos/editorial/${ termino }`);
   }
+
+  getSubcategoriasPorCategoria( termino: string ):Observable<SubCategoria> {
+    return this.http.get<SubCategoria>(`${ base_url }/buscar/categorias/f/${ termino }`);
+  }
+
+  getLibroPorCategoria( termino: string ):Observable<IItem> {
+    return this.http.get<IItem>(`${ base_url }/buscar/productos/categoria/${ termino }`);
+  }
+  
+  
+  getLibroPorSubcat( termino: string ):Observable<IItem> {
+    return this.http.get<IItem>(`${ base_url }/buscar/productos/subcat/${ termino }`);
+  }
+
 }

@@ -29,7 +29,9 @@
 
 
 
-                                     <input type="number" class="form-control" name="" id="" value="{{item.stock}}"> 
+                                    <input type="number" class="form-control" name="" id="" value="{{item.cantidad}}" [(ngModel)]="item.cantidad" (click)="onChange($event)" min="1"> 
+                            
+
 
 
                                 </td>
