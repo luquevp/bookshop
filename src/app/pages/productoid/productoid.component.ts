@@ -49,7 +49,7 @@ export class ProductoidComponent implements OnInit {
 
   public addCart(libro: IItem)
 {
-//  this.libro.quantity = 1;
+ //this.libro.cantidad = 1;
   this._cartService.changeCart(libro);
   this.toastr.success('¡El producto fue añadido a tu carrito!', 'Enhorabuena :)');
   
