@@ -6,6 +6,8 @@ import { ProductsService } from '../../services/products.service';
 import { CartService } from '../../services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import {  faCreditCard, faTruck } from '@fortawesome/free-solid-svg-icons';
+import { MessageService } from '../../services/message.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -27,16 +29,23 @@ export class ProductoidComponent implements OnInit {
     private router: Router,
     private _cartService :CartService,
     private toastr: ToastrService,
+    private messageService : MessageService,
+    private spinner: NgxSpinnerService
     
     ) { }
 
   ngOnInit(): void {
+
+    this.spinner.show();
+
+
     this.ActivatedRoute.params
     .pipe(
       switchMap( ( { id} ) => this.productsService.getLibroPorId(id))
       )
     .subscribe(libro => {console.log(libro);
-      this.libro = libro})
+      this.libro = libro;
+      this.spinner.hide();})
 
 
 
@@ -55,6 +64,10 @@ export class ProductoidComponent implements OnInit {
   
 
 
+}
+
+addToCart(): void {
+  this.messageService.sendMessage(this.libro);
 }
 
 

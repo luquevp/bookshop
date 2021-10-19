@@ -15,8 +15,12 @@
                         </thead>
                         <tbody>
 
+                          
                             <tr class="clearfix" *ngFor="let item of items">
 
+                             
+
+                                
                                 <td>
                                     <figure class="itemside">
                                         <div class="aside"><img [src]="item.img" class="img-sm"></div>
@@ -74,29 +78,14 @@
                         <dt>Total:</dt>
                         <dd class="text-right text-dark b ml-3"><strong>${{totalPrice}}</strong></dd>
                     </dl>
-                    <hr> <a href="#" class="btn button btn-out btn-primary btn-square btn-main" data-abc="true" (click)="comprar"> Realizar compra </a>
-                    <div id="btnpago" class="btnpago" #btnago></div>
+                    <hr> <div class="btn button btn-out btn-primary btn-square btn-main" data-abc="true" (click)="comprar()"> Realizar compra </div>
 
-                    <script>
-                        // Agrega credenciales de SDK
-                          const mp = new MercadoPago('TEST-f66ce93a-2dbe-4dde-aad8-64af0a25f638', {
-                                locale: 'es-AR'
-                          });
-                        
-                          // Inicializa el checkout
-                          mp.checkout({
-                              preference: {
-                                  id: 'item._id'
-                              },
-                              render: {
-                                    container: '.btnpago', // Indica el nombre de la clase donde se mostrará el botón de pago
-                                    label: 'Pagar', // Cambia el texto del botón de pago (opcional)
-                              }
-                        });
-                        </script>
-
-
+                    <div #paypal> </div>
+                    <div id="mercadopago" name="mercadopago"></div>
                     <app-btnvolvertienda></app-btnvolvertienda>
+                    <button class="btn btn-outline-danger btn-block mb-2" (click)="emptyCart()">
+                        <i class="fas fa-ban"></i> Empty Cart
+                    </button>
                 </div>
             </div>
         </aside>

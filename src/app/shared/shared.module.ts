@@ -19,6 +19,7 @@ import { PieComponent } from './widgets/pie/pie.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { AngularMaterialModule } from '../angular-material.module';
 import { ComponentsModule } from '../components/components.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -45,7 +46,8 @@ import { ComponentsModule } from '../components/components.module';
     RouterModule,
     HighchartsChartModule,
     AngularMaterialModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxSpinnerModule 
 
   ],
   exports: [

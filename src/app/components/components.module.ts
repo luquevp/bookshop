@@ -32,6 +32,8 @@ import { PruebanicoComponent } from './pruebanico/pruebanico.component';
 import { CarruselComponent } from './carrusel/carrusel.component';
 import { SearchComponent } from './search/search.component';
 import {RouterModule} from '@angular/router';
+import { CarritoItemComponent } from './carrito-item/carrito-item.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -57,6 +59,7 @@ import {RouterModule} from '@angular/router';
     PruebanicoComponent,
     CarruselComponent,
     SearchComponent,
+    CarritoItemComponent,
     
   ],
   imports: [
@@ -70,7 +73,8 @@ import {RouterModule} from '@angular/router';
     FontAwesomeModule,
     NgbModule,
     NgbPaginationModule,
-    RouterModule
+    RouterModule,
+    NgxSpinnerModule 
     
     
   ],

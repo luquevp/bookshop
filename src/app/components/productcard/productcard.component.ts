@@ -4,6 +4,7 @@ import { CartService } from '../../services/cart.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { RouterModule } from '@angular/router';
+import { MessageService } from '../../services/message.service';
 
 
 
@@ -23,7 +24,7 @@ export class ProductcardComponent  {
  @Output() selected: IItem;
  
 
- constructor(config: NgbModalConfig, private modalService: NgbModal, private _cartService: CartService, private toastr: ToastrService) {
+ constructor(config: NgbModalConfig, private modalService: NgbModal, private _cartService: CartService, private toastr: ToastrService, private messageService : MessageService) {
   // customize default values of modals used by this component tree
   config.keyboard = false;
 }
@@ -33,6 +34,11 @@ public addCart(libro: IItem)
   this._cartService.changeCart(libro);
   this.toastr.success('¡El producto fue añadido a tu carrito!', 'Enhorabuena :)');
 
+}
+
+
+addToCart(): void {
+  this.messageService.sendMessage(this.libro);
 }
 
   public ver(libro: IItem)

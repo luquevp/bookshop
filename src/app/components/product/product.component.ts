@@ -3,6 +3,7 @@ import { keyValuesToMap } from '@angular/flex-layout/extended/typings/style/styl
 import { IItem } from '../../interfaces/item.interface';
 import { CartService } from '../../services/cart.service';
 import { ProductsService } from '../../services/products.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-product',
@@ -13,15 +14,19 @@ export class ProductComponent implements OnInit {
 
 libros =  [];
 
-  constructor( private productsService: ProductsService) { }
+  constructor( private productsService: ProductsService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
 
-    
+
+   
+      /** spinner starts on init */
+      this.spinner.show();
      this.productsService.getLibros()
     .subscribe(libros => {
       console.log(libros); 
-      this.libros = libros});
+      this.libros = libros;
+      this.spinner.hide();});
 
 
   }

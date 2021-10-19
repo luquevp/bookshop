@@ -22,6 +22,15 @@ export interface IItem {
 
 }
 
+export interface CartItemModel {
+
+    _id?: number;
+    titulo?: string;
+    precio?: number;
+    cantidad?: number;
+
+}
+
 
 
 export interface Autor {

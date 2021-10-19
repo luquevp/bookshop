@@ -34,6 +34,9 @@ import { AutorComponent } from '../../pages/autor/autor.component';
 import { EditorialComponent } from '../../pages/editorial/editorial.component';
 import { CategoriasComponent } from '../../pages/categorias/categorias.component';
 import { SubcatComponent } from '../../pages/subcat/subcat.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { MyLoaderComponent } from '../../components/my-loader/my-loader.component';
+
 
 
 
@@ -92,7 +95,8 @@ import { SubcatComponent } from '../../pages/subcat/subcat.component';
     HttpClientJsonpModule,
     HttpClientModule,
     FontAwesomeModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    NgxSpinnerModule ,
   ],
   exports: [
     

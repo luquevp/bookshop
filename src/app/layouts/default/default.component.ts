@@ -23,11 +23,6 @@ export class DefaultComponent implements OnInit{
   categorias: Categoria[] = [];
 
 
-   onActivate(e, outlet){
-    console.log(outlet)
-    
-    outlet.scrollTop = 0;
-  }
 
 
 

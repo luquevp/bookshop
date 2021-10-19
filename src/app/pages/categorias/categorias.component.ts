@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BusquedasService } from '../../services/busquedas.service';
 import { switchMap } from 'rxjs/operators';
 import { IItem } from '../../interfaces/item.interface';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-categorias',
@@ -18,9 +19,12 @@ export class CategoriasComponent implements OnInit {
   subcategorias : SubCategoria[] = [];
   libros : IItem[] = [];
 
-  constructor( private categoriasService: CategoriasService ,private activatedRoute: ActivatedRoute, private router: Router, private busquedasService: BusquedasService) { }
+  constructor( private spinner: NgxSpinnerService ,private categoriasService: CategoriasService ,private activatedRoute: ActivatedRoute, private router: Router, private busquedasService: BusquedasService) { }
 
   ngOnInit(): void {
+
+    this.spinner.show();
+
 
    // this.activatedRoute.params
     //.subscribe(({ termino }) => this.getSubcategoriasPorCategoria(termino));
@@ -39,6 +43,7 @@ export class CategoriasComponent implements OnInit {
       switchMap( ( { termino } ) => this.busquedasService.getLibroPorCategoria(termino))
       )
     .subscribe((libros: any) => {console.log(libros);
+      this.spinner.hide();
       this.libros = libros})
     
     //this.categoriasService.getCategorias()

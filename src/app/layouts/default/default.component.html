@@ -1,5 +1,5 @@
 
-
+<div>
     <mat-toolbar class="header">
         
 
@@ -71,8 +71,9 @@
                 
  -->
 
+ <router-outlet></router-outlet>
 
- <router-outlet (activate)="onActivate($event, outlet)" #outlet></router-outlet> 
+ <!--<router-outlet (activate)="onActivate($event, outlet)" #outlet></router-outlet> -->
 
 
  <app-footer></app-footer>
@@ -86,4 +87,4 @@
 
 </mat-sidenav-container>
 
-
+</div>

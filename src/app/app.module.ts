@@ -28,6 +28,8 @@ import { SubcatComponent } from './pages/subcat/subcat.component';
 import { MyLoaderComponent } from './components/my-loader/my-loader.component';
 import { LoaderService } from './services/loader.service';
 import { LoaderInterceptor } from './interceptors/loader-interceptor.service';
+import { NgxSpinnerModule } from "ngx-spinner";
+
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { LoaderInterceptor } from './interceptors/loader-interceptor.service';
     LoginComponent,
     RegisterComponent,
     NotyfToast,
-    MyLoaderComponent
+    MyLoaderComponent,
+    
     
     
     
@@ -74,7 +77,8 @@ import { LoaderInterceptor } from './interceptors/loader-interceptor.service';
 
       
     }), // ToastrModule added
-    MatProgressBarModule
+    MatProgressBarModule,
+    NgxSpinnerModule
     
 
 

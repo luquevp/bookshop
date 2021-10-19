@@ -7,7 +7,7 @@ import { IItem } from '../interfaces/item.interface';
 })
 export class CartService {
 
-  private cart = new BehaviorSubject<Array<IItem>>(null);
+  public cart = new BehaviorSubject<Array<IItem>>(null);
   public currentDataCart$ = this.cart.asObservable();
   constructor() { }
 
@@ -59,6 +59,11 @@ export class CartService {
 
   }
 
+  public removeAllCart(){
+    //Obtenemos el valor actual de carrito
  
+    this.cart = new BehaviorSubject<Array<IItem>>(null);
+    this.currentDataCart$ = this.cart.asObservable();
 
+}
 }

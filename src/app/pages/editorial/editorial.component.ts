@@ -4,6 +4,7 @@ import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BusquedasService } from '../../services/busquedas.service';
 import { switchMap } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-editorial',
@@ -18,18 +19,20 @@ export class EditorialComponent implements OnInit {
 
 
 
-  constructor(private productsService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router, private busquedasService: BusquedasService) { }
+  constructor(private spinner: NgxSpinnerService, private productsService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router, private busquedasService: BusquedasService) { }
 
 
   ngOnInit(): void {
 
-    
+    this.spinner.show();
+
     this.activatedRoute.params
     .pipe(
       switchMap( ( { termino} ) => this.busquedasService.getLibroPorEditorial(termino))
       )
     .subscribe((libros: any) => {console.log(libros);
-      this.libros = libros})
+      this.libros = libros;
+      this.spinner.hide();})
 
 
    

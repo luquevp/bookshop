@@ -5,6 +5,7 @@ import { Categoria, SubCategoria } from 'src/app/interfaces/categoria.interface'
 import { IItem } from 'src/app/interfaces/item.interface';
 import { BusquedasService } from 'src/app/services/busquedas.service';
 import { CategoriasService } from 'src/app/services/categorias.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-subcat',
@@ -18,7 +19,7 @@ export class SubcatComponent implements OnInit {
   libros : IItem[] = [];
   public terminoIngresado : string = "";
 
-  constructor( private categoriasService: CategoriasService ,private activatedRoute: ActivatedRoute, private router: Router, private busquedasService: BusquedasService) { }
+  constructor( private spinner: NgxSpinnerService, private categoriasService: CategoriasService ,private activatedRoute: ActivatedRoute, private router: Router, private busquedasService: BusquedasService) { }
 
   ngOnInit(): void {
 
@@ -26,6 +27,8 @@ export class SubcatComponent implements OnInit {
     //.subscribe(({ termino }) => this.getSubcategoriasPorCategoria(termino));
 
 
+
+    this.spinner.show();
 
       
     this.activatedRoute.params
@@ -49,7 +52,8 @@ export class SubcatComponent implements OnInit {
       this.categoriasService.getCategorias()
     .subscribe(categorias => {
       console.log(categorias); 
-      this.categorias = categorias});
+      this.categorias = categorias;
+      this.spinner.hide();});
       
   }
 
