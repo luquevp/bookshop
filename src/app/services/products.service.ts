@@ -5,6 +5,7 @@ import { IItem } from '../interfaces/item.interface';
 import { environment } from '../../environments/environment';
 import { of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { Comprobante } from '../interfaces/comprobante.interface';
 
 
 @Injectable({
@@ -40,5 +41,11 @@ export class ProductsService {
 
   getSugerencias( termino: string ): Observable<IItem[]> {
     return this.http.get<IItem[]>(`${ this.baseUrl }/productos?q=${ termino }&_limit=6`);
+  }
+
+
+  postComprobante(comprobante : Comprobante) : Observable<Comprobante>{
+
+    return this.http.post<Comprobante>(`${ this.baseUrl }/comprobantes/generar`, comprobante)
   }
 }

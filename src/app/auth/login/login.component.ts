@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import Swal from 'sweetalert2';
+import { AuthService } from 'src/app/services/auth.service';
 
 declare const gapi:any;
 
@@ -13,91 +14,108 @@ declare const gapi:any;
 })
 export class LoginComponent implements OnInit {
 
-  public formSubmitted = false;
-  public auth2: any;
-  public logueado: boolean;
+  //public formSubmitted = false;
+  //public auth2: any;
+  //public logueado: boolean;
 
 
   public loginForm = this.fb.group({
-    email: [ localStorage.getItem('email') || '' , [ Validators.required, Validators.email ] ],
+    email: [ 'valaryiam@gmail.com' || '' , [ Validators.required, Validators.email ] ],
     password: ['', Validators.required ],
-    remember: [false]
+    remember: [true]
   });
 
 
   constructor( private router: Router,
                private fb: FormBuilder,
-               private usuarioService: UsuarioService,
+               private authService: AuthService,
                private ngZone: NgZone ) { }
 
   ngOnInit(): void {
-    this.renderButton();
+   // this.renderButton();
   }
-
 
   login() {
-
-    this.usuarioService.login( this.loginForm.value )
-      .subscribe( resp => {
-
-        if ( this.loginForm.get('remember').value ){ 
-          localStorage.setItem('email', this.loginForm.get('email').value );
-        } else {
-          localStorage.removeItem('email');
-        }
-
-        // Navegar al Dashboard
-        this.router.navigateByUrl('/');
-        this.logueado = true;
-
-      }, (err) => {
-        // Si sucede un error
-        Swal.fire('Error', err.error.msg, 'error' );
-        this.logueado = false;
-
-      });
-
-  }
   
-  renderButton() {
-    gapi.signin2.render('my-signin2', {
-      'scope': 'profile email',
-      'width': 240,
-      'height': 50,
-      'longtitle': true,
-      'theme': 'dark',
-    });
+    const { email, password } = this.loginForm.value;
 
-    this.startApp();
+    this.authService.login( email, password )
+      .subscribe( ok => {
 
+        console.log(email,password);
+
+        if ( ok === true ) {
+          this.router.navigateByUrl('/');
+          
+        } else {
+          Swal.fire('Error', ok, 'error');
+        }
+      });
   }
 
-  async startApp() {
-    
-    await this.usuarioService.googleInit();
-    this.auth2 = this.usuarioService.auth2;
+  // login2() {
 
-    this.attachSignin( document.getElementById('my-signin2') );
-    
-  };
+  //   this.usuarioService.login( this.loginForm.value )
+  //     .subscribe( resp => {
 
-  attachSignin(element) {
-    
-    this.auth2.attachClickHandler( element, {},
-        (googleUser) => {
-            const id_token = googleUser.getAuthResponse().id_token;
-            // console.log(id_token);
-            this.usuarioService.loginGoogle( id_token )
-              .subscribe( resp => {
-                // Navegar al Dashboard
-                this.ngZone.run( () => {
-                  this.router.navigateByUrl('/');
-                })
-              });
+  //       if ( this.loginForm.get('remember').value ){ 
+  //         localStorage.setItem('email', this.loginForm.get('email').value );
+  //       } else {
+  //         localStorage.removeItem('email');
+  //       }
 
-        }, (error) => {
-            alert(JSON.stringify(error, undefined, 2));
-        });
-  }
+  //       // Navegar al Dashboard
+  //       this.router.navigateByUrl('/');
+  //       this.logueado = true;
+
+  //     }, (err) => {
+  //       // Si sucede un error
+  //       Swal.fire('Error', err.error.msg, 'error' );
+  //       this.logueado = false;
+
+  //     });
+
+  // }
+  
+  // renderButton() {
+  //   gapi.signin2.render('my-signin2', {
+  //     'scope': 'profile email',
+  //     'width': 240,
+  //     'height': 50,
+  //     'longtitle': true,
+  //     'theme': 'dark',
+  //   });
+
+  //   this.startApp();
+
+  // }
+
+  // async startApp() {
+    
+  //   await this.usuarioService.googleInit();
+  //   this.auth2 = this.usuarioService.auth2;
+
+  //   this.attachSignin( document.getElementById('my-signin2') );
+    
+  // };
+
+  // attachSignin(element) {
+    
+  //   this.auth2.attachClickHandler( element, {},
+  //       (googleUser) => {
+  //           const id_token = googleUser.getAuthResponse().id_token;
+  //           // console.log(id_token);
+  //           this.usuarioService.loginGoogle( id_token )
+  //             .subscribe( resp => {
+  //               // Navegar al Dashboard
+  //               this.ngZone.run( () => {
+  //                 this.router.navigateByUrl('/');
+  //               })
+  //             });
+
+  //       }, (error) => {
+  //           alert(JSON.stringify(error, undefined, 2));
+  //       });
+  // }
 
 }

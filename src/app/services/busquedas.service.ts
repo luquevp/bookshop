@@ -4,8 +4,7 @@ import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 
 import { Usuario } from '../models/usuario.model';
-import { Clinica } from '../models/clinica.model';
-import { Medico } from '../models/medico.model';
+
 import { Observable } from 'rxjs';
 import { IItem } from '../interfaces/item.interface';
 import { SubCategoria } from '../interfaces/categoria.interface';
@@ -39,13 +38,6 @@ export class BusquedasService {
     );
   }
 
-  private transformarClinicas( resultados: any[] ): Clinica[] {
-    return resultados;
-  }
-
-  private transformarMedicos( resultados: any[] ): Medico[] {
-    return resultados;
-  }
 
   // buscar(
   //     tipo: 'usuarios'|'medicos'|'clinicas',

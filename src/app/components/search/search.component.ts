@@ -18,10 +18,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.activatedRoute.params
-    .subscribe( ({ termino }) => {
-      console.log(termino);
-    })
+   
   }
 
   buscar( termino: string ){

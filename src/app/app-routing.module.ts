@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
 
 import { RegisterComponent } from './auth/register/register.component';
@@ -27,27 +27,25 @@ import { SubcatComponent } from './pages/subcat/subcat.component';
 
 const routes: Routes = [
 
-{path: '',  component: DefaultComponent,
-children: [
-            {path: '', component: HomepageComponent},
-            {path: 'carrito', component: CartdetalleComponent, },
-            {path: 'mediosdepago', component: MediosdepagoyenvioComponent, },
-            {path: 'envios', component: EnviosComponent, },
+  {
+    path: '', component: DefaultComponent,
+    children: [
+      { path: '', component: HomepageComponent },
+      { path: 'carrito', component: CartdetalleComponent,    
+    },
+      { path: 'mediosdepago', component: MediosdepagoyenvioComponent, },
+      { path: 'envios', component: EnviosComponent, },
 
-            {path: 'preguntasfrecuentes', component: PreguntasfrecuentesComponent, },
-            {path: 'nosotros', component: NosotrosComponent, },
-            {path: 'eventos', component: EventsComponent, },
-            {path: 'comocomprar', component: HowtobuyComponent, },
-            {path: 'libros/:id', component: ProductoidComponent, },
-            {path: 'buscar/libros/:termino', component: ProductsComponent, },
-            {path: 'autores/:termino', component: AutorComponent, },
-            {path: 'editoriales/:termino', component: EditorialComponent, },
-            {path: 'categorias/:termino', component: CategoriasComponent, },
-            {path: 'subcategorias/:termino', component: SubcatComponent, },
-
-
-
-
+      { path: 'preguntasfrecuentes', component: PreguntasfrecuentesComponent, },
+      { path: 'nosotros', component: NosotrosComponent, },
+      { path: 'eventos', component: EventsComponent, },
+      { path: 'comocomprar', component: HowtobuyComponent, },
+      { path: 'libros/:id', component: ProductoidComponent, },
+      { path: 'buscar/libros/:termino', component: ProductsComponent, },
+      { path: 'autores/:termino', component: AutorComponent, },
+      { path: 'editoriales/:termino', component: EditorialComponent, },
+      { path: 'categorias/:termino', component: CategoriasComponent, },
+      { path: 'subcategorias/:termino', component: SubcatComponent, },
 
 
 
@@ -57,18 +55,22 @@ children: [
 
 
 
-            
 
 
-          ],
-},
-{ path: 'register', component: RegisterComponent },
-{ path: 'login'   , component: LoginComponent },
+
+
+
+
+
+    ],
+  },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy',   scrollPositionRestoration: 'top'  })],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy', scrollPositionRestoration: 'top' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

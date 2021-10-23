@@ -17,7 +17,25 @@ body {
     font-size: 16px;
     font-weight: 400;
     background-color: #f2f2f2;
+   padding-top: 42px;
+
 }
+@media only screen and (max-width: 480px) {
+    .body {
+
+padding-top: 20px;    }
+  }
+
+.modal-backdrop { display: none; } 
+.modal { background: rgba(0,0,0,0.5);
+
+      } 
+      @media only screen and (max-width: 480px) {
+        .touch .modal .modal-body {
+          max-height: none; 
+        }
+      }
+      
 
 input,
 textarea,

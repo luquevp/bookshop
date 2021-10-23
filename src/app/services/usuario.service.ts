@@ -86,6 +86,7 @@ export class UsuarioService {
         const { email, google, nombre, role, img = '', uid } = resp.usuario;
         this.usuario = new Usuario( nombre, email, '', img, google, role, uid );
         localStorage.setItem('token', resp.token );
+        console.log(this.usuario);
         return true;
       }),
       catchError( error => of(false) )

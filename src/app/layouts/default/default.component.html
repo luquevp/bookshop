@@ -1,60 +1,169 @@
+<div class="row">
 
-<div>
-    <mat-toolbar class="header">
-        
 
-        <mat-toolbar-row class="">
-            <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-          <mat-icon style="color: white;">menu</mat-icon>
+    <!-- <nav class="navbar fixed-top header">
+       
+
+
+        <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+            <mat-icon style="color: white;">menu</mat-icon>
         </button>
-        <a mat-button [routerLink]="'/'">
+        <a class="navbar-brand" [routerLink]="'/'">
 
-            <div class="logo" >
+            <div class="logo">
                 <img src="../../../../assets/images/logo.png" class="logo-container" alt="The Bookshop">
             </div>
         </a>
-            <span class="menu-spacer"></span>
 
-            <div fxShow="true" fxHide.lt-md fxHide.lt-lg class="options">
-                <!-- The following menu items will be hidden on both SM and XS screen sizes 
+        
+
+
+        <div class="row">
+            <span class="menu-spacer"></span> 
+            <div class="col-xl-8 col-lg-8">
+
+
+
+                <div fxShow="true" fxHide.lt-md class=" options">
+                   The following menu items will be hidden on both SM and XS screen sizes 
              <a class="option" mat-button [routerLink]="'/'"> Inicio </a>
              <a class="option" mat-button [routerLink]="'/comocomprar'"> Cómo Comprar  </a>
 
-                <a class="option" mat-button [routerLink]="'/eventos'"> Eventos </a>  -->
-                <div  class="dropdown opcion">
-                    <a class="btn option dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     Categorías
+                <a class="option" mat-button [routerLink]="'/eventos'"> Eventos </a> 
+                    <div class="dropdown opcion">
+                        <a class="btn option dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Categorías
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                            <a class="dropdown-item" (click)="buscar(categoria.nombre)"
+                                *ngFor="let categoria of categorias" [value]="categoria.value">{{categoria.nombre}}</a>
+
+                        </div>
+                    </div>
+
+                    <a class="option" mat-button [routerLink]="'/nosotros'"> Nosotros </a>
+
+
+
+
+                    <!-- <a class="option" mat-button [routerLink]="'/mediosdepagoyenvio'"> Medios de Pago y Envío </a> 
+                    <a class="option" mat-button [routerLink]="'/preguntasfrecuentes'"> Preguntas Frecuentes </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-xl-4 col-lg-4">
+                <!-- <span class="menu-spacer"></span>
+
+                <!-- <div class="nombreUsuario">
+            <a class="nombre" mat-button> {{nombreUsuario}} </a>
+           </div> 
+
+
+
+                <div class="optionsIcon">
+
+                    <div fxShow="true" fxHide.lt-sm>
+                        <a class="option user-icon" (click)="salir()"><span class="lnr lnr-user cart-icon"></span></a>
+                    </div>
+
+                    <a class="option cart-icon" [routerLink]="'/carrito'"><span
+                            class="lnr lnr-cart cart-icon"></span><span>{{totalQuantity}}</span></a>
+                </div>
+            </div>
+        </div>
+
+
+    </nav> -->
+    <!-- <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+                <mat-icon style="color: white;">menu</mat-icon>
+            </button> -->
+
+
+    <nav class="navbar navbar-expand-lg  fixed-top header">
+
+        <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+            <mat-icon style="color: white;">menu</mat-icon>
+        </button>
+
+        <a class="navbar-brand" [routerLink]="'/'">
+            <img src="../../../../assets/images/logo.png" class="logo-container" alt="The Bookshop">
+        </a>
+
+        <!-- <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="color: white;"></span>
+          </button> -->
+
+     
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 options">
+                <li class="dropdown  option">
+                    <a class="btn option dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categorías
                     </a>
-                  
+
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-                        <a class="dropdown-item" (click)="buscar(categoria.nombre)" *ngFor="let categoria of categorias" [value]="categoria.value" >{{categoria.nombre}}</a>
-               
+                        <a class="dropdown-item" (click)="buscar(categoria.nombre)" *ngFor="let categoria of categorias"
+                            [value]="categoria.value">{{categoria.nombre}}</a>
+
                     </div>
-                  </div>
+                </li>
 
-                <a class="option" mat-button [routerLink]="'/nosotros'"> Nosotros </a>
+                <li class="nav-item ">
+                    <a class="nav-link option" [routerLink]="'/nosotros'">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link option" [routerLink]="'/preguntas'"> Preguntas Frecuentes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link option" [routerLink]="'/eventos'">Eventos</a>
+                </li>
+
+            </ul>
+
+            <ul class="optionsIcon">
+
+                <li class="dropdown  option">
+                    <a class="btn option dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="lnr lnr-user option user-icon"> </span>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                        <a class="dropdown-item" *ngIf="nombreUsuario === null" (click)="salir()">Ingresar</a>
+
+                        <a class="dropdown-item" *ngIf="nombreUsuario != null"> Hola {{nombreUsuario}} !</a>
+                        <a class="dropdown-item" *ngIf="nombreUsuario != null" (click)="salir()">Cerrar Sesión</a>
 
 
-               <!-- <a class="option" mat-button [routerLink]="'/mediosdepagoyenvio'"> Medios de Pago y Envío </a> -->
-                <a class="option" mat-button [routerLink]="'/preguntasfrecuentes'"> Preguntas Frecuentes </a>
+                    </div>
+                </li>
 
-            </div>
-           <span class="menu-spacer"></span>
-            <div class="optionsIcon">
-                <div fxShow="true" fxHide.lt-md>
-                    <a class="option user-icon" [routerLink]="'/login'"><span class="lnr lnr-user cart-icon"></span></a>
-                </div>
-                <a class="option cart-icon" [routerLink]="'/carrito'"><span class="lnr lnr-cart cart-icon"></span><span>{{totalQuantity}}</span></a>
-            </div>
-        </mat-toolbar-row>
-    </mat-toolbar>
-   
+
+
+                <li class="nav-item ">
+                    <a class="nav-link  " [routerLink]="'/carrito'"><span
+                            class="lnr lnr-cart  option cart-icon"></span><span
+                            class="  option cart-icon">{{totalQuantity}}</span></a>
+                </li>
+
+
+            </ul>
+        </div>
+    </nav>
+
 
     <mat-sidenav-container style="background-color: white;" fxFlexFill>
         <mat-sidenav #sidenav class="sidenav">
             <mat-nav-list>
-                <!--  <a (click)="sidenav.toggle()" href="" mat-list-item>Salir</a> -->
+                <a (click)="sidenav.toggle()" href="" mat-list-item>Salir</a>
                 <a mat-list-item [routerLink]="'/'"> Inicio </a>
                 <a mat-list-item [routerLink]="'/comocomprar'"> Cómo Comprar </a>
 
@@ -66,25 +175,23 @@
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content fxFlexFill>
-            <!--             <app-cart *ngIf="openCart"></app-cart>
-
-                
- -->
-
- <router-outlet></router-outlet>
-
- <!--<router-outlet (activate)="onActivate($event, outlet)" #outlet></router-outlet> -->
+            <app-cart *ngIf="openCart"></app-cart>
 
 
- <app-footer></app-footer>
- 
- <app-whatsapp class="wppbtn"></app-whatsapp>
- 
- <div class="push"></div>
- 
- 
-</mat-sidenav-content>
 
-</mat-sidenav-container>
 
-</div>
+            <router-outlet></router-outlet>
+
+            <!--<router-outlet (activate)="onActivate($event, outlet)" #outlet></router-outlet> -->
+
+
+            <app-footer></app-footer>
+
+            <app-whatsapp class="wppbtn"></app-whatsapp>
+
+            <div class="push"></div>
+
+
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>

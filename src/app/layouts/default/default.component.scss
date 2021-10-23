@@ -7,6 +7,9 @@
     animation-duration: 2s;
 }
 
+.padding  {
+padding-top: 9px;
+}
 :host {
     display: flex;
     flex-direction: column;
@@ -48,10 +51,12 @@ mat-drawer-content {
 }
 
 .header {
-    padding-top: 7px;
-    height: 70px;
-    width: 100%;
-    display: flex;
+    // padding-top: 7px;
+    height: 85px;
+    // width: 100%;
+    // display: flex;
+
+    
   //  justify-content: space-between;
     //margin-bottom: 25px;
    //background: rgb(0, 155, 221);
@@ -70,7 +75,32 @@ mat-drawer-content {
 
     }
     .options {
-        width: 70%;
+       width: 82%;
+       height: 100%;
+        display: flex;
+        align-items: center;
+         justify-content: center;
+        text-align: center;
+         outline:none;
+
+        .option {
+             padding: 10px 15px;
+             color: white;
+            font-size:12px;
+            letter-spacing: 1px;
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 35px;
+            gap: normal;
+            text-decoration: none;
+            outline:none;
+
+
+        }
+    }
+    .nombreUsuario {
+        
+        width: 10%;
         height: 100%;
         display: flex;
         align-items: center;
@@ -78,8 +108,9 @@ mat-drawer-content {
         text-align: center;
         outline:none;
 
-        .option {
-            padding: 10px 15px;
+        .nombre {
+            font-family: 'Poppins', sans-serif;
+            padding: 0px 0px 10px;
             color: white;
             font-size:12px;
             letter-spacing: 1px;
@@ -101,20 +132,20 @@ mat-drawer-content {
         box-shadow: none;
       }
     .optionsIcon {
-        width: 12%;
+      //  width: 12%;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: flex-end;
+       text-align: center;
         .option {
-            padding: 10px 15px;
+            //padding: 10px 15px;
             color: white;
-            font-size: 16.8px;
+            font-size: 25px;
             letter-spacing: 1px;
             text-align: center;
-            text-transform: uppercase;
             line-height: 35px;
-            gap: normal;
+          //  gap: normal;
             text-decoration: none;
         }
     }
@@ -133,7 +164,7 @@ mat-drawer-content {
     line-height: 35px;
     gap: normal;
     letter-spacing: 1px;
-    padding: 10px 15px;
+   // padding: 10px 15px;
     text-align: center;
 }
 

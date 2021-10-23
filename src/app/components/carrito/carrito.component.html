@@ -33,9 +33,16 @@
 
 
 
-                                    <input type="number" class="form-control" name="" id="" value="{{item.cantidad}}" [(ngModel)]="item.cantidad" (click)="onChange($event)" min="1"> 
+                                    <input type="number" class="form-control" name="" id="" value="{{item.cantidad}}" [(ngModel)]="item.cantidad"  min="1" max={{item.stock}} (input)="onChange($event)"> 
                             
 
+                                    <datalist id="defaultNumbers">
+                                        <option value="10045678">
+                                        <option value="103421">
+                                        <option value="11111111">
+                                        <option value="12345678">
+                                        <option value="12999922">
+                                      </datalist>
 
 
                                 </td>
@@ -78,7 +85,14 @@
                         <dt>Total:</dt>
                         <dd class="text-right text-dark b ml-3"><strong>${{totalPrice}}</strong></dd>
                     </dl>
-                    <hr> <div class="btn button btn-out btn-primary btn-square btn-main" data-abc="true" (click)="comprar()"> Realizar compra </div>
+                    <hr> 
+                <!--   <div class="btn button btn-out btn-primary btn-square btn-main" data-abc="true" (click)="comprar()"> Realizar compra </div> --> 
+                    <div class="btn button btn-out btn-primary btn-square btn-main" data-abc="true" *ngIf="botonLoguear == true" routerLink="/login" > Continuar </div>
+
+
+                   <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Launch demo modal
+                      </button> -->
 
                     <div #paypal> </div>
                     <div id="mercadopago" name="mercadopago"></div>
@@ -91,3 +105,80 @@
         </aside>
     </div>
 </div>
+
+
+
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Invoice</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                <div class="d-flex justify-content-center row">
+                    <div class="col-md-12">
+                        <div class="p-3 bg-white rounded">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h1 class="text-uppercase">Invoice</h1>
+                                    <div class="billed"><span class="font-weight-bold text-uppercase">Billed:</span><span class="ml-1">Jasper Kendrick</span></div>
+                                    <div class="billed"><span class="font-weight-bold text-uppercase">Date:</span><span class="ml-1">May 13, 2020</span></div>
+                                    <div class="billed"><span class="font-weight-bold text-uppercase">Order ID:</span><span class="ml-1">#1345345</span></div>
+                                </div>
+                                <div class="col-md-6 text-right mt-3">
+                                    <h4 class="text-danger mb-0">Rae jones</h4><span>bbbootstrap.com</span>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Unit</th>
+                                                <th>Price</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Custom oil painting (24 X 36 in.)</td>
+                                                <td>10</td>
+                                                <td>34</td>
+                                                <td>340</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Digital illustraion paint(8.5 X 11 in.)</td>
+                                                <td>12</td>
+                                                <td>50</td>
+                                                <td>600</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total</td>
+                                                <td>940</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                    </div>
+                </div>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

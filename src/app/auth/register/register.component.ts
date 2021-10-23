@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 import { UsuarioService } from '../../services/usuario.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -26,29 +27,45 @@ export class RegisterComponent {
   });
 
   constructor( private fb: FormBuilder,
-               private usuarioService: UsuarioService,
+               private auth: AuthService,
                private router: Router ) { }
 
-  crearUsuario() {
-    this.formSubmitted = true;
-    console.log( this.registerForm.value );
+  // crearUsuario() {
+  //   this.formSubmitted = true;
+  //   console.log( this.registerForm.value );
 
-    if ( this.registerForm.invalid ) {
-      return;
-    }
+  //   if ( this.registerForm.invalid ) {
+  //     return;
+  //   }
 
-    // Realizar el posteo
-    this.usuarioService.crearUsuario( this.registerForm.value )
-        .subscribe( resp => {
+  //   // Realizar el posteo
+  //   this.usuarioService.crearUsuario( this.registerForm.value )
+  //       .subscribe( resp => {
           
-          // Navegar al Dashboard
+  //         // Navegar al Dashboard
+  //         this.router.navigateByUrl('/');
+
+  //       }, (err) => {
+  //         // Si sucede un error
+  //         Swal.fire('Error', err.error.msg, 'error' );
+  //       });
+
+
+  // }
+  crearUsuario() {
+         this.formSubmitted = true;
+
+    const { nombre, email, password, rol } = this.registerForm.value;
+
+    this.auth.registro( nombre, email, password, rol )
+      .subscribe( ok => {
+
+        if ( ok === true ) {
           this.router.navigateByUrl('/');
-
-        }, (err) => {
-          // Si sucede un error
-          Swal.fire('Error', err.error.msg, 'error' );
-        });
-
+        } else {
+          Swal.fire('Error', ok, 'error');
+        }
+      });
 
   }
 
