@@ -61,7 +61,9 @@ export class RegisterComponent {
       .subscribe( ok => {
 
         if ( ok === true ) {
-          this.router.navigateByUrl('/');
+          Swal.fire('Buen Trabajo!',  'El usuario fue creado correctamente.', 'success');
+
+          this.router.navigateByUrl('/login');
         } else {
           Swal.fire('Error', ok, 'error');
         }

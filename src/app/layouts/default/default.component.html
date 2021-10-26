@@ -86,7 +86,7 @@
 
     <nav class="navbar navbar-expand-lg  fixed-top header">
 
-        <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <button mat-icon-button (click)="onClick()" (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
             <mat-icon style="color: white;">menu</mat-icon>
         </button>
 
@@ -98,7 +98,7 @@
             <span class="navbar-toggler-icon" style="color: white;"></span>
           </button> -->
 
-     
+
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0 options">
                 <li class="dropdown  option">
@@ -119,7 +119,7 @@
                     <a class="nav-link option" [routerLink]="'/nosotros'">Nosotros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link option" [routerLink]="'/preguntas'"> Preguntas Frecuentes</a>
+                    <a class="nav-link option" [routerLink]="'/preguntasfrecuentes'"> Preguntas Frecuentes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link option" [routerLink]="'/eventos'">Eventos</a>
@@ -131,7 +131,7 @@
 
                 <li class="dropdown  option">
                     <a class="btn option dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        (click)="onClick()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="lnr lnr-user option user-icon"> </span>
                     </a>
 
@@ -139,7 +139,7 @@
 
                         <a class="dropdown-item" *ngIf="nombreUsuario === null" (click)="salir()">Ingresar</a>
 
-                        <a class="dropdown-item" *ngIf="nombreUsuario != null"> Hola {{nombreUsuario}} !</a>
+                        <a class="dropdown-item" routerLink="/perfil" *ngIf="nombreUsuario != null"> Hola {{nombreUsuario}} !</a>
                         <a class="dropdown-item" *ngIf="nombreUsuario != null" (click)="salir()">Cerrar Sesión</a>
 
 
@@ -148,30 +148,66 @@
 
 
 
-                <li class="nav-item ">
-                    <a class="nav-link  " [routerLink]="'/carrito'"><span
-                            class="lnr lnr-cart  option cart-icon"></span><span
-                            class="  option cart-icon">{{totalQuantity}}</span></a>
-                </li>
 
 
             </ul>
+
         </div>
+        <ul class="optionsIcon">
+            <li class="nav-item ">
+                <a class="nav-link  " [routerLink]="'/carrito'"><span
+                        class="lnr lnr-cart  option cart-icon"></span><span
+                        class="  option cart-icon">{{CartQuantity}}</span></a>
+            </li>
+        </ul>
     </nav>
 
 
     <mat-sidenav-container style="background-color: white;" fxFlexFill>
         <mat-sidenav #sidenav class="sidenav">
             <mat-nav-list>
-                <a (click)="sidenav.toggle()" href="" mat-list-item>Salir</a>
-                <a mat-list-item [routerLink]="'/'"> Inicio </a>
-                <a mat-list-item [routerLink]="'/comocomprar'"> Cómo Comprar </a>
+                <ul>
+                    <li>
+                        <a class="dropdown-item" *ngIf="nombreUsuario === null" (click)="salir()">Ingresar</a>
+                        <a class="dropdown-item" *ngIf="nombreUsuario != null"> Hola {{nombreUsuario}} !</a>
+                        <a class="dropdown-item" *ngIf="nombreUsuario != null" (click)="salir()">Cerrar Sesión</a>
 
-                <a mat-list-item [routerLink]="'/libros'"> Libros </a>
-                <a mat-list-item [routerLink]="'/eventos'"> Eventos </a>
-                <a mat-list-item [routerLink]="'/preguntas'"> Preguntas Frecuentes </a>
-                <a mat-list-item [routerLink]="'/nosotros'"> Nosotros </a>
-                <a mat-list-item [routerLink]="'/login'"> Ingresar </a>
+                    </li>
+                    <li>
+                        <mat-accordion>
+
+                            <mat-expansion-panel>
+                                <!-- <mat-expansion-panel (opened)="panelOpenState = true"
+                                                 (closed)="panelOpenState = false"> -->
+                                <mat-expansion-panel-header>
+                                    <a mat-list-item> Categorías </a>
+        
+                                </mat-expansion-panel-header>
+                                <a class="dropdown-item" (click)="buscar(categoria.nombre)" *ngFor="let categoria of categorias"
+                                    [value]="categoria.value">{{categoria.nombre}}</a>
+        
+                            </mat-expansion-panel>
+                        </mat-accordion>
+
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item"   [routerLink]="'/comocomprar'"> Cómo Comprar </a>
+
+                    </li>
+<li>
+    <a class="dropdown-item" [routerLink]="'/eventos'"> Eventos </a>
+
+</li>
+<li>
+    <a mat-list-item [routerLink]="'/preguntas'"> Preguntas Frecuentes </a>
+
+</li>
+                </ul>
+                <!-- <a (click)="sidenav.toggle()" href="" mat-list-item>Salir</a> -->
+                <!-- <a mat-list-item [routerLink]="'/'"> Inicio </a> -->
+
+         
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content fxFlexFill>
@@ -179,8 +215,10 @@
 
 
 
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
 
-            <router-outlet></router-outlet>
 
             <!--<router-outlet (activate)="onActivate($event, outlet)" #outlet></router-outlet> -->
 

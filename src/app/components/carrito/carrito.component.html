@@ -50,7 +50,7 @@
                                     <div class="price-wrap"> <var class="price">${{item.precio}}</var> <small class="text-muted"></small> </div>
                                 </td>
                                 <td class="text-right d-none d-md-block">
-                                    <a (click)="remove(item)" class="btn btn-light " style="color: white;" data-abc="true">Remove</a> </td>
+                                    <a (click)="remove(item)" class="btn btn-light " style="color: white;" data-abc="true">Eliminar</a> </td>
                             </tr>
 
 
@@ -74,11 +74,11 @@
             <div class="card">
                 <div class="card-body">
                     <dl class="dlist-align">
-                        <dt>Total price:</dt>
+                        <dt>Precio total:</dt>
                         <dd class="text-right ml-3">${{totalPrice}}</dd>
                     </dl>
                     <dl class="dlist-align">
-                        <dt>Discount:</dt>
+                        <dt>Descuento:</dt>
                         <dd class="text-right text-danger ml-3">- $0.00</dd>
                     </dl>
                     <dl class="dlist-align">
@@ -87,18 +87,17 @@
                     </dl>
                     <hr> 
                 <!--   <div class="btn button btn-out btn-primary btn-square btn-main" data-abc="true" (click)="comprar()"> Realizar compra </div> --> 
-                    <div class="btn button btn-out btn-primary btn-square btn-main" data-abc="true" *ngIf="botonLoguear == true" routerLink="/login" > Continuar </div>
+                    <div class="btn buttonContinuar " data-abc="true" *ngIf="botonLoguear == true" (click)="continuarCompra()" > Continuar</div>
 
 
                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         Launch demo modal
                       </button> -->
 
-                    <div #paypal> </div>
+                    <div #paypal > </div>
                     <div id="mercadopago" name="mercadopago"></div>
-                    <app-btnvolvertienda></app-btnvolvertienda>
-                    <button class="btn btn-outline-danger btn-block mb-2" (click)="emptyCart()">
-                        <i class="fas fa-ban"></i> Empty Cart
+                    <button class="btn btn-light btn-block mb-2" (click)="emptyCart()">
+                       Limpiar carrito
                     </button>
                 </div>
             </div>

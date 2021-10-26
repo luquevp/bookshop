@@ -12,6 +12,7 @@ import html2canvas from 'html2canvas';
 import { Comprobante } from '../../interfaces/comprobante.interface';
 import { ProductsService } from '../../services/products.service';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 declare var paypal;
 
@@ -39,58 +40,27 @@ export class CarritoComponent implements OnInit {
   public totalQuantity: number = 0;
   public comprobante: Comprobante;
   public botonLoguear: boolean = false;
+  public quantity: string 
+
 
   nombreUsuario = localStorage.getItem('id');
 
 
 
-  constructor( private _cartService: CartService, private toastr: ToastrService, private usuarioService: UsuarioService, private router: Router, public storageService: StorageServiceService, private messageService: MessageService, private productsService: ProductsService) {
+  constructor(private _cartService: CartService, private toastr: ToastrService, private usuarioService: UsuarioService, private router: Router, public storageService: StorageServiceService, private messageService: MessageService, private productsService: ProductsService) {
 
 
   }
 
-  
+
 
   ngOnInit() {
 
-
-    if (localStorage.getItem('token')) {
-      paypal.
-      Buttons({
-        createOrder: (data, actions) => {
-          return actions.order.create({
-            purchase_units: [
-              {
-                description: this.items[0].titulo,
-                amount: {
-                  currency_code: 'USD',
-                  value: this.totalPrice
-                }
-              }
-
-            ]
-          })
-        },
-        onApprove: async (data, actions) => {
-          const order = await actions.order.capture();
-          console.log(order);
-          this.comprar();
-          this.emptyCart();
-
-        },
-        onError: err => {
-          console.log(err);
-        }
-
-      })
-      .render(this.paypalElement.nativeElement);
-
-
-    } else {
-      this.botonLoguear = true;
-    }
-
     
+    this.renderizarBotones();
+ 
+
+
     if (this.storageService.existsCart()) {
       this.items = this.storageService.getCart();
 
@@ -124,6 +94,63 @@ export class CarritoComponent implements OnInit {
 
   }
 
+  renderizarBotones(){
+    this.quantity = localStorage.getItem('CartQuantity');
+
+    if (localStorage.getItem('token') &&  this.quantity != "0" && this.quantity != null){
+      this.botonLoguear = false;
+
+      this.paypal();
+  } else {
+          this.botonLoguear = true;
+       }
+
+
+  }
+
+  paypal() {
+   // if (localStorage.getItem('token')) {
+      paypal.
+        Buttons({
+          createOrder: (data, actions) => {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  description: this.items[0].titulo,
+                  amount: {
+                    currency_code: 'USD',
+                    value: this.totalPrice
+                  }
+                }
+
+              ]
+            })
+          },
+          onApprove: async (data, actions) => {
+            const order = await actions.order.capture();
+            console.log(order);
+            this.comprar();
+            this.emptyCart();
+
+          },
+          onError: err => {
+            console.log(err);
+            if (this.items.length === 0) {
+              Swal.fire('Oops!', 'Parece que tu carrito esta vacío, agrega ítems para continuar.', 'warning');
+            }
+            else {Swal.fire('Error!', 'La compra no fue completada.', 'error');}
+
+          }
+
+        })
+        .render(this.paypalElement.nativeElement);
+
+
+  //   } else {
+  //     this.botonLoguear = true;
+  //   }
+  }
+
   getTotal(): number {
     let total = 0;
     this.items.forEach(item => {
@@ -143,6 +170,7 @@ export class CarritoComponent implements OnInit {
       }
     })
 
+
     this.storageService.setCart(this.items);
     this.totalPrice = this.getTotal();
 
@@ -157,10 +185,11 @@ export class CarritoComponent implements OnInit {
   }
 
 
-
-
   public comprar() {
     console.log(this.items);
+    localStorage.setItem('CartQuantity', "0");
+
+
     this.comprobante = {
       monto: this.totalPrice,
       productos: this.items,
@@ -173,6 +202,9 @@ export class CarritoComponent implements OnInit {
       .subscribe(resp => {
         console.log('Respuesta', resp);
       })
+
+    Swal.fire('Buen Trabajo!', 'La compra fue exitosa!', 'success');
+
   }
 
 
@@ -180,7 +212,15 @@ export class CarritoComponent implements OnInit {
     this.items = [];
     this.totalPrice = 0;
     this.storageService.clear();
-    this._cartService.removeAllCart();
+  // this._cartService.removeAllCart();
+   // this.renderizarBotones();
+   this.items.forEach(item => {
+    this._cartService.changeCart(item);
+    this._cartService.removeElementCart(item);
+   });
+
+
+
 
   }
 
@@ -209,7 +249,23 @@ export class CarritoComponent implements OnInit {
     });
   }
 
+  continuarCompra() {
 
+    this.quantity = localStorage.getItem('CartQuantity');
+    console.log(this.quantity);
+    if (this.quantity != "0" && this.quantity != null) {
+      this.router.navigateByUrl(`/login`)
+    }
+    else {
+      Swal.fire('Oops!', 'Parece que tu carrito esta vacío, agrega ítems para continuar.', 'warning');
+
+
+    }
+
+    // this.router.navigateByUrl(`/buscar/libros/${termino}`);
+
+
+  }
 
 
 }

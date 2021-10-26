@@ -24,20 +24,31 @@ export class DefaultComponent implements OnInit {
   // tslint:disable-next-line: no-inferrable-types
   public totalQuantity: number = 0;
   categorias: Categoria[] = [];
+  nombreUsuario : string;
+  CartQuantity : string;
 
 
   constructor(private auth: AuthService,
     private router: Router,
     private _cartService: CartService, private categoriasService: CategoriasService,
     private usuarioService: UsuarioService) {
+
+      this.CartQuantity = localStorage.getItem('CartQuantity')
+
   }
 
-  
-  nombreUsuario = localStorage.getItem('nombre')
+  onClick(){
+   this.nombreUsuario = localStorage.getItem('nombre')
+
+  }
+ 
 
   ngOnInit() {
 
-   
+    this.nombreUsuario = localStorage.getItem('nombre')
+    this.CartQuantity = localStorage.getItem('CartQuantity')
+
+
     
 
     this.categoriasService.getCategorias()
@@ -49,6 +60,9 @@ export class DefaultComponent implements OnInit {
     this._cartService.currentDataCart$.subscribe(x => {
       if (x) {
         this.totalQuantity = x.length;
+        this.CartQuantity = this.totalQuantity.toString();
+        localStorage.setItem('CartQuantity', this.CartQuantity);
+
       }
     })
 
@@ -62,6 +76,7 @@ export class DefaultComponent implements OnInit {
 
     this.auth.logout();
     this.router.navigateByUrl('/login');
+    this.onClick();
 
   }
 

@@ -66,4 +66,25 @@ export class CartService {
     this.currentDataCart$ = this.cart.asObservable();
 
 }
+
+
+
+public removeAllElementCart(newData:IItem){
+  //Obtenemos el valor actual de carrito
+  let listCart = this.cart.getValue();
+  //Buscamos el item del carrito para eliminar
+  let objIndex = listCart.findIndex((obj => obj._id == newData._id));
+  if(objIndex != -1)
+  {
+    //Seteamos la cantidad en 1 (ya que los array se modifican los valores por referencia, si vovlemos a agregarlo la cantidad no se reiniciará)
+    listCart[objIndex].cantidad = 1;
+    //Eliminamos el item del array del carrito
+    listCart.splice(objIndex,1);
+  }
+
+ // this.cart.next(listCart);
+
+}
+
+
 }

@@ -23,6 +23,7 @@ import { AutorComponent } from './pages/autor/autor.component';
 import { EditorialComponent } from './pages/editorial/editorial.component';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
 import { SubcatComponent } from './pages/subcat/subcat.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,9 @@ const routes: Routes = [
       { path: 'editoriales/:termino', component: EditorialComponent, },
       { path: 'categorias/:termino', component: CategoriasComponent, },
       { path: 'subcategorias/:termino', component: SubcatComponent, },
+      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'perfil', component: PerfilComponent },
 
 
 
@@ -64,8 +68,7 @@ const routes: Routes = [
 
     ],
   },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  
 
 ];
 

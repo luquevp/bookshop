@@ -9,7 +9,7 @@ export class StorageServiceService {
   constructor() { }
 
   existsCart(): boolean {
-    return localStorage.getItem('cart') != null;
+    return localStorage.getItem('cart') != "[]";
   }
 
   setCart(cart: IItem[]): void {
@@ -21,6 +21,8 @@ export class StorageServiceService {
   }
   
   clear(): void {
-    localStorage.setItem('cart', null);
+    localStorage.setItem('cart', "[]");
+    localStorage.setItem('CartQuantity', "0");
+
   }
 }

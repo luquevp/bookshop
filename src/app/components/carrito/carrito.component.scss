@@ -355,3 +355,24 @@ a {
     background: #e7f2ff;
     padding: 10px;
 }
+
+
+$main-color: #47bff7;
+$light-text: #ABB0BE;
+.buttonContinuar {
+    background: $main-color;
+    font-size: 'Poppins', sans-serif;;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    display: block;
+    border-radius: 3px;
+    font-size: 16px;
+    margin: 25px 0 15px 0;
+    font-weight: bolder;
+
+    &:hover {
+        background: darken($main-color, 10%);
+    }
+}

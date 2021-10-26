@@ -87,7 +87,7 @@ export class BusquedasService {
   }
 
   getSubcategoriasPorCategoria( termino: string ):Observable<SubCategoria> {
-    return this.http.get<SubCategoria>(`${ base_url }/buscar/categorias/f/${ termino }`);
+    return this.http.get<SubCategoria>(`${ base_url }/buscar/categorias/subcatxcat/${ termino }`);
   }
 
   getLibroPorCategoria( termino: string ):Observable<IItem> {

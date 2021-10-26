@@ -10,8 +10,9 @@ import { environment } from '../../environments/environment';
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { CargarUsuario } from '../interfaces/cargar-usuarios.interface';
+import { Usuario } from '../interfaces/usuario.interface';
 
-import { Usuario } from '../models/usuario.model';
+
 
 const base_url = environment.base_url;
 
@@ -48,6 +49,10 @@ export class UsuarioService {
     }
   }
 
+  getUsuarioPorId( id: string ):Observable<Usuario> {
+    return this.http.get<Usuario>(`${ base_url }/usuarios/${ id }`);
+  }
+
   googleInit() {
 
     return new Promise<void>( resolve => {
@@ -75,24 +80,24 @@ export class UsuarioService {
 
   }
 
-  validarToken(): Observable<boolean> {
+  // validarToken(): Observable<boolean> {
     
-    return this.http.get(`${ base_url }/login/renew`, {
-      headers: {
-        'x-token': this.token
-      }
-    }).pipe(
-      map( (resp: any) => {
-        const { email, google, nombre, role, img = '', uid } = resp.usuario;
-        this.usuario = new Usuario( nombre, email, '', img, google, role, uid );
-        localStorage.setItem('token', resp.token );
-        console.log(this.usuario);
-        return true;
-      }),
-      catchError( error => of(false) )
-    );
+  //   return this.http.get(`${ base_url }/login/renew`, {
+  //     headers: {
+  //       'x-token': this.token
+  //     }
+  //   }).pipe(
+  //     map( (resp: any) => {
+  //       const { email, google, nombre, role, img = '', uid } = resp.usuario;
+  //       this.usuario = new Usuario( nombre, email, '', img, google, role, uid );
+  //       localStorage.setItem('token', resp.token );
+  //       console.log(this.usuario);
+  //       return true;
+  //     }),
+  //     catchError( error => of(false) )
+  //   );
 
-  }
+  // }
 
 
   crearUsuario( formData: RegisterForm ) {
@@ -140,22 +145,22 @@ export class UsuarioService {
   }
 
   
-  cargarUsuarios( desde: number = 0 ) {
+  // cargarUsuarios( desde: number = 0 ) {
 
-    const url = `${ base_url }/usuarios?desde=${ desde }`;
-    return this.http.get<CargarUsuario>( url, this.headers )
-            .pipe(
-              map( resp => {
-                const usuarios = resp.usuarios.map( 
-                  user => new Usuario(user.nombre, user.email, '', user.img, user.google, user.rol, user.uid )  
-                );
-                return {
-                  total: resp.total,
-                  usuarios
-                };
-              })
-            )
-  }
+  //   const url = `${ base_url }/usuarios?desde=${ desde }`;
+  //   return this.http.get<CargarUsuario>( url, this.headers )
+  //           .pipe(
+  //             map( resp => {
+  //               const usuarios = resp.usuarios.map( 
+  //                 user => new Usuario(user.nombre, user.email, '', user.img, user.google, user.rol, user.uid )  
+  //               );
+  //               return {
+  //                 total: resp.total,
+  //                 usuarios
+  //               };
+  //             })
+  //           )
+  // }
 
 
   eliminarUsuario( usuario: Usuario ) {
