@@ -9,26 +9,36 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: [ './register.component.scss' ]
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
 
   public formSubmitted = false;
 
   public registerForm = this.fb.group({
-    nombre: ['', Validators.required ],
-    email: ['', [ Validators.required, Validators.email ] ],
-    password: ['', Validators.required ],
-    password2: ['', Validators.required ],
-    terminos: [ false, Validators.required ],
-    rol: ["USER_ROLE"]
+    nombre: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required],
+    password2: ['', Validators.required],
+    terminos: [false, Validators.required],
+    rol: ["USER_ROLE"],
+    provincia: ['', Validators.required],
+    localidad: ['', Validators.required],
+    direccion: ['', Validators.required],
+    codigoPostal: ['', Validators.required],
+    celular: ['', Validators.required],
+
+
+
+
+
   }, {
     validators: this.passwordsIguales('password', 'password2')
   });
 
-  constructor( private fb: FormBuilder,
-               private auth: AuthService,
-               private router: Router ) { }
+  constructor(private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router) { }
 
   // crearUsuario() {
   //   this.formSubmitted = true;
@@ -41,7 +51,7 @@ export class RegisterComponent {
   //   // Realizar el posteo
   //   this.usuarioService.crearUsuario( this.registerForm.value )
   //       .subscribe( resp => {
-          
+
   //         // Navegar al Dashboard
   //         this.router.navigateByUrl('/');
 
@@ -53,15 +63,19 @@ export class RegisterComponent {
 
   // }
   crearUsuario() {
-         this.formSubmitted = true;
+    this.formSubmitted = true;
 
-    const { nombre, email, password, rol } = this.registerForm.value;
+    const { nombre, email, password, rol, provincia, localidad, direccion, codigoPostal, celular } = this.registerForm.value;
+    console.log(this.registerForm.value);
+    this.auth.registro(nombre, email, password, rol, provincia,
+      localidad,
+      direccion,
+      codigoPostal,
+      celular)
+      .subscribe(ok => {
 
-    this.auth.registro( nombre, email, password, rol )
-      .subscribe( ok => {
-
-        if ( ok === true ) {
-          Swal.fire('Buen Trabajo!',  'El usuario fue creado correctamente.', 'success');
+        if (ok === true) {
+          Swal.fire('Buen Trabajo!', 'El usuario fue creado correctamente.', 'success');
 
           this.router.navigateByUrl('/login');
         } else {
@@ -71,9 +85,9 @@ export class RegisterComponent {
 
   }
 
-  campoNoValido( campo: string ): boolean {
-    
-    if ( this.registerForm.get(campo).invalid && this.formSubmitted ) {
+  campoNoValido(campo: string): boolean {
+
+    if (this.registerForm.get(campo).invalid && this.formSubmitted) {
       return true;
     } else {
       return false;
@@ -85,7 +99,7 @@ export class RegisterComponent {
     const pass1 = this.registerForm.get('password').value;
     const pass2 = this.registerForm.get('password2').value;
 
-    if ( (pass1 !== pass2) && this.formSubmitted ) {
+    if ((pass1 !== pass2) && this.formSubmitted) {
       return true;
     } else {
       return false;
@@ -97,14 +111,14 @@ export class RegisterComponent {
     return !this.registerForm.get('terminos').value && this.formSubmitted;
   }
 
-  passwordsIguales(pass1Name: string, pass2Name: string ) {
+  passwordsIguales(pass1Name: string, pass2Name: string) {
 
-    return ( formGroup: FormGroup ) => {
+    return (formGroup: FormGroup) => {
 
       const pass1Control = formGroup.get(pass1Name);
       const pass2Control = formGroup.get(pass2Name);
 
-      if ( pass1Control.value === pass2Control.value ) {
+      if (pass1Control.value === pass2Control.value) {
         pass2Control.setErrors(null)
       } else {
         pass2Control.setErrors({ noEsIgual: true })

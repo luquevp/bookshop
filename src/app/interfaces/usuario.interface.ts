@@ -20,6 +20,12 @@ export interface Usuario {
     rol?: Role,
     estado?: boolean,
     google?: boolean,
+    provincia?: string,
+    localidad?: string,
+    direccion?: string,
+    codigoPostal?: number,
+    celular?: number
+
 
 }
 

@@ -1,3 +1,5 @@
+<app-search></app-search>
+
 <div class="container">
     <div class="main-body">
     
@@ -28,7 +30,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
+                      <h6 class="mb-0">Nombre</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                         {{usuario?.nombre}}
@@ -46,20 +48,21 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Phone</h6>
+                      <h6 class="mb-0">Celular</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      (239) 816-9029
-                    </div>
+{{usuario.celular}}
+
+</div>
                   </div>
                   <hr>
                  
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Address</h6>
+                      <h6 class="mb-0">Dirección</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      Bay Area, San Francisco, CA
+                     {{usuario.direccion}} - {{usuario.localidad}} - {{usuario.provincia}}
                     </div>
                   </div>
                  <!--  <hr>

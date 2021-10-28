@@ -36,6 +36,7 @@ import { CategoriasComponent } from '../../pages/categorias/categorias.component
 import { SubcatComponent } from '../../pages/subcat/subcat.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MyLoaderComponent } from '../../components/my-loader/my-loader.component';
+import { PerfilComponent } from '../../pages/perfil/perfil.component';
 
 
 
@@ -65,7 +66,8 @@ import { MyLoaderComponent } from '../../components/my-loader/my-loader.componen
     AutorComponent,
     EditorialComponent,
     CategoriasComponent,
-    SubcatComponent
+    SubcatComponent,
+    PerfilComponent
 
 
 

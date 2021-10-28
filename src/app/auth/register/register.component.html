@@ -1,73 +1,184 @@
 <div class="limiter animated fadeInRight contenedor">
     <br>
-    <br>
-<div class="container">
+    
+    <div class="container-fluid">
 
 
-    <div class="container-login100">
-
-<div class="">
+        <div class="container-login100">
 
 
-        <div class="wrap-login100 p-t-50 p-b-90">
-            <div class="login100-form-title"> Registrarse
-            </div>
-            <br>
+                <div class="row">
+
+                    <div class="col">
+                        <div class="wrap-login100 p-t-50 p-b-90">
+                            <div class="login100-form-title"> Registrarse
+                            </div>
+                            <br>
+
+
+
+                      
+                                <!-- FORMULARIO -->
+                                <form class="login100-form validate-form flex-sb flex-w" (ngSubmit)="crearUsuario()"
+                                    id="loginform" autocomplete="off" [formGroup]="registerForm">
+
+                                    <!-- èrror email -->
+                                    <span *ngIf="campoNoValido('email')" class="text-danger animated fadeIn">* El email
+                                        es obligatorio y
+                                        tiene que ser válido</span>
+
+                                    <!-- ìnput email -->
+                                    <div class="wrap-input100 m-b-16">
+
+                                        <input class="input100" type="email" formControlName="email"
+                                            placeholder="Email">
+
+                                        <span class="focus-input100"></span>
+                                    </div>
+
+                                    <!-- ìnput nombre completo -->
+                                    <!-- error nombre -->
+                                    <span *ngIf="campoNoValido('nombre')" class="text-danger animated fadeIn">* El
+                                        nombre es
+                                        obligatorio</span>
+
+                                    <div class="wrap-input100 m-b-16">
+                                        <input class="input100 " type="text" formControlName="nombre" minlength="2"
+                                            placeholder="Nombre y apellidos">
+
+                                        <span class="focus-input100"></span>
+                                    </div>
+
+
+                                    <div class="row" style="width: 110%;" >
+                                        <div class="col-xl-6 col-12 col-md-6 col-sm-12 col-lg-6" >
+
+
+                                            <!-- ìnput prov completo -->
+                                            <!-- error prov -->
+                                            <span *ngIf="campoNoValido('provincia')"
+                                                class="text-danger animated fadeIn">* provincia es
+                                                obligatorio</span>
+
+                                            <div class="wrap-input100 m-b-16">
+                                                <input class="input100 " type="text" formControlName="provincia"
+                                                    minlength="2" placeholder="provincia">
+
+                                                <span class="focus-input100"></span>
+                                            </div>
+
+
+                                            <!-- ìnput direccion completo -->
+                                            <!-- error direccion -->
+                                            <span *ngIf="campoNoValido('direccion')"
+                                                class="text-danger animated fadeIn">* direccion es
+                                                obligatorio</span>
+
+                                            <div class="wrap-input100 m-b-16">
+                                                <input class="input100 " type="text" formControlName="direccion"
+                                                    minlength="2" placeholder="direccion">
+
+                                                <span class="focus-input100"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-12 col-md-6 col-sm-12 col-lg-6" >
+
+
+                                            <!-- ìnput localidad completo -->
+                                            <!-- error localidad -->
+                                            <span *ngIf="campoNoValido('localidad')"
+                                                class="text-danger animated fadeIn">* localidad es
+                                                obligatorio</span>
+
+                                            <div class="wrap-input100 m-b-16">
+                                                <input class="input100 " type="text" formControlName="localidad"
+                                                    minlength="2" placeholder="localidad">
+
+                                                <span class="focus-input100"></span>
+                                            </div>
 
 
 
 
-            <!-- FORMULARIO -->
-            <form class="login100-form validate-form flex-sb flex-w" (ngSubmit)="crearUsuario()" id="loginform"
-                autocomplete="off" [formGroup]="registerForm">
 
-                <!-- èrror email -->
-                <span *ngIf="campoNoValido('email')" class="text-danger animated fadeIn">* El email es obligatorio y
-                    tiene que ser válido</span>
 
-                <!-- ìnput email -->
-                <div class="wrap-input100 m-b-16">
 
-                    <input class="input100" type="email" formControlName="email" placeholder="Email">
+                                            <!-- ìnput codigoPostal completo -->
+                                            <!-- error codigoPostal -->
+                                            <span *ngIf="campoNoValido('codigoPostal')"
+                                                class="text-danger animated fadeIn">* codigoPostal es
+                                                obligatorio</span>
 
-                    <span class="focus-input100"></span>
-                </div>
+                                            <div class="wrap-input100 m-b-16">
+                                                <input class="input100 " type="text" formControlName="codigoPostal"
+                                                    minlength="2" placeholder="codigoPostal">
 
-                <!-- ìnput nombre completo -->
-                <!-- error nombre -->
-                <span *ngIf="campoNoValido('nombre')" class="text-danger animated fadeIn">* El nombre es
-                    obligatorio</span>
+                                                <span class="focus-input100"></span>
+                                            </div>
 
-                <div class="wrap-input100 m-b-16">
-                    <input class="input100 " type="text" formControlName="nombre" minlength="2"
-                        placeholder="Nombre y apellidos">
 
-                    <span class="focus-input100"></span>
-                </div>
-                <!-- ìnput contraseña -->
-                <!--                 <span *ngIf="contrasenasNoValidas()" class="text-danger animated fadeIn">* Las contraseñas deben de ser iguales</span>
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- ìnput celular completo -->
+                                    <!-- error celular -->
+                                    <span *ngIf="campoNoValido('celular')" class="text-danger animated fadeIn">* celular
+                                        es
+                                        obligatorio</span>
+
+                                    <div class="wrap-input100 m-b-16">
+                                        <input class="input100 " type="text" formControlName="celular" minlength="2"
+                                            placeholder="celular">
+
+                                        <span class="focus-input100"></span>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                                    <div class="row" style="width: 110%;">
+
+                                        <div class="col-xl-6 col-12 col-md-6 col-sm-12 col-lg-6">
+
+                                            <!-- ìnput contraseña -->
+                                            <!--                 <span *ngIf="contrasenasNoValidas()" class="text-danger animated fadeIn">* Las contraseñas deben de ser iguales</span>
  -->
-                <div class="wrap-input100 m-b-16">
+                                            <div class="wrap-input100 m-b-16">
 
-                    <input class="input100 " type="password" formControlName="password" placeholder="Password">
+                                                <input class="input100 " type="password" formControlName="password"
+                                                    placeholder="Password">
 
-                    <span class="focus-input100"></span>
-                </div>
+                                                <span class="focus-input100"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xl-6 col-12 col-md-6 col-sm-12 col-lg-6 ">
+
+                                            <span *ngIf="contrasenasNoValidas()" class="text-danger animated fadeIn">*
+                                                Las contraseñas deben de ser
+                                                iguales</span>
+                                            <div class="wrap-input100 m-b-16">
+
+                                                <input class="input100" type="password" formControlName="password2"
+                                                    placeholder="Confirmar Password">
+
+                                                <span class="focus-input100"></span>
+                                            </div>
+                                        </div>
+                                    </div>
 
 
-                <span *ngIf="contrasenasNoValidas()" class="text-danger animated fadeIn">* Las contraseñas deben de ser
-                    iguales</span>
-                <div class="wrap-input100 m-b-16">
 
-                    <input class="input100" type="password" formControlName="password2"
-                        placeholder="Confirmar Password">
-
-                    <span class="focus-input100"></span>
-                </div>
-
-
-
-<!-- 
+                                    <!-- 
                 <div class="flex-sb-m w-full p-t-3 p-b-24">
                     <div class="contact100-form-checkbox">
 
@@ -89,34 +200,36 @@
                     </div>
                 </div> -->
 
-                <div class="row">
-                    <div class="col text-danger">
+                                    <div class="row">
+                                        <div class="col text-danger">
 
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="container-login100-form-btn m-t-17">
+                                        <button class="login100-form-btn" type="submit">
+                                            Crear cuenta
+                                        </button>
+                                    </div>
+
+                                </form>
+                                <div class="d-none dsm-block">
+
+                                </div>
+                                <div class="text-center">
+                                    <br>
+                                    <a routerLink="/login" class="txt1">
+                                        ¿Ya tienes cuenta? / Ingresar
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
 
 
                     </div>
                 </div>
-
-                <div class="container-login100-form-btn m-t-17">
-                    <button class="login100-form-btn" type="submit">
-                        Crear cuenta
-                    </button>
-                </div>
-
-            </form>
-            <div class="d-none dsm-block">
-
             </div>
-            <div class="text-center">
-                <br>
-                <a routerLink="/login" class="txt1">
-                    ¿Ya tienes cuenta? / Ingresar
-                </a>
-            </div>
-
-
         </div>
-    </div>
-</div>
-</div>
-</div>

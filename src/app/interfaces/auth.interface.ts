@@ -8,6 +8,11 @@ export interface AuthResponse {
         nombre?: string,
         uid?: string,
         email?: string,
-        rol?: Role
+        rol?: Role,
+        provincia?: string,
+        localidad?: string,
+        direccion?: string,
+        codigoPostal?: number,
+        celular?: number
     }
 }

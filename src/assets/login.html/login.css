@@ -141,7 +141,7 @@ button:hover {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: center;
   align-items: center;
   padding: 15px;
@@ -195,13 +195,13 @@ button:hover {
 
 .input100 {
   font-family: Poppins-Medium;
-  font-size: 16px;
+  font-size: 12px;
   color: #333333;
   line-height: 1.2;
 
   display: block;
   width: 100%;
-  height: 55px;
+  height: 30px;
   background: transparent;
   padding: 0 7px 0 43px;
 }
@@ -280,7 +280,7 @@ button:hover {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+flex-wrap: wrap;
   justify-content: center;
 }
 

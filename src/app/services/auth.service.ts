@@ -15,43 +15,47 @@ export class AuthService {
 
   private baseUrl: string = environment.base_url;
 
-  constructor( private http: HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
-  registro( nombre: string, email: string, password: string, rol: Role ) {
+  registro(nombre: string, email: string, password: string, rol: Role, provincia: string,
+    localidad: string,
+    direccion: string,
+    codigoPostal: number,
+    celular: number) {
 
-    const url  = `${ this.baseUrl }/usuarios`;
-    const body = { email, password, nombre, rol };
+    const url = `${this.baseUrl}/usuarios/registro`;
+    const body = { email, password, nombre, rol, provincia, localidad, direccion, codigoPostal, celular };
 
-    return this.http.post<AuthResponse>( url, body )
+    return this.http.post<AuthResponse>(url, body)
       .pipe(
-        tap( ({ ok, token }) => {
-          if ( ok ) {
-            localStorage.setItem('token', token! );
+        tap(({ ok, token }) => {
+          if (ok) {
+            localStorage.setItem('token', token!);
           }
         }),
-        map( resp => resp.ok ),
-        catchError( err => of(err.error.msg) )
+        map(resp => resp.ok),
+        catchError(err => of(err.error.msg))
       );
 
   }
 
 
 
-  login( email: string, password: string ) {
+  login(email: string, password: string) {
 
-    const url  = `${ this.baseUrl }/auth/login`;
+    const url = `${this.baseUrl}/auth/login`;
     const body = { email, password };
 
-    return this.http.post<AuthResponse>( url, body )
+    return this.http.post<AuthResponse>(url, body)
       .pipe(
-        tap( resp => {
-          if ( resp.ok ) {
+        tap(resp => {
+          if (resp.ok) {
             this.setToken(resp)
             console.log(resp);
           }
         }),
-        map( resp => resp.ok ),
-        catchError( err => of(err.error.msg) )
+        map(resp => resp.ok),
+        catchError(err => of(err.error.msg))
       );
   }
 
@@ -60,20 +64,20 @@ export class AuthService {
 
   validarToken(): Observable<boolean> {
 
-    const url = `${ this.baseUrl }/auth/renew`;
+    const url = `${this.baseUrl}/auth/renew`;
     const headers = new HttpHeaders()
-      .set('x-token', localStorage.getItem('token') || '' );
+      .set('x-token', localStorage.getItem('token') || '');
 
-    return this.http.get<AuthResponse>( url, { headers } )
-        .pipe(
-          tap(resp => {
-            if (resp.ok) {
-              this.setToken(resp)
-            }
-          }),
-          map( resp => resp.ok),
-          catchError( err => of(err.error.msg) )
-        );
+    return this.http.get<AuthResponse>(url, { headers })
+      .pipe(
+        tap(resp => {
+          if (resp.ok) {
+            this.setToken(resp)
+          }
+        }),
+        map(resp => resp.ok),
+        catchError(err => of(err.error.msg))
+      );
 
   }
 
@@ -81,7 +85,7 @@ export class AuthService {
     localStorage.clear();
   }
 
-  setToken(resp: AuthResponse){
+  setToken(resp: AuthResponse) {
     localStorage.setItem('token', resp.token!)
     localStorage.setItem('nombre', resp.usuario.nombre)
     localStorage.setItem('id', resp.usuario.uid)
