@@ -7,6 +7,11 @@ import { FileUploadService } from '../../services/file-upload.service';
 import { Usuario } from '../../interfaces/usuario.interface';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { BusquedasService } from '../../services/busquedas.service';
+import { ComprobanteConDetalle, Detalle } from '../../interfaces/comprobante.interface';
+import { numberFormat } from 'highcharts';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 
 
@@ -22,13 +27,19 @@ export class PerfilComponent implements OnInit {
   public imagenSubir: File;
   public imgTemp: any = null;
   public idUsuario: string;
+  public comprobantes : ComprobanteConDetalle[] = [];
+  public detalleComprobante : Detalle;
+  public comprobante: ComprobanteConDetalle;
+  public precioPorUnidad : number;
+  public numeroComprobante: number;
 
 
 
   constructor( private fb: FormBuilder,
                private usuarioService: UsuarioService,
                private fileUploadService: FileUploadService,
-               private ActivatedRoute: ActivatedRoute) {
+               private ActivatedRoute: ActivatedRoute,
+               private busquedasService: BusquedasService) {
     
   }
 
@@ -46,14 +57,66 @@ export class PerfilComponent implements OnInit {
       this.usuario = usuario;
     })
 
-
-
-
-
-
-
-
+    this.ActivatedRoute.params
+    .pipe(
+      switchMap( ( { termino } ) => this.busquedasService.getComprobantesPorUsuario(this.idUsuario))
+      )
+    .subscribe((comprobantes: any) => {console.log(comprobantes);
+      this.comprobantes = comprobantes
+   })
   }
+
+  traerDetalleComprobante(numero : number){
+
+    this.numeroComprobante = numero;
+    this.busquedasService.getDetallePorNumeroComprobante(numero)
+    .subscribe(detalle => {
+      this.detalleComprobante = detalle;
+      console.log(this.detalleComprobante);
+      
+        
+      });
+
+
+      this.busquedasService.getComprobantePorNumero(numero)
+    .subscribe(comprobante => {
+      this.comprobante = comprobante;
+      console.log(this.comprobante);
+      
+        
+      });
+    }
+
+
+    
+     
+
+    public downloadPDF() {
+      // Extraemos el
+      const DATA = document.getElementById('htmlData');
+      const doc = new jsPDF('p', 'pt', 'a4');
+      const options = {
+        background: 'white',
+        scale: 3
+      };
+      html2canvas(DATA, options).then((canvas) => {
+  
+        const img = canvas.toDataURL('image/PNG');
+  
+        // Add image Canvas to PDF
+        const bufferX = 15;
+        const bufferY = 15;
+        const imgProps = (doc as any).getImageProperties(img);
+        const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+        return doc;
+      }).then((docResult) => {
+        docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
+      });
+    }
+  
+  
 
 
 }

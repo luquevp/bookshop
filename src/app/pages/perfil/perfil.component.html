@@ -1,134 +1,197 @@
 <app-search></app-search>
 
 <div class="container">
-    <div class="main-body">
-    
-          <!-- Breadcrumb -->
-        <br>
-          <!-- /Breadcrumb -->
-    
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Admin" class="rounded-circle" width="150">
-                    <div class="mt-3">
-                      <h4>{{usuario?.nombre}}</h4>
+  <div class="main-body">
+
+    <!-- Breadcrumb -->
+    <br>
+    <!-- /Breadcrumb -->
+
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img src="{{usuario?.img}}" alt="Admin" class="rounded-circle" width="150">
+              <div class="mt-3">
+                <h4>{{usuario?.nombre}}</h4>
 
 
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card mt-3">             
+
               </div>
             </div>
-            <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Nombre</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {{usuario?.nombre}}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {{usuario?.email}}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Celular</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-{{usuario.celular}}
+          </div>
+        </div>
+        <div class="card mt-3">
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Nombre</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{usuario?.nombre}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{usuario?.email}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Celular</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{usuario?.celular}}
 
-</div>
-                  </div>
-                  <hr>
-                 
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Dirección</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                     {{usuario.direccion}} - {{usuario.localidad}} - {{usuario.provincia}}
-                    </div>
-                  </div>
-                 <!--  <hr>
+              </div>
+            </div>
+            <hr>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Dirección</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{usuario?.direccion}} - {{usuario?.localidad}} - {{usuario?.provincia}}
+              </div>
+            </div>
+            <!--  <hr>
                   <div class="row">
                     <div class="col-sm-12">
                       <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
                     </div>
                   </div> -->
-                </div>
-              </div>
-
-              <br>
-           
-              </div>
-              </div>
-<div class="row">
-
-    <h4>Comprobantes</h4>
-    <br>
-    <br>
-              <div class="col-md-12">
-                <div class="card mb-3">
-                  <div class="card-body">
-          
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                              </tr>
-                            </tbody>
-                        </table>
-                      </div>
-                  </div>
-                </div>
-                
-                </div>
-               
-                 
-
-
-
           </div>
-
         </div>
+
+        <br>
+
+      </div>
     </div>
+    <div class="row">
+
+      <h4>Comprobantes</h4>
+      <br>
+      <br>
+      <div class="col-md-12">
+        <div class="card mb-3">
+          <div class="card-body">
+
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Monto</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let comprobante of comprobantes">
+                    <th scope="row">{{comprobante?.numero}}</th>
+                    <td>{{comprobante?.fecha | date:"medium"}}</td>
+                    <td>${{comprobante?.monto}}</td>
+                    <td> <button class="btn btn-light btn-block mb-2"
+                        (click)="traerDetalleComprobante(comprobante?.numero)" data-toggle="modal"
+                        data-target="#exampleModal">
+                        Ver Detalle
+                      </button> </td>
+
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+        <div class="d-flex justify-content-center row" id="htmlData">
+          <div class="col-md-12">
+            <div class="p-3 bg-white rounded">
+              <div class="row" >
+                <div class="col-md-6" >
+                  <h3 class="text-uppercase">Comprobante</h3>
+                  <div class="billed"><span class="font-weight-bold text-uppercase">Usuario:</span><span
+                      class="ml-1">{{comprobante?.comprobante.usuario.nombre}}</span></div>
+                  <div class="billed"><span class="font-weight-bold text-uppercase">Fecha:</span><span
+                      class="ml-1">{{comprobante?.comprobante.fecha | date:"short"}}</span></div>
+                  <div class="billed"><span class="font-weight-bold text-uppercase">N° Comp:</span><span
+                      class="ml-1">{{comprobante?.comprobante.numero}}</span></div>
+                </div>
+                <div class="col-md-6 text-right mt-3">
+                  <h4 class="text-danger mb-0"></h4><span>The Bookshop</span>
+                </div>
+              </div>
+              <div class="mt-3">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Libros</th>
+                        <th>Unidades</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let producto of detalleComprobante?.detComprobante.productos">
+                        <td>{{producto?.titulo}}</td>
+                        <td>{{producto?.cantidad}}</td>
+                        <td>{{producto?.precio}}</td>
+                        <td>{{precioPorUnidad}}</td>
+                      </tr>
+                      <tr>
+                        <th> Total </th>
+                        <td></td>
+                        <td></td>
+                        <td>{{comprobante?.comprobante.monto}}</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cerrar  mb-2" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-light  mb-2" (click)="downloadPDF()">Imprimir</button>
+        </div>
+      </div>
+    </div>
+  </div>

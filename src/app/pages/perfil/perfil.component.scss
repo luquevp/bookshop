@@ -65,3 +65,39 @@ body{
 .shadow-none {
     box-shadow: none!important;
 }
+
+.btn-light {
+    color: #ffffff;
+    background-color: #362A89;
+    border-color: #f8f9fa;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.btn-light:hover {
+    color: #ffffff;
+    background-color: #2a206d;
+    border-color: #2a206d
+}
+
+.btn-cerrar {
+    color: #ffffff;
+    background-color: #818181;
+    border-color: #f8f9fa;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.btn-cerrar:hover {
+    color: #ffffff;
+    background-color: #696969;
+    border-color: #696969
+}
+
+
+
+
+/////////////@at-root
+

@@ -13,6 +13,7 @@ import { Comprobante } from '../../interfaces/comprobante.interface';
 import { ProductsService } from '../../services/products.service';
 import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
+import { of } from 'rxjs';
 
 declare var paypal;
 
@@ -40,7 +41,7 @@ export class CarritoComponent implements OnInit {
   public totalQuantity: number = 0;
   public comprobante: Comprobante;
   public botonLoguear: boolean = false;
-  public quantity: string 
+  public quantity: string
 
 
   nombreUsuario = localStorage.getItem('id');
@@ -56,9 +57,9 @@ export class CarritoComponent implements OnInit {
 
   ngOnInit() {
 
-    
+
     this.renderizarBotones();
- 
+
 
 
     if (this.storageService.existsCart()) {
@@ -69,6 +70,8 @@ export class CarritoComponent implements OnInit {
     }
 
     this._cartService.currentDataCart$.subscribe(x => {
+      this.storageService.setCart(this.items);
+
 
       if (x) {
 
@@ -79,8 +82,17 @@ export class CarritoComponent implements OnInit {
 
 
       }
+      
+      
+    // if (this.storageService.existsCart()) {
+    //   this.items = this.storageService.getCart();
+    //   this.storageService.setCart(this.items);
 
-      this.storageService.setCart(this.items);
+
+
+    // }
+
+    //  
 
       if (this.items) {
         this.totalPrice = this.getTotal();
@@ -94,61 +106,61 @@ export class CarritoComponent implements OnInit {
 
   }
 
-  renderizarBotones(){
+  renderizarBotones() {
     this.quantity = localStorage.getItem('CartQuantity');
 
-    if (localStorage.getItem('token') &&  this.quantity != "0" && this.quantity != null){
+    if (localStorage.getItem('token') && this.quantity != "0" && this.quantity != null) {
       this.botonLoguear = false;
 
       this.paypal();
-  } else {
-          this.botonLoguear = true;
-       }
+    } else {
+      this.botonLoguear = true;
+    }
 
 
   }
 
   paypal() {
-   // if (localStorage.getItem('token')) {
-      paypal.
-        Buttons({
-          createOrder: (data, actions) => {
-            return actions.order.create({
-              purchase_units: [
-                {
-                  description: this.items[0].titulo,
-                  amount: {
-                    currency_code: 'USD',
-                    value: this.totalPrice
-                  }
+    // if (localStorage.getItem('token')) {
+    paypal.
+      Buttons({
+        createOrder: (data, actions) => {
+          return actions.order.create({
+            purchase_units: [
+              {
+                description: this.items[0].titulo,
+                amount: {
+                  currency_code: 'USD',
+                  value: this.totalPrice
                 }
+              }
 
-              ]
-            })
-          },
-          onApprove: async (data, actions) => {
-            const order = await actions.order.capture();
-            console.log(order);
-            this.comprar();
-            this.emptyCart();
+            ]
+          })
+        },
+        onApprove: async (data, actions) => {
+          const order = await actions.order.capture();
+          console.log(order);
+          this.comprar();
+        //  this.emptyCart();
 
-          },
-          onError: err => {
-            console.log(err);
-            if (this.items.length === 0) {
-              Swal.fire('Oops!', 'Parece que tu carrito esta vacío, agrega ítems para continuar.', 'warning');
-            }
-            else {Swal.fire('Error!', 'La compra no fue completada.', 'error');}
-
+        },
+        onError: err => {
+          console.log(err);
+          if (this.items.length === 0) {
+            Swal.fire('Oops!', 'Parece que tu carrito esta vacío, agrega ítems para continuar.', 'warning');
           }
+          else { Swal.fire('Error!', 'La compra no fue completada.', 'error'); }
 
-        })
-        .render(this.paypalElement.nativeElement);
+        }
+
+      })
+      .render(this.paypalElement.nativeElement);
 
 
-  //   } else {
-  //     this.botonLoguear = true;
-  //   }
+    //   } else {
+    //     this.botonLoguear = true;
+    //   }
   }
 
   getTotal(): number {
@@ -160,21 +172,22 @@ export class CarritoComponent implements OnInit {
   }
 
   onChange() {
+  console.log(this.items);
     this._cartService.currentDataCart$.subscribe(x => {
       if (x) {
         this.items = x;
         this.totalQuantity = x.length;
         this.totalPrice = x.reduce((sum, current) => sum + (current.precio * current.cantidad), 0);
-
+        
 
       }
     })
+    
+  
 
 
     this.storageService.setCart(this.items);
     this.totalPrice = this.getTotal();
-
-
   }
 
   public remove(item: IItem) {
@@ -187,7 +200,7 @@ export class CarritoComponent implements OnInit {
 
   public comprar() {
     console.log(this.items);
-    localStorage.setItem('CartQuantity', "0");
+   
 
 
     this.comprobante = {
@@ -196,6 +209,8 @@ export class CarritoComponent implements OnInit {
       usuario: this.nombreUsuario
     }
 
+
+
     console.log(this.comprobante);
 
     this.productsService.postComprobante(this.comprobante)
@@ -203,7 +218,14 @@ export class CarritoComponent implements OnInit {
         console.log('Respuesta', resp);
       })
 
-    Swal.fire('Buen Trabajo!', 'La compra fue exitosa!', 'success');
+    //Swal.fire('Buen Trabajo!', 'La compra fue exitosa!', 'success');
+
+//limpiar
+    localStorage.setItem('CartQuantity', "0");
+    localStorage.setItem('cart',"null")
+    this.items = [];
+    this.totalPrice = 0;
+   // this.storageService.clear();
 
   }
 
@@ -212,12 +234,12 @@ export class CarritoComponent implements OnInit {
     this.items = [];
     this.totalPrice = 0;
     this.storageService.clear();
-  // this._cartService.removeAllCart();
-   // this.renderizarBotones();
-   this.items.forEach(item => {
-    this._cartService.changeCart(item);
-    this._cartService.removeElementCart(item);
-   });
+    // this._cartService.removeAllCart();
+    // this.renderizarBotones();
+    this.items.forEach(item => {
+      this._cartService.changeCart(item);
+      this._cartService.removeElementCart(item);
+    });
 
 
 

@@ -8,6 +8,8 @@ import { Usuario } from '../models/usuario.model';
 import { Observable } from 'rxjs';
 import { IItem } from '../interfaces/item.interface';
 import { SubCategoria } from '../interfaces/categoria.interface';
+import { Comprobante, ComprobanteConDetalle, Detalle } from '../interfaces/comprobante.interface';
+import { preguntasfrecuentes } from '../interfaces/preguntas.interface';
 
 const base_url = environment.base_url;
 
@@ -99,4 +101,23 @@ export class BusquedasService {
     return this.http.get<IItem>(`${ base_url }/buscar/productos/subcat/${ termino }`);
   }
 
+
+
+  getComprobantesPorUsuario( termino: string ):Observable<ComprobanteConDetalle> {
+    return this.http.get<ComprobanteConDetalle>(`${ base_url }/buscar/comprobantes/compxuser/${ termino }`);
+  }
+
+  getComprobantePorNumero( numero: number ):Observable<ComprobanteConDetalle> {
+    return this.http.get<ComprobanteConDetalle>(`${ base_url }/buscar/comprobantes/compnum/${ numero }`);
+  }
+
+  getDetallePorNumeroComprobante (numero : number): Observable<Detalle> {
+    return this.http.get<Detalle>(`${ base_url }/buscar/comprobantes/detcompxnumcomp/${ numero }`);
+  }
+
+  getPreguntasFrecuentes(): Observable<preguntasfrecuentes[]> {
+    return this.http.get<preguntasfrecuentes[]>(`${ base_url }/preguntasFrecuentes`);
+  }
+
+  
 }

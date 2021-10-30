@@ -1,73 +1,88 @@
-<ngx-spinner 
-    bdColor = "rgba(0,0,0,0.28)" 
-    size = "medium" color = "#fff" 
-    type = "ball-clip-rotate" 
-    [fullScreen] = "true">
-    </ngx-spinner>
-    
-<app-search ></app-search>
+<ngx-spinner bdColor="rgba(0,0,0,0.28)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
+</ngx-spinner>
+
+<app-search></app-search>
 
 <div class="container animatedf">
 
-<!--
+    <!--
  <app-filtros></app-filtros>
    -->
- <div class="container">
+    <div class="container">
 
-    <br>
-    <div class="card carddetalle" *ngIf="libros.length != 0">
+        <br>
 
-        <div class="row" >
-            <div  class="cantidad" *ngIf="libros.length === 1">
-                Se encontró {{libros.length}} resultado para 
-                <span>"{{libros[0].autor.nombre}}"</span>
-            </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            setTimeout(function() {
+                $(".content").fadeOut(1500);
+            },3000);
+         
+            setTimeout(function() {
+                $(".content2").fadeIn(1500);
+            },6000);
+        });
+        </script>
 
-            <div  class="cantidad" *ngIf="libros.length > 1">
-                Se encontraron {{libros.length}} resultados para
-                <span>"{{libros[0].autor.nombre}}"</span>
-            </div>
-
-        </div>
-    </div>
+<div class="content">Hola, voy a desaparecer en 3 segundos!</div>
+<div class="content2" style="display:none;">Hola, soy un nuevo div!</div>
 
 
-    <div class="card" *ngIf="libros.length === 0 && autores.length === 0 ">
-    <div class="page-wrap d-flex flex-row align-items-center">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12 text-center">
-                    <span class="display-1 d-block">:(</span>
-                    <br>
-                    <div class="mb-4 lead">No se encontraron resultados para tu busqueda.</div>
-                    <div class="">Prueba con otras palabras clave o dentro de las categorías :)</div>
 
-                   <br>
+        <div class="card" *ngIf="libros.length === 0 && autores.length === 0; ">
+            <div class="page-wrap d-flex flex-row align-items-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12 text-center">
+                            <span class="display-1 d-block">:(</span>
+                            <br>
+                            <div class="mb-4 lead">No se encontraron resultados para tu busqueda.</div>
+                            <div class="">Prueba con otras palabras clave o dentro de las categorías :)</div>
+
+                            <br>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
-    </div>
+
+        <div class="card carddetalle" *ngIf="libros.length != 0">
+
+            <div class="row" >
+                <div  class="cantidad" *ngIf="libros.length === 1">
+                    Se encontró {{libros.length}} resultado para 
+                    <span>"{{libros[0].autor.nombre}}"</span>
+                </div>
     
-    </div>
-
-     
-
-
-
-    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5"  *ngIf="libros.length > 0 || autores.length > 0"   >
-
-
-
-
-        <div *ngFor="let libro of libros">
-            <div class="card-column">
-            <app-productcard [libro]="libro"></app-productcard> 
+                <div  class="cantidad" *ngIf="libros.length > 1">
+                    Se encontraron {{libros.length}} resultados para
+                    <span>"{{libros[0].autor.nombre}}"</span>
+                </div>
+    
             </div>
         </div>
 
-       
-   
+
+
+
+
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5"
+            *ngIf="libros.length > 0 || autores.length > 0">
+
+
+
+
+            <div *ngFor="let libro of libros">
+                <div class="card-column">
+                    <app-productcard [libro]="libro"></app-productcard>
+                </div>
+            </div>
+
+
+
+        </div>
     </div>
-</div>
 
 </div>

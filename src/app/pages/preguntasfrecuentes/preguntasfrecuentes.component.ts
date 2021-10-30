@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IPreguntaFrecuente } from '../../interfaces/preguntasfrecuentes.interface';
+import { preguntasfrecuentes } from '../../interfaces/preguntas.interface';
+import { BusquedasService } from '../../services/busquedas.service';
 
 @Component({
   selector: 'app-preguntasfrecuentes',
@@ -10,29 +12,18 @@ export class PreguntasfrecuentesComponent implements OnInit {
 
 
   
-  public preguntas: Array<IPreguntaFrecuente> = [{
-    id: 0,
-    title: '¿Cuánto es la compra mínima mayorista?',
-    content: 'La compra minima es $1000',
-  },
-  {
-    id: 1,
-    title: '¿Realizan envios?    ',
-    content: 'Si. Hacemos envios a todo el pais.    ',
-  },
-  {
-    id: 2,
-    title: 'Envíos a todo el país¿En qué tiempo despachan los pedidos?    ',
-    content: '-Despachamos dentro de las 24 hs. una vez se haya realizado el pago en el caso de envíos a Argentina',
-  }
-
-];
+  public preguntas: preguntasfrecuentes[];
 
 
 
-  constructor() { }
+  constructor( private busquedasService : BusquedasService) { }
 
   ngOnInit(): void {
+    this.busquedasService.getPreguntasFrecuentes()
+   .subscribe(preguntas => {
+     this.preguntas = preguntas;
+     console.log(preguntas);
+     });
   }
 
 }

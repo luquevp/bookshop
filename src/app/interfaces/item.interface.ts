@@ -16,7 +16,8 @@ export interface IItem {
     precio?: number,
     cantidad?: number,
     autor?: Autor,
-    editorial?: Editorial
+    editorial?: Editorial,
+    stock?: number;
 
     
 
