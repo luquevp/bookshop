@@ -26,7 +26,7 @@
     </div>
 
 
-    <div class="card" *ngIf="libros.length === 0 && autores.length === 0 ">
+    <div class="card" id="elemento" style="display:none;">
     <div class="page-wrap d-flex flex-row align-items-center">
         <div class="container">
             <div class="row justify-content-center">
@@ -34,9 +34,9 @@
                     <span class="display-1 d-block">:(</span>
                     <br>
                     <div class="mb-4 lead">No se encontraron resultados para tu busqueda.</div>
-                    <div class="">Prueba con otras palabras clave o dentro de las categorías :)</div>
+                    <p class="">Prueba con otra palabra clave.</p>
 
-                    <a href="https://www.totoprayogo.com/#" class="btn btn-link">Back to Home</a>
+                    <br>
                 </div>
             </div>
         </div>

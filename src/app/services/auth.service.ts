@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
 import { AuthResponse } from '../interfaces/auth.interface';
 import { borderTopRightRadius } from 'html2canvas/dist/types/css/property-descriptors/border-radius';
 import { Role } from '../interfaces/usuario.interface';
+import { Provincia } from '../interfaces/provincia.interface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -91,4 +93,10 @@ export class AuthService {
     localStorage.setItem('id', resp.usuario.uid)
 
   }
+
+
+
+  getProvincias(): Observable<Provincia[]> {
+    return this.http.get<Provincia[]>(`${ this.baseUrl }/provincias`);
+  } g
 }

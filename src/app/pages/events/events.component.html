@@ -7,6 +7,7 @@
     
     <div class="row align-items-center event-block no-gutters margin-40px-bottom" *ngFor="let evento of eventos">
         <div class="col-lg-5 col-sm-12">
+           
             <div class="position-relative">
                 <img src={{evento.img}} alt="">
                 
@@ -16,13 +17,12 @@
             <div class="padding-60px-lr md-padding-50px-lr sm-padding-30px-all xs-padding-25px-all">
                 <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500"><a href="event-details.html" class="text-theme-color">{{evento?.nombre}}</a></h5>
                 <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
-                    <li><i class="far fa-clock margin-10px-right"></i> 10 de septiembre </li>
-                    <li><i class="far fa-clock margin-10px-right"></i> | </li>
-
-                    <li><i class="far fa-clock margin-10px-right"></i> 01:30 PM - 04:30 PM</li>
+                   
+                    <li><i class="far fa-clock margin-10px-right"></i> {{evento?.fechaHora | date: "medium"}}</li>
+                   
                 </ul>
                 <p>{{evento?.descripcion}}</p>
-                <a class="butn small margin-10px-top md-no-margin-top" >{{evento?.lugar}} <i class="fas fa-long-arrow-alt-right margin-10px-left"></i></a>
+                <a class="butn small margin-10px-top md-no-margin-top" >Lugar del evento: {{evento?.lugar}} <i class="fas fa-long-arrow-alt-right margin-10px-left"></i></a>
             </div>
         </div>
     </div>

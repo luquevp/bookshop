@@ -14,6 +14,8 @@ import { ProductsService } from '../../services/products.service';
 import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
 import { of } from 'rxjs';
+import { CuponService } from '../../services/cupon.service';
+import { Cupon } from 'src/app/interfaces/cupon.interface';
 
 declare var paypal;
 
@@ -34,6 +36,7 @@ export class CarritoComponent implements OnInit {
 
 
   public items: IItem[] = []
+
   public cartItems: [];
 
   // tslint:disable-next-line: no-inferrable-types
@@ -41,14 +44,18 @@ export class CarritoComponent implements OnInit {
   public totalQuantity: number = 0;
   public comprobante: Comprobante;
   public botonLoguear: boolean = false;
-  public quantity: string
+  public quantity: string;
+  public cupon: Cupon;
+  public descuento: number = 0;
+  public cuponCodigo: string;
+  public porcentajeDescuento : number;
 
 
   nombreUsuario = localStorage.getItem('id');
 
 
 
-  constructor(private _cartService: CartService, private toastr: ToastrService, private usuarioService: UsuarioService, private router: Router, public storageService: StorageServiceService, private messageService: MessageService, private productsService: ProductsService) {
+  constructor(private cuponService: CuponService ,private _cartService: CartService, private toastr: ToastrService, private usuarioService: UsuarioService, private router: Router, public storageService: StorageServiceService, private messageService: MessageService, private productsService: ProductsService) {
 
 
   }
@@ -57,23 +64,30 @@ export class CarritoComponent implements OnInit {
 
   ngOnInit() {
 
+    // console.log(this.items);
+
+    // this.storageService.setCart(this.items);
 
     this.renderizarBotones();
 
 
 
-    if (this.storageService.existsCart()) {
-      this.items = this.storageService.getCart();
+     if (this.storageService.existsCart()) {
+       this.items = this.storageService.getCart();
+      
+      // this.storageService.setCart(this.items);
 
 
 
     }
 
     this._cartService.currentDataCart$.subscribe(x => {
-      this.storageService.setCart(this.items);
+      
 
 
       if (x) {
+
+
 
         this.items = x;
 
@@ -81,7 +95,11 @@ export class CarritoComponent implements OnInit {
         this.totalPrice = x.reduce((sum, current) => sum + (current.precio * current.cantidad), 0);
 
 
+
       }
+
+      //this.storageService.setCart(this.items);
+
       
       
     // if (this.storageService.existsCart()) {
@@ -99,6 +117,9 @@ export class CarritoComponent implements OnInit {
       }
 
     })
+
+
+
 
 
 
@@ -289,5 +310,56 @@ export class CarritoComponent implements OnInit {
 
   }
 
+  // aplicarCupon( termino: string ){
+
+  //  console.log(termino);
+
+  //  this.cuponService.postCupon(termino)
+  //     .subscribe(resp => {
+  //       console.log('Respuesta', resp);
+  //     })
+
+  
+  //   }
+
+
+  aplicarCupon( termino: string ){
+
+    console.log(termino);
+ 
+    this.cuponService.postCupon(termino)
+       .subscribe(resp => {
+         this.cupon = resp
+         
+         console.log(resp.ok);
+         console.log(this.cupon);
+         if (resp.ok === true) {
+
+   
+            document.getElementById("elemento").style.display = '';
+
+            (<HTMLInputElement> document.getElementById("btnApply")).disabled = true;
+         
+        
+          this.cuponCodigo = this.cupon.cupon.codigo;
+        this.porcentajeDescuento = this.cupon.cupon.porcentaje;
+        this.descuento = this.totalPrice * (this.porcentajeDescuento / 100)
+        console.log(this.descuento);
+
+          this.totalPrice = this.totalPrice - this.descuento
+          console.log(this.totalPrice); 
+           
+         }else{
+                       document.getElementById("elemento").style.display = 'none';
+
+          Swal.fire('Oops!', resp, 'error');
+
+         }
+       }
+       
+       )
+ 
+   
+     }
 
 }

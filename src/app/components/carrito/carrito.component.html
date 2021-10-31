@@ -89,10 +89,13 @@
         <aside class="col-lg-3">
             <div class="card mb-3">
                 <div class="card-body">
-                    <form>
+
+
+                    <form (submit)="aplicarCupon( txtTermino.value )">
                         <div class="form-group"> <label>Tienes un cupón?</label>
-                            <div class="input-group"> <input type="text" class="form-control coupon" name="" placeholder="Coupon code"> <span class="input-group-append"> <button class="btn btn-primary btn-apply coupon">Apply</button> </span> </div>
+                            <div class="input-group"> <input type="search" class="form-control coupon" name="" placeholder="Coupon code" #txtTermino > <span class="input-group-append"> <button id="btnApply" class="btn btn-primary btn-apply coupon">Apply</button> </span> </div>
                         </div>
+                        <p id="elemento"  style="display:none;">cupón aplicado: {{cuponCodigo}}</p> 
                     </form>
                 </div>
             </div>

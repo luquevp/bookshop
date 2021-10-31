@@ -6,6 +6,7 @@ import { ProductsService } from '../../services/products.service';
 import { switchMap } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
 
+
 @Component({
   selector: 'app-autor',
   templateUrl: './autor.component.html',
@@ -32,10 +33,17 @@ export class AutorComponent implements OnInit {
       )
     .subscribe((libros: any) => {console.log(libros);
       this.libros = libros;
+      if( libros.length > 0){
+        document.getElementById("elemento").style.display = 'none';
+
+      }
+      else{
+        document.getElementById("elemento").style.visibility = 'inline';
+      }
       this.spinner.hide();})
 
-
-      
+     
+     
 
 
    

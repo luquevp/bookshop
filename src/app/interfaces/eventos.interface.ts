@@ -7,5 +7,6 @@ export interface Evento {
     lugar?: string;
     usuario?: Usuario;
     img?: string;
+    fechaHora?: Date;
 
 }

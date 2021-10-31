@@ -12,25 +12,12 @@
 
         <br>
 
-        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-        <script type="text/javascript">
-        $(document).ready(function() {
-            setTimeout(function() {
-                $(".content").fadeOut(1500);
-            },3000);
-         
-            setTimeout(function() {
-                $(".content2").fadeIn(1500);
-            },6000);
-        });
-        </script>
-
-<div class="content">Hola, voy a desaparecer en 3 segundos!</div>
-<div class="content2" style="display:none;">Hola, soy un nuevo div!</div>
+    
+        <div id="elemento" style="visibility:hidden;">  hola</div>
 
 
 
-        <div class="card" *ngIf="libros.length === 0 && autores.length === 0; ">
+        <div class="card" id="elemento" style="display:none;">
             <div class="page-wrap d-flex flex-row align-items-center">
                 <div class="container">
                     <div class="row justify-content-center">

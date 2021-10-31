@@ -142,7 +142,7 @@
 
                         <a class="dropdown-item" *ngIf="nombreUsuario === null" (click)="salir()">Ingresar</a>
 
-                        <a class="dropdown-item" routerLink="/perfil" *ngIf="nombreUsuario != null"> Hola {{nombreUsuario}} !</a>
+                        <a class="dropdown-item" routerLink="/perfil" *ngIf="nombreUsuario != null"> {{nombreUsuario}} </a>
                         <a class="dropdown-item" *ngIf="nombreUsuario != null" (click)="salir()">Cerrar Sesión</a>
 
 

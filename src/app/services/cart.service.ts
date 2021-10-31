@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IItem } from '../interfaces/item.interface';
+import { StorageServiceService } from './storage-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,14 @@ export class CartService {
 
   public cart = new BehaviorSubject<Array<IItem>>(null);
   public currentDataCart$ = this.cart.asObservable();
-  constructor() { }
+  constructor( public storageService: StorageServiceService ) { }
 
   public changeCart(newData: IItem) {
 
 
     //Obtenemos el valor actual
-    let listCart = this.cart.getValue();
+  //  let listCart = this.cart.getValue();
+  let listCart = this.storageService.getCart();
     
     //Si no es el primer item del carrito
     if(listCart)
@@ -40,6 +42,8 @@ export class CartService {
     }
 
     this.cart.next(listCart);
+    this.storageService.setCart(listCart);
+
   }
 
   public removeElementCart(newData:IItem){

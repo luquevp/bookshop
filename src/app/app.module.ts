@@ -29,6 +29,7 @@ import { MyLoaderComponent } from './components/my-loader/my-loader.component';
 import { LoaderService } from './services/loader.service';
 import { LoaderInterceptor } from './interceptors/loader-interceptor.service';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { InterceptorService } from './interceptors/interceptor.service';
 
 
 
@@ -85,11 +86,11 @@ import { NgxSpinnerModule } from "ngx-spinner";
 
   ],
   entryComponents: [ NotyfToast],
-  providers: [
+  // providers: [
 
-    LoaderService,
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
-  ],
+  //   LoaderService,
+  //   { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
+  // ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

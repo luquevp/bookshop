@@ -48,6 +48,15 @@ this.terminoIngresado = termino;
       todo = todo.filter((value, index, arr) => arr.findIndex(n => n["_id"] === value["_id"]) == index)
 
       this.libros = todo;
+
+     console.log(this.libros);
+     if( this.libros.length > 0){
+      document.getElementById("elemento").style.display = 'none';
+
+    }
+    else{
+      document.getElementById("elemento").style.display = '';
+    }
       
     }, err => {
       // Entra aquí si el servicio entrega un código http de error EJ: 404, 

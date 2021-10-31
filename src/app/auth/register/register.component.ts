@@ -1,19 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 import { UsuarioService } from '../../services/usuario.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Provincia } from '../../interfaces/provincia.interface';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
 
   public formSubmitted = false;
+  public provincias : Provincia[];
 
   public registerForm = this.fb.group({
     nombre: ['', Validators.required],
@@ -38,7 +40,20 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router) { }
+    private router: Router,
+    ) {
+      
+     }
+
+    
+     ngOnInit(){
+      this.auth.getProvincias()
+      .subscribe(provincias => {
+        this.provincias = provincias;
+        console.log(this.provincias);
+     })
+    }
+     
 
   // crearUsuario() {
   //   this.formSubmitted = true;
@@ -127,5 +142,8 @@ export class RegisterComponent {
 
     }
   }
+
+
+ 
 
 }

@@ -4,8 +4,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/services/auth.service';
+import { StorageServiceService } from '../../services/storage-service.service';
+import { IItem } from '../../interfaces/item.interface';
 
-declare const gapi:any;
 
 @Component({
   selector: 'app-login',
@@ -26,10 +27,12 @@ export class LoginComponent implements OnInit {
   });
 
 
+  public items: IItem[];
   constructor( private router: Router,
                private fb: FormBuilder,
                private authService: AuthService,
-               private ngZone: NgZone ) { }
+               private ngZone: NgZone,
+               public storageService :StorageServiceService ) { }
 
   ngOnInit(): void {
    // this.renderButton();
@@ -45,7 +48,16 @@ export class LoginComponent implements OnInit {
         console.log(email,password);
 
         if ( ok === true ) {
-          this.router.navigateByUrl('/');
+
+          this.items = this.storageService.getCart();
+          if (this.items) {
+            this.router.navigateByUrl('/carrito');
+
+          }
+          else if (this.items === null){
+            this.router.navigateByUrl('/');
+
+          }
           
         } else {
           Swal.fire('Error', ok, 'error');
