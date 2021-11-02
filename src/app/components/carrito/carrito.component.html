@@ -64,9 +64,11 @@
   <div >
 
   </div>
-    <button type="button" *ngIf="item.cantidad < item.stock" (click)="item.cantidad = item.cantidad + 1"  (click)="onChange($event)" onclick="this.parentNode.querySelector('[type=number]').stepUp();" >
+  <div (click)="item.cantidad = item.cantidad + 1"  (click)="onChange($event)" >
+    <button type="button" *ngIf="item.cantidad < item.stock"  onclick="this.parentNode.querySelector('[type=number]').stepUp();" >
       +
     </button>
+</div>
   </div>
 
 </td>
@@ -93,10 +95,12 @@
 
                     <form (submit)="aplicarCupon( txtTermino.value )">
                         <div class="form-group"> <label>Tienes un cupón?</label>
-                            <div class="input-group"> <input type="search" class="form-control coupon" name="" placeholder="Coupon code" #txtTermino > <span class="input-group-append"> <button id="btnApply" class="btn btn-primary btn-apply coupon">Apply</button> </span> </div>
+                            <div class="input-group"> <input type="search"  id="inputCupon" class="form-control coupon" name="" placeholder="Coupon code" #txtTermino > <span class="input-group-append"> <button id="btnApply" class="btn btn-primary btn-apply coupon">Apply</button> </span> </div>
                         </div>
-                        <p id="elemento"  style="display:none;">cupón aplicado: {{cuponCodigo}}</p> 
+                        <!-- <p id="elemento"  style="display:none;">cupón aplicado: {{cuponCodigo}} <button>X</button></p>  -->
                     </form>
+                    <p id="elemento"  style="display:none;">cupón aplicado: {{cuponCodigo}} <button (click)="quitarCupon()" style="color: brown;">X</button></p> 
+
                 </div>
             </div>
             <div class="card">
@@ -107,11 +111,11 @@
                     </dl>
                     <dl class="dlist-align">
                         <dt>Descuento:</dt>
-                        <dd class="text-right text-danger ml-3">- $0.00</dd>
+                        <dd class="text-right text-danger ml-3">- ${{descuento}}</dd>
                     </dl>
                     <dl class="dlist-align">
                         <dt>Total:</dt>
-                        <dd class="text-right text-dark b ml-3"><strong>${{totalPrice}}</strong></dd>
+                        <dd class="text-right text-dark b ml-3"><strong>${{totalFinal}}</strong></dd>
                     </dl>
                     <hr> 
                 <!--   <div class="btn button btn-out btn-primary btn-square btn-main" data-abc="true" (click)="comprar()"> Realizar compra </div> --> 

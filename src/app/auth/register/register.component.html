@@ -66,9 +66,9 @@
 
                                                 <span class="focus-input100"></span>
                                             </div> -->
-<div class="form-group wrap-input100 m-b-16" >
-    <select class="form-control form-select-sm input100" style="border: white; " >
-        <!-- <option selected> Seleccionar Provincia</option> -->
+<div class=" wrap-input100 m-b-16" >
+    <select class="input100" style="border: white; " formControlName="provincia">
+         <option selected> Seleccionar Provincia</option>
         <option *ngFor="let provincia of provincias" value="{{provincia?.provincia}}">{{provincia?.provincia | titlecase}}</option>
       </select>
 

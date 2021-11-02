@@ -1,14 +1,15 @@
 import { Autor, Editorial, IItem } from './item.interface';
 export interface Comprobante {
 
-
+    total?: number;
+    subTotal?: number;
+    descuento?: number;
     numero?: number;
     fecha?: Date;
     productos?: IItem[];
     estado?: boolean;
-    monto?: number;
     usuario?: string;
-    cupon?: number;
+    cuponId?: string;
     _id?: number;
 
 
@@ -28,7 +29,10 @@ export interface ComprobanteConDetalle {
 
 
         }
-        monto?: number;
+        //monto?: number;
+        subTotal?:number;
+        descuento?:number;
+        total?:number
         usuario?: string;
         cupon?: number;
         _id?: number;

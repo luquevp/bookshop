@@ -41,6 +41,8 @@ export class CarritoComponent implements OnInit {
 
   // tslint:disable-next-line: no-inferrable-types
   public totalPrice: number = 0;
+  public totalFinal: number = 0;
+
   public totalQuantity: number = 0;
   public comprobante: Comprobante;
   public botonLoguear: boolean = false;
@@ -48,14 +50,14 @@ export class CarritoComponent implements OnInit {
   public cupon: Cupon;
   public descuento: number = 0;
   public cuponCodigo: string;
-  public porcentajeDescuento : number;
+  public porcentajeDescuento: number;
 
 
   nombreUsuario = localStorage.getItem('id');
 
 
 
-  constructor(private cuponService: CuponService ,private _cartService: CartService, private toastr: ToastrService, private usuarioService: UsuarioService, private router: Router, public storageService: StorageServiceService, private messageService: MessageService, private productsService: ProductsService) {
+  constructor(private cuponService: CuponService, private _cartService: CartService, private toastr: ToastrService, private usuarioService: UsuarioService, private router: Router, public storageService: StorageServiceService, private messageService: MessageService, private productsService: ProductsService) {
 
 
   }
@@ -72,9 +74,9 @@ export class CarritoComponent implements OnInit {
 
 
 
-     if (this.storageService.existsCart()) {
-       this.items = this.storageService.getCart();
-      
+    if (this.storageService.existsCart()) {
+      this.items = this.storageService.getCart();
+
       // this.storageService.setCart(this.items);
 
 
@@ -82,7 +84,7 @@ export class CarritoComponent implements OnInit {
     }
 
     this._cartService.currentDataCart$.subscribe(x => {
-      
+
 
 
       if (x) {
@@ -93,6 +95,7 @@ export class CarritoComponent implements OnInit {
 
         this.totalQuantity = x.length;
         this.totalPrice = x.reduce((sum, current) => sum + (current.precio * current.cantidad), 0);
+        this.totalFinal = this.totalPrice
 
 
 
@@ -100,20 +103,21 @@ export class CarritoComponent implements OnInit {
 
       //this.storageService.setCart(this.items);
 
-      
-      
-    // if (this.storageService.existsCart()) {
-    //   this.items = this.storageService.getCart();
-    //   this.storageService.setCart(this.items);
+
+
+      // if (this.storageService.existsCart()) {
+      //   this.items = this.storageService.getCart();
+      //   this.storageService.setCart(this.items);
 
 
 
-    // }
+      // }
 
-    //  
+      //  
 
       if (this.items) {
         this.totalPrice = this.getTotal();
+        this.totalFinal = this.totalPrice
       }
 
     })
@@ -149,10 +153,10 @@ export class CarritoComponent implements OnInit {
           return actions.order.create({
             purchase_units: [
               {
-                description: this.items[0].titulo,
+                description: "Libros",
                 amount: {
                   currency_code: 'USD',
-                  value: this.totalPrice
+                  value: this.totalFinal
                 }
               }
 
@@ -163,7 +167,7 @@ export class CarritoComponent implements OnInit {
           const order = await actions.order.capture();
           console.log(order);
           this.comprar();
-        //  this.emptyCart();
+          //  this.emptyCart();
 
         },
         onError: err => {
@@ -193,22 +197,23 @@ export class CarritoComponent implements OnInit {
   }
 
   onChange() {
-  console.log(this.items);
+    console.log(this.items);
     this._cartService.currentDataCart$.subscribe(x => {
       if (x) {
         this.items = x;
         this.totalQuantity = x.length;
         this.totalPrice = x.reduce((sum, current) => sum + (current.precio * current.cantidad), 0);
-        
 
       }
     })
-    
-  
+
+
 
 
     this.storageService.setCart(this.items);
     this.totalPrice = this.getTotal();
+    this.totalFinal = this.totalPrice
+
   }
 
   public remove(item: IItem) {
@@ -221,13 +226,32 @@ export class CarritoComponent implements OnInit {
 
   public comprar() {
     console.log(this.items);
-   
 
 
-    this.comprobante = {
-      monto: this.totalPrice,
-      productos: this.items,
-      usuario: this.nombreUsuario
+    if (this.cupon) {
+
+      this.comprobante = {
+
+        subTotal: this.totalPrice,
+        descuento: this.descuento,
+        total: this.totalFinal,
+        cuponId: this.cupon.cupon._id,
+        productos: this.items,
+        usuario: this.nombreUsuario
+      }
+
+
+    } else {
+      this.comprobante = {
+
+        subTotal: this.totalPrice,
+        descuento: this.descuento,
+        total: this.totalFinal,
+        productos: this.items,
+        usuario: this.nombreUsuario
+      }
+
+
     }
 
 
@@ -237,16 +261,20 @@ export class CarritoComponent implements OnInit {
     this.productsService.postComprobante(this.comprobante)
       .subscribe(resp => {
         console.log('Respuesta', resp);
+
+        Swal.fire('Buen Trabajo!', 'La compra fue exitosa!', 'success');
+
       })
 
-    //Swal.fire('Buen Trabajo!', 'La compra fue exitosa!', 'success');
 
-//limpiar
+    //limpiar
     localStorage.setItem('CartQuantity', "0");
-    localStorage.setItem('cart',"null")
+    localStorage.setItem('cart', "null")
     this.items = [];
     this.totalPrice = 0;
-   // this.storageService.clear();
+    this.descuento = 0;
+    this.totalFinal = 0;
+    // this.storageService.clear();
 
   }
 
@@ -319,47 +347,111 @@ export class CarritoComponent implements OnInit {
   //       console.log('Respuesta', resp);
   //     })
 
-  
+
   //   }
 
 
-  aplicarCupon( termino: string ){
+  aplicarCupon(termino: string) {
 
-    console.log(termino);
- 
+    if ((<HTMLInputElement>document.getElementById("inputCupon")).value === "") {
+      Swal.fire('Oops!', 'Ingrese un cupón para continuar.', 'error');
+
+
+    }else{
+      console.log(termino);
+
     this.cuponService.postCupon(termino)
-       .subscribe(resp => {
-         this.cupon = resp
-         
-         console.log(resp.ok);
-         console.log(this.cupon);
-         if (resp.ok === true) {
+      .subscribe(resp => {
+        this.cupon = resp
 
-   
+        console.log(resp.ok);
+        console.log(this.cupon);
+        if (resp.ok === true) {
+
+
+         
+          if (this.cupon.cupon.tipo === "VOUCHER") {
+
             document.getElementById("elemento").style.display = '';
 
-            (<HTMLInputElement> document.getElementById("btnApply")).disabled = true;
-         
-        
-          this.cuponCodigo = this.cupon.cupon.codigo;
-        this.porcentajeDescuento = this.cupon.cupon.porcentaje;
-        this.descuento = this.totalPrice * (this.porcentajeDescuento / 100)
-        console.log(this.descuento);
+            (<HTMLInputElement>document.getElementById("btnApply")).disabled = true;
+            this.cuponCodigo = this.cupon.cupon.codigo;
+  
+  
 
-          this.totalPrice = this.totalPrice - this.descuento
-          console.log(this.totalPrice); 
+
+            console.log('voucher');
+            this.porcentajeDescuento = this.cupon.cupon.porcentaje;
+            this.descuento = this.totalPrice * (this.porcentajeDescuento / 100)
+            console.log(this.descuento);
+  
+            console.log(this.totalPrice);
+
+            this.totalFinal = this.totalPrice - this.descuento;
+
+            
+          }
+          else {
+                        console.log('gift card');
+
+
+            this.descuento = this.cupon.cupon.valor;
+
+            if (this.descuento > this.totalPrice) {
+              
+              console.log('es mayor');
+              Swal.fire('Oops!', 'La orden de compra debe ser mayor al monto de la gift card. ( $' + this.descuento + ')' , 'error');
+              this.descuento = 0;
+
+            }else{
+              document.getElementById("elemento").style.display = '';
+
+              (<HTMLInputElement>document.getElementById("btnApply")).disabled = true;
+              this.cuponCodigo = this.cupon.cupon.codigo;
+              this.totalFinal = this.totalPrice - this.descuento;
+
+              
+            }
+
            
-         }else{
-                       document.getElementById("elemento").style.display = 'none';
+          
+  
+           
+          }
+       
+
+
+        } else {
+          document.getElementById("elemento").style.display = 'none';
 
           Swal.fire('Oops!', resp, 'error');
 
-         }
-       }
-       
-       )
- 
-   
-     }
+        }
+      }
 
+      )
+    }
+
+    
+
+    
+
+
+  }
+  
+
+
+
+  quitarCupon(){
+
+     this.cupon = null;
+     console.log(this.cupon);
+     document.getElementById("elemento").style.display = 'none';
+     (<HTMLInputElement>document.getElementById("inputCupon")).value = "";
+     (<HTMLInputElement>document.getElementById("btnApply")).disabled = false;
+     this.descuento = 0;
+     this.totalPrice = this.getTotal();
+     this.totalFinal = this.totalPrice
+
+  }
 }

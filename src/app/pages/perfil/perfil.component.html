@@ -101,7 +101,7 @@
                   <tr *ngFor="let comprobante of comprobantes">
                     <th scope="row">{{comprobante?.numero}}</th>
                     <td>{{comprobante?.fecha | date:"medium"}}</td>
-                    <td>${{comprobante?.monto}}</td>
+                    <td>${{comprobante?.total}}</td>
                     <td> <button class="btn btn-light btn-block mb-2"
                         (click)="traerDetalleComprobante(comprobante?.numero)" data-toggle="modal"
                         data-target="#exampleModal">
@@ -167,17 +167,31 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let producto of detalleComprobante?.detComprobante.productos">
+                      <tr style="font-size: 12px;"  *ngFor="let producto of detalleComprobante?.detComprobante.productos">
                         <td>{{producto?.titulo}}</td>
                         <td>{{producto?.cantidad}}</td>
-                        <td>{{producto?.precio}}</td>
-                        <td>{{precioPorUnidad}}</td>
+                        <td>${{producto?.precio}}</td>
+                        <td>{{producto?.cantidad * producto?.precio}}</td>
                       </tr>
-                      <tr>
-                        <th> Total </th>
+                      <br>
+                      <br>
+                      <tr style="font-size: 14px; text-align: center;">
+                        <th > Sub Total </th>
                         <td></td>
                         <td></td>
-                        <td>{{comprobante?.comprobante.monto}}</td>
+                        <td>${{comprobante?.comprobante.subTotal}}</td>
+                      </tr>
+                      <tr style="font-size: 14px; text-align: center;">
+                        <th > Descuento </th>
+                        <td></td>
+                        <td></td>
+                        <td style="">-${{comprobante?.comprobante.descuento}}</td>
+                      </tr>
+                      <tr style="font-size: 14px; text-align: center;">
+                        <th > Total </th>
+                        <td></td>
+                        <td></td>
+                        <td>${{comprobante?.comprobante.total}}</td>
                       </tr>
 
                     </tbody>

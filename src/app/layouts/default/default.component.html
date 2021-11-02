@@ -89,8 +89,8 @@
 
     <nav class="navbar navbar-expand-lg  fixed-top header page-header">
 
-        <button mat-icon-button (click)="onClick()" (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-            <mat-icon style="color: white;">menu</mat-icon>
+        <button style="bottom: 10px;" mat-icon-button (click)="onClick()" (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+            <mat-icon style="color: white;  ">menu</mat-icon>
         </button>
 
         <a class="navbar-brand" [routerLink]="'/'">
@@ -170,10 +170,9 @@
         <mat-sidenav #sidenav class="sidenav">
             <mat-nav-list>
                 <ul>
-                    <li>
+                    <li  class="margin">
                         <a class="dropdown-item" *ngIf="nombreUsuario === null" (click)="salir()">Ingresar</a>
-                        <a class="dropdown-item" *ngIf="nombreUsuario != null"> Hola {{nombreUsuario}} !</a>
-                        <a class="dropdown-item" *ngIf="nombreUsuario != null" (click)="salir()">Cerrar Sesión</a>
+                        <a class="dropdown-item" *ngIf="nombreUsuario != null"> {{nombreUsuario}}</a>
 
                     </li>
                     <li>
@@ -187,25 +186,30 @@
         
                                 </mat-expansion-panel-header>
                                 <a class="dropdown-item" (click)="buscar(categoria.nombre)" *ngFor="let categoria of categorias"
-                                    [value]="categoria.value">{{categoria.nombre}}</a>
+                                    [value]="categoria.value">{{categoria.nombre | titlecase}}</a>
         
                             </mat-expansion-panel>
                         </mat-accordion>
 
                     </li>
 
-                    <li>
+                    <li class="margin">
                         <a class="dropdown-item"   [routerLink]="'/comocomprar'"> Cómo Comprar </a>
 
                     </li>
-<li>
+<li class="margin">
     <a class="dropdown-item" [routerLink]="'/eventos'"> Eventos </a>
 
 </li>
-<li>
-    <a mat-list-item [routerLink]="'/preguntas'"> Preguntas Frecuentes </a>
+<li class="margin">
+    <a   class="dropdown-item" [routerLink]="'/preguntas'"> Preguntas Frecuentes </a>
 
 </li>
+<li class="margin">
+    <a class="dropdown-item" *ngIf="nombreUsuario != null" (click)="salir()">Cerrar Sesión</a>
+
+</li>
+
                 </ul>
                 <!-- <a (click)="sidenav.toggle()" href="" mat-list-item>Salir</a> -->
                 <!-- <a mat-list-item [routerLink]="'/'"> Inicio </a> -->
