@@ -3,51 +3,36 @@
     <br>
     <div class="container-login100 "  >
         <div class="wrap-login100 p-t-50 p-b-90">
-            <div class="login100-form-title"> Iniciar Sesión
+            <div class="login100-form-title"> Restaurar Contraseña
             </div>
             <br>
 
             <div class="row" style="max-width: 400px; padding: 20px;" >
             <!-- `formulario -->
-            <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()" id="loginform" class="login100-form validate-form flex-sb flex-w">
+            <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="guardarNuevaPass()" id="loginform" class="login100-form validate-form flex-sb flex-w">
 
 
                 <span *ngIf="" class="text-danger animated fadeIn">El correo es obligatorio</span>
 
                 <!-- ÌNPUT MAIL -->
                 <div class="wrap-input100 m-b-16">
-                    <input class="input100" type="email" placeholder="Email" formControlName="email">
+                    <input class="input100" type="email" placeholder="Email" style="color: grey;" formControlName="email" readonly>
 
-                    <span class="focus-input100"></span>
+                    <span class="focus-input102"></span>
                 </div>
 
                 <span *ngIf="" class="text-danger animated fadeIn"></span>
                 <div class="wrap-input100 m-b-16" data-validate="Password is required">
 
                     <!-- ÌNPUT PASS -->
-                    <input class="input100" type="password" placeholder="Password" formControlName="password">
+                    <input class="input100" type="password" placeholder="Nueva Contraseña" formControlName="password">
                     <span class="focus-input100"></span>
                 </div>
 
-                <!-- `checkbox recuerdame -->
-                <div class="flex-sb-m w-full p-t-3 p-b-24">
-                    <div class="contact100-form-checkbox">
-                        <input class="input-checkbox100" id="checkbox-signup" type="checkbox" formControlName="remember">
-                        <label class="label-checkbox100" for="ckb1">
-                          Recordarme
-                      </label>
-                    </div>
-
-                    <div>
-                        <a href="javascript:void(0)" id="to-recover" class="txt1 pull-right" routerLink="/olvidemicontraseña" ><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a>
-
-
-                    </div>
-                </div>
-
-                <div class="container-login100-form-btn m-t-17">
-                    <button class="login100-form-btn" type="submit">
-                      Ingresar
+               
+                <div class="container-login100-form-btn2 m-t-17">
+                    <button class="login100-form-btn2" type="submit">
+                      Guardar
                   </button>
 
 

@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
 
   public loginForm = this.fb.group({
-    email: [ 'valaryiam@gmail.com' || '' , [ Validators.required, Validators.email ] ],
+    email: [ '' , [ Validators.required, Validators.email ] ],
     password: ['', Validators.required ],
     remember: [true]
   });
@@ -129,5 +129,10 @@ export class LoginComponent implements OnInit {
   //           alert(JSON.stringify(error, undefined, 2));
   //       });
   // }
+
+
+forgotPass(){
+
+}
 
 }

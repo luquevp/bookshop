@@ -37,6 +37,9 @@ import { SubcatComponent } from '../../pages/subcat/subcat.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MyLoaderComponent } from '../../components/my-loader/my-loader.component';
 import { PerfilComponent } from '../../pages/perfil/perfil.component';
+import { ForgotpassComponent } from '../../pages/forgotpass/forgotpass.component';
+import { ForgotpasscodigoComponent } from 'src/app/pages/forgotpasscodigo/forgotpasscodigo.component';
+import { ResetpassComponent } from 'src/app/pages/resetpass/resetpass.component';
 
 
 
@@ -67,7 +70,12 @@ import { PerfilComponent } from '../../pages/perfil/perfil.component';
     EditorialComponent,
     CategoriasComponent,
     SubcatComponent,
-    PerfilComponent
+    PerfilComponent,
+    ForgotpassComponent,
+    ForgotpasscodigoComponent,
+    ResetpassComponent,
+
+
 
 
 

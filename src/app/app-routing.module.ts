@@ -24,6 +24,9 @@ import { EditorialComponent } from './pages/editorial/editorial.component';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
 import { SubcatComponent } from './pages/subcat/subcat.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
+import { ForgotpassComponent } from './pages/forgotpass/forgotpass.component';
+import { ForgotpasscodigoComponent } from './pages/forgotpasscodigo/forgotpasscodigo.component';
+import { ResetpassComponent } from './pages/resetpass/resetpass.component';
 
 
 const routes: Routes = [
@@ -50,6 +53,11 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
       { path: 'perfil', component: PerfilComponent },
+      { path: 'olvidemicontraseña', component: ForgotpassComponent },
+      { path: 'olvidemicontraseña/codigo', component: ForgotpasscodigoComponent },
+      { path: 'restaurarcontraseña', component: ResetpassComponent },
+
+
 
 
 

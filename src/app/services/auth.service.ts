@@ -4,10 +4,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthResponse } from '../interfaces/auth.interface';
+import { AuthResponse, RecuperarPass, Recup, Recup2 } from '../interfaces/auth.interface';
 import { borderTopRightRadius } from 'html2canvas/dist/types/css/property-descriptors/border-radius';
 import { Role } from '../interfaces/usuario.interface';
 import { Provincia } from '../interfaces/provincia.interface';
+import { LoginForm } from '../interfaces/login-form.interface';
 
 
 @Injectable({
@@ -98,5 +99,58 @@ export class AuthService {
 
   getProvincias(): Observable<Provincia[]> {
     return this.http.get<Provincia[]>(`${ this.baseUrl }/provincias`);
-  } g
+  } 
+
+
+  
+  solicitarCodRecuperacion( destinatario: Recup ) {
+
+    console.log(destinatario);
+
+    return this.http.post<any>(`${ this.baseUrl }/nodemailers/enviar-codigo`, destinatario) .pipe(
+      tap(( resp ) => {
+        if (resp.ok) {
+          console.log(resp);
+        }
+      }),
+      map(resp => resp),
+      catchError(err => of(err.error.msg))
+    );
+  }
+
+  enviarCodRecuperacion( destinatario: Recup2 ) {
+
+    console.log(destinatario);
+
+    return this.http.post<any>(`${ this.baseUrl }/nodemailers/aplicar-codigo`, destinatario)
+     .pipe(
+      tap(( resp ) => {
+        if (resp.ok) {
+          console.log(resp);
+        }
+      }),
+      map(resp => resp),
+      catchError(err => of(err.error.msg))
+    );
+  }
+
+  restaurarPass( newpass : LoginForm ) {
+
+    console.log(newpass);
+
+    return this.http.post<any>(`${ this.baseUrl }/nodemailers/restablecer`, newpass)
+     .pipe(
+      tap(( resp ) => {
+        if (resp.ok) {
+          console.log(resp);
+        }
+      }),
+      map(resp => resp),
+      catchError(err => of(err.error.msg))
+    );
+  }
+
+
+ 
+
 }

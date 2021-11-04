@@ -25,6 +25,7 @@ libros =  [];
      this.productsService.getLibros()
     .subscribe(libros => {
       this.libros = libros;
+      console.log(libros);
       this.spinner.hide();});
 
 

@@ -34,6 +34,7 @@ import { SearchComponent } from './search/search.component';
 import {RouterModule} from '@angular/router';
 import { CarritoItemComponent } from './carrito-item/carrito-item.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ProductsbestsellersComponent } from './productsbestsellers/productsbestsellers.component';
 
 
 
@@ -60,6 +61,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CarruselComponent,
     SearchComponent,
     CarritoItemComponent,
+    ProductsbestsellersComponent,
     
   ],
   imports: [
@@ -98,7 +100,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CarritoComponent,
     FiltrosComponent,
     CarruselComponent,
-    SearchComponent
+    SearchComponent,
+    ProductsbestsellersComponent
   ],
   providers: [
     DataService,

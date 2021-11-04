@@ -16,3 +16,27 @@ export interface AuthResponse {
         celular?: number
     }
 }
+
+export interface RecuperarPass {
+
+    ok?: boolean,
+    msg?: string,
+    codigo?: string,
+
+
+}
+
+
+export interface Recup {
+    destinatario: string;
+
+}
+
+export interface Recup2 {
+    codigo: string;
+    email: string;
+
+
+}
+
+

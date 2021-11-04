@@ -140,7 +140,7 @@
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-                        <a class="dropdown-item" *ngIf="nombreUsuario === null" (click)="salir()">Ingresar</a>
+                        <a class="dropdown-item" *ngIf="nombreUsuario === null" routerLink="/login">Ingresar</a>
 
                         <a class="dropdown-item" routerLink="/perfil" *ngIf="nombreUsuario != null"> {{nombreUsuario}} </a>
                         <a class="dropdown-item" *ngIf="nombreUsuario != null" (click)="salir()">Cerrar Sesión</a>

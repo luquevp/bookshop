@@ -149,6 +149,12 @@ export class CarritoComponent implements OnInit {
     // if (localStorage.getItem('token')) {
     paypal.
       Buttons({
+        style: {
+          layout:  'vertical',
+          color:   'white',
+          shape:   'rect',
+          label:   'paypal'
+        },
         createOrder: (data, actions) => {
           return actions.order.create({
             purchase_units: [
@@ -219,6 +225,7 @@ export class CarritoComponent implements OnInit {
   public remove(item: IItem) {
     this._cartService.changeCart(item);
     this._cartService.removeElementCart(item);
+    this.onChange();
     this.toastr.success('¡El producto fue eliminado de tu carrito!', ' Adios :( ');
 
   }

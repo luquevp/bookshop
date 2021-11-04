@@ -1,0 +1,73 @@
+<div class="limiter animated fadeInLeft contenedor">
+    <br>
+    <br>
+    <div class="container-login100 "  >
+        <div class="wrap-login100 p-t-50 p-b-90">
+            <div class="login100-form-title">  Código de Recuperación
+            </div>
+            <br>
+
+            <div class="row" style="max-width: 400px; padding: 20px;" >
+            <!-- `formulario -->
+            <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="enviarcodigo()" id="loginform" class="login100-form validate-form flex-sb flex-w">
+
+                <span *ngIf="" class="text-danger animated fadeIn">El correo es obligatorio</span>
+
+                <!-- ÌNPUT MAIL -->
+                <div class="wrap-input100 m-b-16">
+                    <input class="input100" type="email" placeholder="Email" style="color: grey;" formControlName="email" readonly>
+
+                    <span class="focus-input102"></span>
+                </div>
+
+
+                <span *ngIf="" class="text-danger animated fadeIn">El código es obligatorio</span>
+
+                <!-- ÌNPUT codigo -->
+                <div class="wrap-input100 m-b-16">
+                    <input class="input100" type="codigo" placeholder="Código" formControlName="codigo">
+
+                    <span class="focus-input100"></span>
+                </div>
+
+                
+
+          
+             
+
+                <div class="container-login100-form-btn2 m-t-17">
+                    <button class="login100-form-btn2" type="submit">
+                      Enviar código
+                  </button>
+
+
+
+                </div>
+
+
+
+
+                <br>
+                <div class="col">
+
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 mb-4 " id="google-btn">
+
+                            <div id="my-signin2"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 text-center txt1">
+                        Don't have an account?
+                        <br> <a routerLink="/register" class="txt1"><b> Sign Up</b></a>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+</div>

@@ -1,7 +1,7 @@
 
 <div class="container">
     <div class="row">
-        <aside class="col-lg-9">
+        <aside class="col-xl-9 col-lg-8 col-md-12">
             <div class="card">
                 <div class="table-responsive">
                     <table class="table table-borderless table-shopping-cart">
@@ -9,7 +9,7 @@
                             <tr class="small text-uppercase" >
                                 <th scope="col" class="align">Libros</th>
                                 <th scope="col" class="align" width="120" style="text-align: center; ">Cantidad</th>
-                                <th scope="col" class="align" width="120">Precio</th>
+                                <th scope="col" class="align text-center" width="120">Precio</th>
                                 <th scope="col" class="text-right d-none d-md-block" width="200"></th>
                             </tr>
                         </thead>
@@ -73,11 +73,12 @@
 
 </td>
 
-                                <td >
+                                <td class="text-center" >
                                     <div class="price-wrap"> <var class="price">${{item.precio}}</var> <small class="text-muted"></small> </div>
                                 </td>
-                                <td class="text-right d-none d-md-block">
-                                    <a (click)="remove(item)" class="btn btn-light " style="color: white;" data-abc="true">Eliminar</a> </td>
+                                <td class="text-center">
+                                    <a (click)="remove(item)" class="btn btn-light " style="color: white;" data-abc="true">Eliminar</a> 
+                                </td>
                             </tr>
 
 
@@ -88,14 +89,14 @@
                 </div>
             </div>
         </aside>
-        <aside class="col-lg-3">
+        <aside class="col-xl-3 col-lg-4 col-md-12">
             <div class="card mb-3">
                 <div class="card-body">
 
 
                     <form (submit)="aplicarCupon( txtTermino.value )">
                         <div class="form-group"> <label>Tienes un cupón?</label>
-                            <div class="input-group"> <input type="search"  id="inputCupon" class="form-control coupon" name="" placeholder="Coupon code" #txtTermino > <span class="input-group-append"> <button id="btnApply" class="btn btn-primary btn-apply coupon">Apply</button> </span> </div>
+                            <div class="input-group"> <input type="search"  id="inputCupon" class="form-control coupon" name="" placeholder="Código cupón" #txtTermino > <span class="input-group-append"> <button id="btnApply" class="btn btn-primary btn-apply coupon">Apply</button> </span> </div>
                         </div>
                         <!-- <p id="elemento"  style="display:none;">cupón aplicado: {{cuponCodigo}} <button>X</button></p>  -->
                     </form>
@@ -122,11 +123,13 @@
                     <div class="btn buttonContinuar " data-abc="true" *ngIf="botonLoguear == true" (click)="continuarCompra()" > Continuar</div>
 
 
-                   
-
+                   <div class="">
                     <div #paypal > </div>
 
-                <button (click)="comprar()">name</button>
+                   </div>
+
+
+                <!-- <button (click)="comprar()">name</button> -->
                 
                     <button class="btn btn-light btn-block mb-2" (click)="emptyCart()">
                        Limpiar carrito

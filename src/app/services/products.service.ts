@@ -24,6 +24,9 @@ export class ProductsService {
     return this.http.get<IItem[]>(`${ this.baseUrl }/productos`);
   }
 
+  getLibrosMasVendidos(): Observable<IItem[]> {
+    return this.http.get<IItem[]>(`${ this.baseUrl }/buscar/productos/masvendidos/libros`);
+  }
  
  //getLibros3() {
    //return this.http.get(`${ this.baseUrl }/productos`);
