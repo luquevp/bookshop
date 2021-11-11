@@ -47,7 +47,7 @@ this.terminoIngresado = termino;
 
       todo = todo.filter((value, index, arr) => arr.findIndex(n => n["_id"] === value["_id"]) == index)
 
-      this.libros = todo;
+      this.libros = todo.filter(libro => libro.stock > 0);
 
      console.log(this.libros);
      if( this.libros.length > 0){

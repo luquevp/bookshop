@@ -85,27 +85,43 @@ export class RegisterComponent implements OnInit{
     
     const { nombre, email, password, rol, provincia, localidad, direccion, codigoPostal, celular } = this.registerForm.value;
     console.log(this.registerForm.value);
-    this.auth.registro(nombre, email, password, rol, provincia,
-      localidad,
-      direccion,
-      codigoPostal,
-      celular)
-      .subscribe(ok => {
 
-        if (ok === true) {
-          console.log(ok);
+    if (this.registerForm.value.nombre.trim().length === 0 ||  this.registerForm.value.password.trim().length === 0 || this.registerForm.value.email.trim().length === 0 ||
+       this.registerForm.value.localidad.trim().length === 0 || this.registerForm.value.provincia.trim().length === 0 || this.registerForm.value.direccion.trim().length === 0) {
+      Swal.fire('Error', 'Campos obligatorios vacios', 'error')
+    } else {
 
-          Swal.fire('Buen Trabajo!', 'El usuario fue creado correctamente.', 'success');
-
-          this.router.navigateByUrl('/login');
-        } else {
-          console.log(ok);
-        
-
-          Swal.fire('Error', 'Debe completar los campos obligatorios correctamente.', 'error');
-        }
+      if (this.registerForm.value.codigoPostal?.toString().length !== 4) {
+        Swal.fire('Error', 'Codigo postal inválido. Ej: 4107', 'error')
+      } else if (this.registerForm.value.celular?.toString().trim().length !== 12) {
+        Swal.fire('Error', 'Celular ingresado inválido. Ej: 543813025984', 'error')
+      } else {
+        this.auth.registro(nombre, email, password, rol, provincia,
+          localidad,
+          direccion,
+          codigoPostal,
+          celular)
+          .subscribe(ok => {
+    
+            if (ok === true) {
+              console.log(ok);
+    
+              Swal.fire('Buen Trabajo!', 'El usuario fue creado correctamente.', 'success');
+    
+              this.router.navigateByUrl('/login');
+            } else {
+              console.log(ok);
+            
+    
+              Swal.fire('Error', 'Debe completar los campos obligatorios correctamente.', 'error');
+            }
+          }
+          );
       }
-      );
+    }
+
+
+    
 
   }
 

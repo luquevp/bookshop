@@ -19,7 +19,8 @@ export interface IItem {
     autor?: Autor,
     editorial?: Editorial,
     stock?: number;
-    subCategoria?: SubCategoria
+    subCategoria?: SubCategoria;
+    vendidos?: number;
     
 
 

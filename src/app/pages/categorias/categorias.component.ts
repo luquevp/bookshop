@@ -44,7 +44,7 @@ export class CategoriasComponent implements OnInit {
       )
     .subscribe((libros: any) => {console.log(libros);
       this.spinner.hide();
-      this.libros = libros
+      this.libros = libros.filter(libro => libro.stock > 0)
     
       if( this.libros.length > 0 ){
         document.getElementById("elemento").style.display = 'none';

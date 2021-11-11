@@ -37,7 +37,7 @@ export class SubcatComponent implements OnInit {
       )
     .subscribe((libros: any) => {console.log(libros);
       
-      this.libros = libros
+      this.libros = libros.filter(libro => libro.stock > 0)
       if( this.libros.length > 0 ){
         document.getElementById("elemento").style.display = 'none';
         document.getElementById("cardcategoria").style.display = '';

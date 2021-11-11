@@ -24,8 +24,9 @@ libros =  [];
       this.spinner.show();
      this.productsService.getLibros()
     .subscribe(libros => {
-      this.libros = libros;
-      console.log(libros);
+      this.libros = libros.filter(libro => libro.stock > 0)
+      console.log(this.libros);
+    
       this.spinner.hide();});
 
 

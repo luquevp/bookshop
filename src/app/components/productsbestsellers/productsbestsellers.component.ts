@@ -21,7 +21,8 @@ export class ProductsbestsellersComponent implements OnInit {
       this.spinner.show();
      this.productsService.getLibrosMasVendidos()
     .subscribe(libros => {
-      this.libros = libros;
+      this.libros = libros.filter(libro => libro.stock > 0 );
+      this.libros = libros.sort((a,b) => b.vendidos - a.vendidos);
       console.log(libros);
       this.spinner.hide();});
 
