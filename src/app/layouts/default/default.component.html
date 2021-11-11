@@ -1,7 +1,5 @@
+<div class="row">
 
-
-<div class="row" >
-    
 
 
     <!-- <nav class="navbar fixed-top header">
@@ -89,7 +87,8 @@
 
     <nav class="navbar navbar-expand-lg  fixed-top header page-header">
 
-        <button style="bottom: 10px;" mat-icon-button (click)="onClick()" (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <button style="bottom: 10px;" mat-icon-button (click)="onClick()" (click)="sidenav.toggle()" fxShow="true"
+            fxHide.gt-sm>
             <mat-icon style="color: white;  ">menu</mat-icon>
         </button>
 
@@ -132,7 +131,7 @@
 
             <ul class="optionsIcon">
 
-                <li class="dropdown  option">
+                <li class="dropdown  option dropleft">
                     <a class="btn option dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                         (click)="onClick()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="lnr lnr-user option user-icon"> </span>
@@ -142,7 +141,8 @@
 
                         <a class="dropdown-item" *ngIf="nombreUsuario === null" routerLink="/login">Ingresar</a>
 
-                        <a class="dropdown-item" routerLink="/perfil" *ngIf="nombreUsuario != null"> {{nombreUsuario}} </a>
+                        <a class="dropdown-item" routerLink="/perfil" *ngIf="nombreUsuario != null"> {{nombreUsuario}}
+                        </a>
                         <a class="dropdown-item" *ngIf="nombreUsuario != null" (click)="salir()">Cerrar Sesión</a>
 
 
@@ -159,20 +159,19 @@
         <ul class="optionsIcon">
             <li class="nav-item ">
                 <a class="nav-link  " [routerLink]="'/carrito'"><span
-                        class="lnr lnr-cart  option cart-icon"></span><span
-                        class="  option cart-icon"></span></a>
+                        class="lnr lnr-cart  option cart-icon"></span><span class="  option cart-icon"></span></a>
             </li>
         </ul>
     </nav>
 
 
-    <mat-sidenav-container style="background-color: white; width: 100%;"  >
+    <mat-sidenav-container style="background-color: white; width: 100%;">
         <mat-sidenav #sidenav class="sidenav">
             <mat-nav-list>
                 <ul>
-                    <li  class="margin">
+                    <li class="margin">
                         <a class="dropdown-item" *ngIf="nombreUsuario === null" (click)="salir()">Ingresar</a>
-                        <a class="dropdown-item" *ngIf="nombreUsuario != null"> {{nombreUsuario}}</a>
+                        <a class="dropdown-item" routerLink="/perfil" *ngIf="nombreUsuario != null"> {{nombreUsuario}}</a>
 
                     </li>
                     <li>
@@ -182,55 +181,57 @@
                                 <!-- <mat-expansion-panel (opened)="panelOpenState = true"
                                                  (closed)="panelOpenState = false"> -->
                                 <mat-expansion-panel-header>
-                                    <a mat-list-item> Categorías </a>
-        
+                                    <a class=" margin"> Categorías </a>
+
                                 </mat-expansion-panel-header>
-                                <a class="dropdown-item" (click)="buscar(categoria.nombre)" *ngFor="let categoria of categorias"
-                                    [value]="categoria.value">{{categoria.nombre | titlecase}}</a>
-        
+                                <a class="dropdown-item" (click)="buscar(categoria.nombre)"
+                                    *ngFor="let categoria of categorias" [value]="categoria.value">{{categoria.nombre |
+                                    titlecase}}</a>
+
                             </mat-expansion-panel>
                         </mat-accordion>
 
                     </li>
 
                     <li class="margin">
-                        <a class="dropdown-item"   [routerLink]="'/comocomprar'"> Cómo Comprar </a>
+
+                        <a class="dropdown-item" [routerLink]="'/nosotros'"> Nosotros</a>
 
                     </li>
-<li class="margin">
-    <a class="dropdown-item" [routerLink]="'/eventos'"> Eventos </a>
+                  
+                    <li class="margin">
+                        <a class="dropdown-item" [routerLink]="'/preguntasfrecuentes'"> Preguntas Frecuentes </a>
 
-</li>
-<li class="margin">
-    <a   class="dropdown-item" [routerLink]="'/preguntas'"> Preguntas Frecuentes </a>
+                    </li>
+                    <li class="margin">
+                        <a class="dropdown-item" *ngIf="nombreUsuario != null" (click)="salir()">Cerrar Sesión</a>
 
-</li>
-<li class="margin">
-    <a class="dropdown-item" *ngIf="nombreUsuario != null" (click)="salir()">Cerrar Sesión</a>
+                    </li>
+                    <li class="margin">
+                        <a class="dropdown-item" [routerLink]="'/eventos'"> Eventos </a>
 
-</li>
-
+                    </li>
                 </ul>
                 <!-- <a (click)="sidenav.toggle()" href="" mat-list-item>Salir</a> -->
                 <!-- <a mat-list-item [routerLink]="'/'"> Inicio </a> -->
 
-         
+
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content fxFlexFill>
-         <!-- <app-cart *ngIf="openCart"></app-cart> -->
-<!-- <app-search></app-search>  -->
+            <!-- <app-cart *ngIf="openCart"></app-cart> -->
+            <!-- <app-search></app-search>  -->
             <div class="body container-fluid">
-                <router-outlet   ></router-outlet>
-            
+                <router-outlet></router-outlet>
 
-    
+
+
             </div>
 
 
             <!--<router-outlet (activate)="onActivate($event, outlet)" #outlet></router-outlet> -->
 
-           
+
 
             <app-whatsapp class="wppbtn"></app-whatsapp>
 
@@ -240,18 +241,16 @@
         </mat-sidenav-content>
 
     </mat-sidenav-container>
-    
-
-    
-    </div>
-
- 
-
-    <div class="row  " style="justify-content: center; align-items: flex-end; ">
-        
- 
-        <app-footer class=" footer" style="width: 100%;"></app-footer>
-
-    </div>
 
 
+
+</div>
+
+
+
+<div class="row  " style="justify-content: center; align-items: flex-end; ">
+
+
+    <app-footer class=" footer" style="width: 100%;"></app-footer>
+
+</div>

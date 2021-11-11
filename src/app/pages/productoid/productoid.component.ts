@@ -35,6 +35,7 @@ export class ProductoidComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    
 
     this.spinner.show();
 
@@ -49,7 +50,7 @@ export class ProductoidComponent implements OnInit {
 
 
 
-
+console.log(this.libro);
 
 
 

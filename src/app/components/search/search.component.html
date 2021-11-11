@@ -10,7 +10,7 @@
 		<div class="col">
 			<form  (submit)="buscar( txtTermino.value )">
 				<div class="form-inputs" > 
-						<input class="form-control" type="search" placeholder="Search" aria-label="Search" #txtTermino> 
+						<input class="form-control" type="text" placeholder="Buscar Libro o Autor" aria-label="Search" #txtTermino (input)="inputValidator($event)"> 
 						<button ><fa-icon [icon]="faSearch"></fa-icon> </button>
 				</div>
 			

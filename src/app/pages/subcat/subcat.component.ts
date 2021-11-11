@@ -37,7 +37,17 @@ export class SubcatComponent implements OnInit {
       )
     .subscribe((libros: any) => {console.log(libros);
       
-      this.libros = libros})
+      this.libros = libros
+      if( this.libros.length > 0 ){
+        document.getElementById("elemento").style.display = 'none';
+        document.getElementById("cardcategoria").style.display = '';
+  
+      }
+      else{
+        document.getElementById("elemento").style.display = '';
+        document.getElementById("cardcategoria").style.display = 'none';
+
+      }})
     
     //this.categoriasService.getCategorias()
     //.subscribe(categorias => {
@@ -54,6 +64,10 @@ export class SubcatComponent implements OnInit {
       console.log(categorias); 
       this.categorias = categorias;
       this.spinner.hide();});
+
+     
+      
+      
       
   }
 

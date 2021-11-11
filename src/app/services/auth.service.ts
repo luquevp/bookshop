@@ -37,10 +37,33 @@ export class AuthService {
           }
         }),
         map(resp => resp.ok),
+        
         catchError(err => of(err.error.msg))
       );
 
   }
+  // registro(nombre: string, email: string, password: string, rol: Role, provincia: string,
+  //   localidad: string,
+  //   direccion: string,
+  //   codigoPostal: number,
+  //   celular: number) {
+
+  //   const url = `${this.baseUrl}/usuarios/registro`;
+  //   const body = { email, password, nombre, rol, provincia, localidad, direccion, codigoPostal, celular };
+
+  //   return this.http.post<AuthResponse>(url, body)
+  //     .pipe(
+  //       tap(({ ok, token }) => {
+  //         if (ok) {
+  //           localStorage.setItem('token', token!);
+  //         }
+  //       }),
+  //       map(resp => resp.ok),
+        
+  //       catchError(err => of(err.error.msg))
+  //     );
+
+  // }
 
 
 

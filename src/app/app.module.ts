@@ -30,6 +30,8 @@ import { LoaderService } from './services/loader.service';
 import { LoaderInterceptor } from './interceptors/loader-interceptor.service';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { InterceptorService } from './interceptors/interceptor.service';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+
 
 
 
@@ -41,6 +43,7 @@ import { InterceptorService } from './interceptors/interceptor.service';
     RegisterComponent,
     NotyfToast,
     MyLoaderComponent,
+
     
     
     
@@ -80,7 +83,8 @@ import { InterceptorService } from './interceptors/interceptor.service';
       
     }), // ToastrModule added
     MatProgressBarModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    IvyCarouselModule
     
 
 

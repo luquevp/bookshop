@@ -51,11 +51,11 @@ this.terminoIngresado = termino;
 
      console.log(this.libros);
      if( this.libros.length > 0){
-      document.getElementById("elemento").style.display = 'none';
+      document.getElementById("404").style.display = 'none';
 
     }
     else{
-      document.getElementById("elemento").style.display = '';
+      document.getElementById("404").style.display = '';
     }
       
     }, err => {

@@ -23,12 +23,28 @@ export class SearchComponent implements OnInit {
 
   buscar( termino: string ){
 
-    if(termino.length === 0 ){
-          this.router.navigateByUrl(`/`)
+    console.log(termino);
+    if(termino.length === 0 || termino === "" ){
+          return;
+        }
+        else{
+          this.router.navigateByUrl(`/buscar/libros/${termino}`);
+
+
         }
   
-      this.router.navigateByUrl(`/buscar/libros/${termino}`);
   
+    }
+
+    public inputValidator(event: any) {
+      //console.log(event.target.value);
+      const pattern = /^[a-zA-Z0-9- ]*$/;   
+      //let inputChar = String.fromCharCode(event.charCode)
+      if (!pattern.test(event.target.value)) {
+        event.target.value = event.target.value.replace(/[^a-zA-Z0-9]/g, "");
+        // invalid character, prevent input
+  
+      }
     }
   
 }

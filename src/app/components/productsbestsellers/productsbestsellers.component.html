@@ -7,14 +7,22 @@
     type = "ball-clip-rotate" 
     [fullScreen] = "true">
     </ngx-spinner>
-    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
+
+    <!-- <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5"> -->
 
 
-        <div *ngFor="let libro of libros">
+            <carousel [height]="340" [loop]="true" [autoplay]="true" [pauseOnHover]="true" [dots]="true" [arrowsOutside]="true">
+                <li class="carousel-cell" *ngFor="let libro of libros">
+                    <app-productcard [libro]="libro"></app-productcard> 
+                </li>
+               
+              </carousel>
+
+        <!-- <div *ngFor="let libro of libros">
             <div class="card-column">
             <app-productcard [libro]="libro"></app-productcard> 
             </div>
-        </div>
+        </div> -->
 
     </div>
-</div>
+<!-- </div> -->

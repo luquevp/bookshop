@@ -35,6 +35,11 @@ import {RouterModule} from '@angular/router';
 import { CarritoItemComponent } from './carrito-item/carrito-item.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ProductsbestsellersComponent } from './productsbestsellers/productsbestsellers.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -76,7 +81,13 @@ import { ProductsbestsellersComponent } from './productsbestsellers/productsbest
     NgbModule,
     NgbPaginationModule,
     RouterModule,
-    NgxSpinnerModule 
+    NgxSpinnerModule ,
+    IvyCarouselModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule
+
     
     
   ],
@@ -101,7 +112,12 @@ import { ProductsbestsellersComponent } from './productsbestsellers/productsbest
     FiltrosComponent,
     CarruselComponent,
     SearchComponent,
-    ProductsbestsellersComponent
+    ProductsbestsellersComponent, 
+    AngularMaterialModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [
     DataService,

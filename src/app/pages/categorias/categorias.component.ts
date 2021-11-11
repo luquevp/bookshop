@@ -44,7 +44,19 @@ export class CategoriasComponent implements OnInit {
       )
     .subscribe((libros: any) => {console.log(libros);
       this.spinner.hide();
-      this.libros = libros})
+      this.libros = libros
+    
+      if( this.libros.length > 0 ){
+        document.getElementById("elemento").style.display = 'none';
+        document.getElementById("cardcategoria").style.display = '';
+  
+      }
+      else{
+        document.getElementById("elemento").style.display = '';
+        document.getElementById("cardcategoria").style.display = 'none';
+
+      }
+      })
     
     //this.categoriasService.getCategorias()
     //.subscribe(categorias => {
@@ -55,6 +67,7 @@ export class CategoriasComponent implements OnInit {
     //.subscribe(subcategorias => {
       //console.log(subcategorias); 
       //this.subcategorias = subcategorias});
+    
       
   }
 

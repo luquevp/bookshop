@@ -1,7 +1,7 @@
 import { Role } from './usuario.interface';
 
 export interface AuthResponse {
-    ok?: true,
+    ok?: boolean,
     token?: string,
     usuario: {
         msg?: string,

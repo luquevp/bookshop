@@ -1,4 +1,5 @@
 import { Autor, Editorial, IItem } from './item.interface';
+import { Usuario } from './usuario.interface';
 export interface Comprobante {
 
     total?: number;
@@ -18,14 +19,33 @@ export interface Comprobante {
 
 export interface ComprobanteConDetalle {
 
-    ok?: boolean;
-    comprobante?: {
+    // ok?: boolean;
+    // comprobante?: {
+    //     numero?: number;
+    //     fecha?: Date;
+    //     detalleComprobante?: {
+    //         _id?: number;
+    //         productos?: IItem[];
+    //         estado?: boolean;
+
+
+    //     }
+    //     //monto?: number;
+    //     subTotal?:number;
+    //     descuento?:number;
+    //     total?:number
+    //     usuario?: string;
+    //     cupon?: number;
+    //     _id?: number;
+    // }
+
+
+        _id?:string;
         numero?: number;
         fecha?: Date;
         detalleComprobante?: {
             _id?: number;
             productos?: IItem[];
-            estado?: boolean;
 
 
         }
@@ -33,10 +53,12 @@ export interface ComprobanteConDetalle {
         subTotal?:number;
         descuento?:number;
         total?:number
-        usuario?: string;
+        usuario?: {
+            nombre?: string;
+            _id?:string;
+        };
         cupon?: number;
-        _id?: number;
-    }
+    
 
 
 

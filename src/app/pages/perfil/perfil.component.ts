@@ -57,6 +57,8 @@ export class PerfilComponent implements OnInit {
       this.usuario = usuario;
     })
 
+    console.log(this.idUsuario);
+
     this.ActivatedRoute.params
     .pipe(
       switchMap( ( { termino } ) => this.busquedasService.getComprobantesPorUsuario(this.idUsuario))
@@ -72,7 +74,6 @@ export class PerfilComponent implements OnInit {
     this.busquedasService.getDetallePorNumeroComprobante(numero)
     .subscribe(detalle => {
       this.detalleComprobante = detalle;
-      console.log(this.detalleComprobante);
       
         
       });
@@ -80,8 +81,7 @@ export class PerfilComponent implements OnInit {
 
       this.busquedasService.getComprobantePorNumero(numero)
     .subscribe(comprobante => {
-      this.comprobante = comprobante;
-      console.log(this.comprobante);
+      this.comprobante = comprobante[0];
       
         
       });

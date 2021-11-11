@@ -40,6 +40,7 @@ import { PerfilComponent } from '../../pages/perfil/perfil.component';
 import { ForgotpassComponent } from '../../pages/forgotpass/forgotpass.component';
 import { ForgotpasscodigoComponent } from 'src/app/pages/forgotpasscodigo/forgotpasscodigo.component';
 import { ResetpassComponent } from 'src/app/pages/resetpass/resetpass.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 
 
@@ -107,6 +108,7 @@ import { ResetpassComponent } from 'src/app/pages/resetpass/resetpass.component'
     FontAwesomeModule,
     MatProgressBarModule,
     NgxSpinnerModule ,
+    IvyCarouselModule
   ],
   exports: [
     

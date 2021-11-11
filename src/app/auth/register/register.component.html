@@ -25,7 +25,7 @@
                                     <!-- èrror email -->
                                     <span *ngIf="campoNoValido('email')" class="text-danger animated fadeIn">* El email
                                         es obligatorio y
-                                        tiene que ser válido</span>
+                                        debe ser válido</span>
 
                                     <!-- ìnput email -->
                                     <div class="wrap-input100 m-b-16">
@@ -43,7 +43,7 @@
                                         obligatorio</span>
 
                                     <div class="wrap-input100 m-b-16">
-                                        <input class="input100 " type="text" formControlName="nombre" minlength="2"
+                                        <input class="input100 " type="text" (input)="inputValidatorSinNumero($event)" formControlName="nombre" minlength="2"
                                             placeholder="Nombre y apellidos">
 
                                         <span class="focus-input100"></span>
@@ -57,8 +57,8 @@
                                             <!-- ìnput prov completo -->
                                             <!-- error prov -->
                                             <span *ngIf="campoNoValido('provincia')"
-                                                class="text-danger animated fadeIn">* provincia es
-                                                obligatorio</span>
+                                                class="text-danger animated fadeIn">* Provincia es
+                                                obligatoria</span>
 <!-- 
                                             <div class="wrap-input100 m-b-16">
                                                 <input class="input100 " type="text" formControlName="provincia"
@@ -66,24 +66,37 @@
 
                                                 <span class="focus-input100"></span>
                                             </div> -->
-<div class=" wrap-input100 m-b-16" >
-    <select class="input100" style="border: white; " formControlName="provincia">
-         <option selected> Seleccionar Provincia</option>
+<!-- <div class=" wrap-input100 m-b-16" >
+    <select class="form-select input100" style="border: white; " formControlName="provincia" >
+        <option value="" disabled selected>Selecciona una provincia</option>
         <option *ngFor="let provincia of provincias" value="{{provincia?.provincia}}">{{provincia?.provincia | titlecase}}</option>
       </select>
 
-</div>
+</div> -->
+
+
+
+
+<mat-form-field class="  wrap-inputprov m-b-16" >
+    <mat-select class="" formControlName="provincia">
+        <mat-option style="color: grey;" class="input100prov" value="" disabled selected class="input100prov" >    Selecciona una provincia</mat-option>
+      <mat-option class="input100prov" *ngFor="let provincia of provincias" [value]="provincia?.provincia">
+        {{provincia?.provincia | titlecase}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>  
+  
                                           
 
                                             <!-- ìnput direccion completo -->
                                             <!-- error direccion -->
                                             <span *ngIf="campoNoValido('direccion')"
-                                                class="text-danger animated fadeIn">* direccion es
-                                                obligatorio</span>
+                                                class="text-danger animated fadeIn">* Dirección es
+                                                obligatoria</span>
 
                                             <div class="wrap-input100 m-b-16">
-                                                <input class="input100 " type="text" formControlName="direccion"
-                                                    minlength="2" placeholder="direccion">
+                                                <input (input)="inputValidator($event)"  class="input100 " type="text" formControlName="direccion"
+                                                    minlength="2" placeholder="Dirección">
 
                                                 <span class="focus-input100"></span>
                                             </div>
@@ -94,12 +107,12 @@
                                             <!-- ìnput localidad completo -->
                                             <!-- error localidad -->
                                             <span *ngIf="campoNoValido('localidad')"
-                                                class="text-danger animated fadeIn">* localidad es
-                                                obligatorio</span>
+                                                class="text-danger animated fadeIn">* Localidad es
+                                                obligatoria</span>
 
                                             <div class="wrap-input100 m-b-16">
-                                                <input class="input100 " type="text" formControlName="localidad"
-                                                    minlength="2" placeholder="localidad">
+                                                <input  (input)="inputValidatorSinNumero($event)" class="input100 " type="text" formControlName="localidad"
+                                                    minlength="2" placeholder="Localidad">
 
                                                 <span class="focus-input100"></span>
                                             </div>
@@ -113,12 +126,15 @@
                                             <!-- ìnput codigoPostal completo -->
                                             <!-- error codigoPostal -->
                                             <span *ngIf="campoNoValido('codigoPostal')"
-                                                class="text-danger animated fadeIn">* codigoPostal es
+                                                class="text-danger animated fadeIn">* Código Postal es
                                                 obligatorio</span>
 
+                                                <span *ngIf="registerForm.get('celular').dirty && registerForm.get('celular').invalid"
+                                                class="text-danger animated fadeIn">* Código Postal debe contener 4 números.</span>
+
                                             <div class="wrap-input100 m-b-16">
-                                                <input class="input100 " type="text" formControlName="codigoPostal"
-                                                    minlength="2" placeholder="codigoPostal">
+                                                <input (input)="inputValidator($event)"  class="input100 " type="number" formControlName="codigoPostal"
+                                                    minlength="2" placeholder="Código Postal">
 
                                                 <span class="focus-input100"></span>
                                             </div>
@@ -131,13 +147,17 @@
 
                                     <!-- ìnput celular completo -->
                                     <!-- error celular -->
-                                    <span *ngIf="campoNoValido('celular')" class="text-danger animated fadeIn">* celular
+                                    <span *ngIf="campoNoValido('celular')" class="text-danger animated fadeIn">* Número de celular
                                         es
                                         obligatorio</span>
 
+                                        <span *ngIf="registerForm.get('celular').dirty && registerForm.get('celular').invalid"
+                                        class="text-danger animated fadeIn">* Celular debe contener al menos 12 números.</span>
+
+
                                     <div class="wrap-input100 m-b-16">
-                                        <input class="input100 " type="text" formControlName="celular" minlength="2"
-                                            placeholder="celular">
+                                        <input minlength="5" (input)="inputValidator($event)"  id="celular" class="input100 " type="number" formControlName="celular" minlength="2"
+                                            placeholder="Celular">
 
                                         <span class="focus-input100"></span>
                                     </div>
@@ -147,6 +167,9 @@
 
 
 
+                                    <span *ngIf="campoNoValido('password')"
+                                    class="text-danger animated fadeIn">* La contraseña es
+                                    obligatoria</span>
 
 
 

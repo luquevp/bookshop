@@ -5,6 +5,7 @@ import { SearchBarComponent } from '../../components/search-bar/search-bar.compo
 import { DataService } from '../../services/data.service';
 
 
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -12,5 +13,6 @@ import { DataService } from '../../services/data.service';
 })
 export class HomepageComponent  {
 
+  
   
 }

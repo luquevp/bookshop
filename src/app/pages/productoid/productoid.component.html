@@ -16,9 +16,11 @@
 			
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-				  <li class="breadcrumb-item"><a href="#">Home</a></li>
-				  <li class="breadcrumb-item"><a href="/libros">Libros</a></li>
-				  <li class="breadcrumb-item active" aria-current="page"  >{{libro?.titulo}}</li>
+				  <a class="breadcrumb-item" routerLink="/">The Bookshop</a>
+				  <a class="breadcrumb-item" routerLink="/categorias/{{libro?.subCategoria?.categoria?.nombre}}">{{libro?.subCategoria?.categoria?.nombre | titlecase}}</a>
+
+				  <a class="breadcrumb-item" routerLink="/subcategorias/{{libro?.subCategoria?.nombre}}">{{libro?.subCategoria?.nombre | titlecase}}</a>
+				  <a class="breadcrumb-item active" aria-current="page" style="color: grey;"  >{{libro?.titulo | titlecase}} </a>
 				</ol>
 			  </nav>
 

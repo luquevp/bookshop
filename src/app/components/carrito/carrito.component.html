@@ -1,30 +1,52 @@
-
 <div class="container">
     <div class="row">
         <aside class="col-xl-9 col-lg-8 col-md-12">
-            <div class="card">
+            <div class="card" id="carrovacio" style="display:none;">
+                <div class="page-wrap d-flex flex-row align-items-center">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12 text-center">
+                                <span class="display-1 d-block">:(</span>
+                                <br>
+                                <br>
+
+                                <div class="mb-4 lead">El carrito se encuentra vacío.</div>
+                                <p class=""></p>
+
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card" id="cart" style="display:'';">
                 <div class="table-responsive">
                     <table class="table table-borderless table-shopping-cart">
                         <thead class="text-muted">
-                            <tr class="small text-uppercase" >
+                            <tr class="small text-uppercase">
                                 <th scope="col" class="align">Libros</th>
                                 <th scope="col" class="align" width="120" style="text-align: center; ">Cantidad</th>
                                 <th scope="col" class="align text-center" width="120">Precio</th>
                                 <th scope="col" class="text-right d-none d-md-block" width="200"></th>
                             </tr>
                         </thead>
-                        <tbody>
 
-                          
+
+                        <tbody id="cartlist">
+
+
                             <tr class="clearfix" *ngFor="let item of items" style="">
 
-                             
 
-                                
+
+
                                 <td>
                                     <figure class="itemside">
                                         <div class="aside"><img [src]="item.img" class="img-sm"></div>
-                                        <figcaption class="info"> <a href="#" class="title text-dark" data-abc="true">{{item.titulo}}</a>
+                                        <figcaption class="info"> <a href="#" class="title text-dark"
+                                                data-abc="true">{{item.titulo}}</a>
                                             <p class="text-muted small">Autor: {{item.autor.nombre}}<br> </p>
                                         </figcaption>
                                     </figure>
@@ -36,7 +58,7 @@
                                   <input type="number" class="form-control" name="" id="" value="{{item.cantidad}}" [(ngModel)]="item.cantidad"  min="1" max={{item.stock}} (input)="onChange($event)">  
                             
                                 </td> -->
-<!-- 
+                                <!-- 
                                 <td>
                                     <div class="form-row justify-content-center">
                                       <div class="form-group mb-0">
@@ -51,33 +73,40 @@
                                     </div>
                                   </td> -->
 
-                                  <td >
-<div class="number-input" >
-    <div  (click)="item.cantidad = item.cantidad - 1"  (click)="onChange($event)">
-        <button type="button"  onclick="this.parentNode.querySelector('[type=number]').stepDown();"  *ngIf="item.cantidad > 1 " >
-            -
-          </button>
-    </div>
-    
+                                <td>
+                                    <div class="number-input">
+                                        <div (click)="item.cantidad = item.cantidad - 1" (click)="onChange($event)">
+                                            <button type="button"
+                                                onclick="this.parentNode.querySelector('[type=number]').stepDown();"
+                                                *ngIf="item.cantidad > 1 ">
+                                                -
+                                            </button>
+                                        </div>
 
-    <input readonly type="number" value="{{item.cantidad}}" [(ngModel)]="item.cantidad"  min="1" max={{item.stock}} onChange="onChange($event)" (input)="onChange($event)">
-  <div >
 
-  </div>
-  <div (click)="item.cantidad = item.cantidad + 1"  (click)="onChange($event)" >
-    <button type="button" *ngIf="item.cantidad < item.stock"  onclick="this.parentNode.querySelector('[type=number]').stepUp();" >
-      +
-    </button>
-</div>
-  </div>
+                                        <input readonly type="number" value="{{item.cantidad}}"
+                                            [(ngModel)]="item.cantidad" min="1" max={{item.stock}}
+                                            onChange="onChange($event)" (input)="onChange($event)">
+                                        <div>
 
-</td>
+                                        </div>
+                                        <div (click)="item.cantidad = item.cantidad + 1" (click)="onChange($event)">
+                                            <button type="button" *ngIf="item.cantidad < item.stock"
+                                                onclick="this.parentNode.querySelector('[type=number]').stepUp();">
+                                                +
+                                            </button>
+                                        </div>
+                                    </div>
 
-                                <td class="text-center" >
-                                    <div class="price-wrap"> <var class="price">${{item.precio}}</var> <small class="text-muted"></small> </div>
+                                </td>
+
+                                <td class="text-center">
+                                    <div class="price-wrap"> <var class="price">${{item.precio}}</var> <small
+                                            class="text-muted"></small> </div>
                                 </td>
                                 <td class="text-center">
-                                    <a (click)="remove(item)" class="btn btn-light " style="color: white;" data-abc="true">Eliminar</a> 
+                                    <a (click)="remove(item)" class="btn btn-light " style="color: white;"
+                                        data-abc="true">Eliminar</a>
                                 </td>
                             </tr>
 
@@ -94,13 +123,17 @@
                 <div class="card-body">
 
 
-                    <form (submit)="aplicarCupon( txtTermino.value )">
+                    <form (submit)="aplicarCupon( txtTermino.value )" id="formcupon">
                         <div class="form-group"> <label>Tienes un cupón?</label>
-                            <div class="input-group"> <input type="search"  id="inputCupon" class="form-control coupon" name="" placeholder="Código cupón" #txtTermino > <span class="input-group-append"> <button id="btnApply" class="btn btn-primary btn-apply coupon">Apply</button> </span> </div>
+                            <div class="input-group"> <input type="search" id="inputCupon" class="form-control coupon"
+                                    name="" placeholder="Código cupón" #txtTermino> <span class="input-group-append">
+                                    <button id="btnApply" class="btn btn-primary btn-apply coupon">Apply</button>
+                                </span> </div>
                         </div>
                         <!-- <p id="elemento"  style="display:none;">cupón aplicado: {{cuponCodigo}} <button>X</button></p>  -->
                     </form>
-                    <p id="elemento"  style="display:none;">cupón aplicado: {{cuponCodigo}} <button (click)="quitarCupon()" style="color: brown;">X</button></p> 
+                    <p id="elemento" style="display:none;">cupón aplicado: {{cuponCodigo}} <button
+                            (click)="quitarCupon()" style="color: brown;">X</button></p>
 
                 </div>
             </div>
@@ -118,21 +151,22 @@
                         <dt>Total:</dt>
                         <dd class="text-right text-dark b ml-3"><strong>${{totalFinal}}</strong></dd>
                     </dl>
-                    <hr> 
-                <!--   <div class="btn button btn-out btn-primary btn-square btn-main" data-abc="true" (click)="comprar()"> Realizar compra </div> --> 
-                    <div class="btn buttonContinuar " data-abc="true" *ngIf="botonLoguear == true" (click)="continuarCompra()" > Continuar</div>
+                    <hr>
+                    <!--   <div class="btn button btn-out btn-primary btn-square btn-main" data-abc="true" (click)="comprar()"> Realizar compra </div> -->
+                    <div class="btn buttonContinuar " data-abc="true" *ngIf="botonLoguear == true"
+                        (click)="continuarCompra()"> Continuar</div>
 
 
-                   <div class="">
-                    <div #paypal > </div>
+                    <div class="">
+                        <div #paypal> </div>
 
-                   </div>
+                    </div>
 
 
-                <!-- <button (click)="comprar()">name</button> -->
-                
+                    <!-- <button (click)="comprar()">name</button> -->
+
                     <button class="btn btn-light btn-block mb-2" (click)="emptyCart()">
-                       Limpiar carrito
+                        Limpiar carrito
                     </button>
                 </div>
             </div>
@@ -144,6 +178,3 @@
 
 
 <!-- Button trigger modal -->
-
-  
-  

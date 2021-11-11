@@ -1,4 +1,5 @@
 import { Usuario } from '../models/usuario.model';
+import { SubCategoria } from './categoria.interface';
 export interface IItem {
 
 
@@ -18,6 +19,9 @@ export interface IItem {
     autor?: Autor,
     editorial?: Editorial,
     stock?: number;
+    subCategoria?: SubCategoria
+    
+
 
     
 

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, AbstractControlOptions } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 import { UsuarioService } from '../../services/usuario.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Provincia } from '../../interfaces/provincia.interface';
+
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,7 @@ import { Provincia } from '../../interfaces/provincia.interface';
 })
 export class RegisterComponent implements OnInit{
 
+  
   public formSubmitted = false;
   public provincias : Provincia[];
 
@@ -22,13 +24,13 @@ export class RegisterComponent implements OnInit{
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
     password2: ['', Validators.required],
-    terminos: [false, Validators.required],
+    terminos: [true, Validators.required],
     rol: ["USER_ROLE"],
     provincia: ['', Validators.required],
     localidad: ['', Validators.required],
     direccion: ['', Validators.required],
     codigoPostal: ['', Validators.required],
-    celular: ['', Validators.required],
+    celular: ['', Validators.compose([Validators.required, Validators.minLength(12)])],
 
 
 
@@ -36,7 +38,7 @@ export class RegisterComponent implements OnInit{
 
   }, {
     validators: this.passwordsIguales('password', 'password2')
-  });
+  }as AbstractControlOptions);
 
   constructor(private fb: FormBuilder,
     private auth: AuthService,
@@ -80,6 +82,7 @@ export class RegisterComponent implements OnInit{
   crearUsuario() {
     this.formSubmitted = true;
 
+    
     const { nombre, email, password, rol, provincia, localidad, direccion, codigoPostal, celular } = this.registerForm.value;
     console.log(this.registerForm.value);
     this.auth.registro(nombre, email, password, rol, provincia,
@@ -90,13 +93,19 @@ export class RegisterComponent implements OnInit{
       .subscribe(ok => {
 
         if (ok === true) {
+          console.log(ok);
+
           Swal.fire('Buen Trabajo!', 'El usuario fue creado correctamente.', 'success');
 
           this.router.navigateByUrl('/login');
         } else {
-          Swal.fire('Error', ok, 'error');
+          console.log(ok);
+        
+
+          Swal.fire('Error', 'Debe completar los campos obligatorios correctamente.', 'error');
         }
-      });
+      }
+      );
 
   }
 
@@ -109,6 +118,9 @@ export class RegisterComponent implements OnInit{
     }
 
   }
+
+
+  
 
   contrasenasNoValidas() {
     const pass1 = this.registerForm.get('password').value;
@@ -144,6 +156,25 @@ export class RegisterComponent implements OnInit{
   }
 
 
- 
+  public inputValidator(event: any) {
+    //console.log(event.target.value);
+    const pattern = /^[a-zA-Z0-9- ]*$/;   
+    //let inputChar = String.fromCharCode(event.charCode)
+    if (!pattern.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[^a-zA-Z0-9- ]/g, "");
+      // invalid character, prevent input
 
+    }
+  }
+
+  public inputValidatorSinNumero(event: any) {
+    //console.log(event.target.value);
+    const pattern = /^[a-zA-Z- ]*$/;   
+    //let inputChar = String.fromCharCode(event.charCode)
+    if (!pattern.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[^a-zA-Z- ]/g, "");
+      // invalid character, prevent input
+
+    }
+  }
 }

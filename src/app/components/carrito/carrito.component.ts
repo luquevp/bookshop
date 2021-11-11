@@ -98,8 +98,31 @@ export class CarritoComponent implements OnInit {
         this.totalFinal = this.totalPrice
 
 
+        
 
       }
+
+console.log(this.items);
+      if ( !this.items === null || this.items.length === 0) {
+        console.log(this.items.length);
+        document.getElementById("carrovacio").style.display = '';
+        document.getElementById("cart").style.display = 'none';
+        document.getElementById("formcupon").className = "disabled";
+
+  console.log(this.items);
+  console.log(this.items.length);
+  
+      }
+      else if (this.items || this.items.length) {
+       
+        // document.getElementById("carrovacio").style.display = 'none';
+        // document.getElementById("cart").style.display = '';
+        document.getElementById("formcupon").className = "enabled";
+  
+  
+      }
+  
+      
 
       //this.storageService.setCart(this.items);
 
@@ -121,10 +144,7 @@ export class CarritoComponent implements OnInit {
       }
 
     })
-
-
-
-
+  
 
 
 
@@ -150,10 +170,10 @@ export class CarritoComponent implements OnInit {
     paypal.
       Buttons({
         style: {
-          layout:  'vertical',
-          color:   'white',
-          shape:   'rect',
-          label:   'paypal'
+          layout: 'vertical',
+          color: 'white',
+          shape: 'rect',
+          label: 'paypal'
         },
         createOrder: (data, actions) => {
           return actions.order.create({
@@ -203,6 +223,22 @@ export class CarritoComponent implements OnInit {
   }
 
   onChange() {
+    if (this.items.length > 0) {
+      document.getElementById("carrovacio").style.display = 'none';
+      document.getElementById("cart").style.display = '';
+      document.getElementById("formcupon").className = "enabled";
+
+
+
+    }
+    else {
+      document.getElementById("carrovacio").style.display = '';
+      document.getElementById("cart").style.display = 'none';
+      document.getElementById("formcupon").className = "disabled";
+
+
+    }
+
     console.log(this.items);
     this._cartService.currentDataCart$.subscribe(x => {
       if (x) {
@@ -270,6 +306,9 @@ export class CarritoComponent implements OnInit {
         console.log('Respuesta', resp);
 
         Swal.fire('Buen Trabajo!', 'La compra fue exitosa!', 'success');
+        this.router.navigateByUrl(`/`)
+
+
 
       })
 
@@ -288,14 +327,20 @@ export class CarritoComponent implements OnInit {
 
   emptyCart(): void {
     this.items = [];
-    this.totalPrice = 0;
-    this.storageService.clear();
-    // this._cartService.removeAllCart();
-    // this.renderizarBotones();
+    // this.totalPrice = 0;
+    // this.storageService.clear();
+    // // this._cartService.removeAllCart();
+    // // this.renderizarBotones();
+    
+
+    this.onChange();
+
+    
     this.items.forEach(item => {
-      this._cartService.changeCart(item);
-      this._cartService.removeElementCart(item);
+    this.remove(item);
     });
+
+    this.quitarCupon();
 
 
 
@@ -364,101 +409,117 @@ export class CarritoComponent implements OnInit {
       Swal.fire('Oops!', 'Ingrese un cupón para continuar.', 'error');
 
 
-    }else{
+    } else {
       console.log(termino);
 
-    this.cuponService.postCupon(termino)
-      .subscribe(resp => {
-        this.cupon = resp
+      this.cuponService.postCupon(termino)
+        .subscribe(resp => {
+          this.cupon = resp
 
-        console.log(resp.ok);
-        console.log(this.cupon);
-        if (resp.ok === true) {
-
-
-         
-          if (this.cupon.cupon.tipo === "VOUCHER") {
-
-            document.getElementById("elemento").style.display = '';
-
-            (<HTMLInputElement>document.getElementById("btnApply")).disabled = true;
-            this.cuponCodigo = this.cupon.cupon.codigo;
-  
-  
+          console.log(resp.ok);
+          console.log(this.cupon);
+          if (resp.ok === true) {
 
 
-            console.log('voucher');
-            this.porcentajeDescuento = this.cupon.cupon.porcentaje;
-            this.descuento = this.totalPrice * (this.porcentajeDescuento / 100)
-            console.log(this.descuento);
-  
-            console.log(this.totalPrice);
-
-            this.totalFinal = this.totalPrice - this.descuento;
-
-            
-          }
-          else {
-                        console.log('gift card');
 
 
-            this.descuento = this.cupon.cupon.valor;
 
-            if (this.descuento > this.totalPrice) {
-              
-              console.log('es mayor');
-              Swal.fire('Oops!', 'La orden de compra debe ser mayor al monto de la gift card. ( $' + this.descuento + ')' , 'error');
-              this.descuento = 0;
+            if (this.cupon.cupon.tipo === "VOUCHER") {
 
-            }else{
               document.getElementById("elemento").style.display = '';
 
               (<HTMLInputElement>document.getElementById("btnApply")).disabled = true;
               this.cuponCodigo = this.cupon.cupon.codigo;
+              document.getElementById("cartlist").className = "disabled";
+
+
+
+
+
+
+
+
+
+
+              console.log('voucher');
+              this.porcentajeDescuento = this.cupon.cupon.porcentaje;
+              this.descuento = this.totalPrice * (this.porcentajeDescuento / 100)
+              console.log(this.descuento);
+
+              console.log(this.totalPrice);
+
               this.totalFinal = this.totalPrice - this.descuento;
 
-              
+
+            }
+            else {
+              console.log('gift card');
+
+
+              this.descuento = this.cupon.cupon.valor;
+
+              if (this.descuento > this.totalPrice) {
+
+                console.log('es mayor');
+                Swal.fire('Oops!', 'La orden de compra debe ser mayor al monto de la gift card. ( $' + this.descuento + ')', 'error');
+                this.descuento = 0;
+
+              } else {
+                document.getElementById("elemento").style.display = '';
+                (<HTMLInputElement>document.getElementById("cartlist")).disabled = true;
+
+
+                (<HTMLInputElement>document.getElementById("btnApply")).disabled = true;
+
+                document.getElementById("cartlist").className = "disabled";
+
+                this.cuponCodigo = this.cupon.cupon.codigo;
+                this.totalFinal = this.totalPrice - this.descuento;
+
+
+              }
+
+
+
+
+
             }
 
-           
-          
-  
-           
+
+
+          } else {
+            document.getElementById("elemento").style.display = 'none';
+
+            Swal.fire('Oops!', resp, 'error');
+
           }
-       
-
-
-        } else {
-          document.getElementById("elemento").style.display = 'none';
-
-          Swal.fire('Oops!', resp, 'error');
-
         }
-      }
 
-      )
+        )
     }
 
-    
 
-    
+
+
 
 
   }
-  
 
 
 
-  quitarCupon(){
 
-     this.cupon = null;
-     console.log(this.cupon);
-     document.getElementById("elemento").style.display = 'none';
-     (<HTMLInputElement>document.getElementById("inputCupon")).value = "";
-     (<HTMLInputElement>document.getElementById("btnApply")).disabled = false;
-     this.descuento = 0;
-     this.totalPrice = this.getTotal();
-     this.totalFinal = this.totalPrice
+  quitarCupon() {
+
+    this.cupon = null;
+    console.log(this.cupon);
+    document.getElementById("elemento").style.display = 'none';
+    (<HTMLInputElement>document.getElementById("inputCupon")).value = "";
+    (<HTMLInputElement>document.getElementById("btnApply")).disabled = false;
+    document.getElementById("cartlist").className = "enabled";
+
+    this.descuento = 0;
+    this.totalPrice = this.getTotal();
+    this.totalFinal = this.totalPrice
 
   }
 }
