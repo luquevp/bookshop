@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
   buscar( termino: string ){
 
     console.log(termino);
-    if(termino.length === 0 || termino === "" ){
+    if(termino.trim().length === 0  ){
           return;
         }
         else{

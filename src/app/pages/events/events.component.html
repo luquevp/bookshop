@@ -2,7 +2,7 @@
 
 <br>
 
-<div class="container">
+<div class="container animatedf">
     <!-- start event block -->
     
     <div class="row align-items-center event-block no-gutters margin-40px-bottom" *ngFor="let evento of eventos">
@@ -15,7 +15,7 @@
         </div>
         <div class="col-lg-7 col-sm-12">
             <div class="padding-60px-lr md-padding-50px-lr sm-padding-30px-all xs-padding-25px-all">
-                <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500"><a href="event-details.html" class="text-theme-color">{{evento?.nombre}}</a></h5>
+                <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500"><a  class="text-theme-color">{{evento?.nombre}}</a></h5>
                 <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
                    
                     <li><i class="far fa-clock margin-10px-right"></i> {{evento?.fechaHora | date: "medium"}}</li>

@@ -12,6 +12,7 @@ import { ComprobanteConDetalle, Detalle } from '../../interfaces/comprobante.int
 import { numberFormat } from 'highcharts';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 
@@ -38,6 +39,7 @@ export class PerfilComponent implements OnInit {
   constructor( private fb: FormBuilder,
                private usuarioService: UsuarioService,
                private fileUploadService: FileUploadService,
+               private spinner: NgxSpinnerService,
                private ActivatedRoute: ActivatedRoute,
                private busquedasService: BusquedasService) {
     
@@ -45,6 +47,8 @@ export class PerfilComponent implements OnInit {
 
  
   ngOnInit(): void {
+    this.spinner.show();
+
 
     this.idUsuario = localStorage.getItem('id');
     console.log(this.idUsuario);
@@ -66,6 +70,9 @@ export class PerfilComponent implements OnInit {
     .subscribe((comprobantes: any) => {console.log(comprobantes);
       this.comprobantes = comprobantes
    })
+
+   this.spinner.hide();
+
   }
 
   traerDetalleComprobante(numero : number){

@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageServiceService } from '../../services/storage-service.service';
 import { IItem } from '../../interfaces/item.interface';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -18,6 +19,9 @@ export class LoginComponent implements OnInit {
   //public formSubmitted = false;
   //public auth2: any;
   //public logueado: boolean;
+  public responsepass = "";
+  public responseemail= "";
+  public responsegeneral = "";
 
 
   public loginForm = this.fb.group({
@@ -32,7 +36,8 @@ export class LoginComponent implements OnInit {
                private fb: FormBuilder,
                private authService: AuthService,
                private ngZone: NgZone,
-               public storageService :StorageServiceService ) { }
+               public storageService :StorageServiceService ,
+               private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
    // this.renderButton();
@@ -40,14 +45,26 @@ export class LoginComponent implements OnInit {
 
   login() {
   
+    this.spinner.show();
+
     const { email, password } = this.loginForm.value;
 
     this.authService.login( email, password )
       .subscribe( ok => {
 
         console.log(email,password);
+ 
+
+this.responsepass = ok?.error?.errors?.password?.msg || "";
+this.responseemail = ok?.error?.errors?.email?.msg || "";
+this.responsegeneral = ok?.error?.msg || "";
+            
+
+
+
 
         if ( ok === true ) {
+
 
           this.items = this.storageService.getCart();
           if (this.items) {
@@ -59,80 +76,39 @@ export class LoginComponent implements OnInit {
 
           }
           
-        } else {
-          Swal.fire('Error', ok, 'error');
+         }
+        else {
+
+          // if (this.loginForm.value.email.trim().length === 0 ) {
+          //   Swal.fire('Error', 'El email es obligatorio. ', 'error');
+
+          // }
+          // else if (this.loginForm.value.password.trim().length === 0 ){
+          //   Swal.fire('Error', 'La contraseña es obligatoria. ', 'error');
+
+          // }
+          
+          //  Swal.fire('Error', this.responseemail + this.responsepass, 'error');
+
+           Swal.fire({
+            title: 'Error',
+            icon: 'info',
+            html:
+          
+              this.responseemail + 
+              '<br> ' +
+              this.responsepass + this.responsegeneral,
+        
+            focusConfirm: false,
+       
+          })
+
+
         }
       });
+      this.spinner.hide();
+     
   }
 
-  // login2() {
-
-  //   this.usuarioService.login( this.loginForm.value )
-  //     .subscribe( resp => {
-
-  //       if ( this.loginForm.get('remember').value ){ 
-  //         localStorage.setItem('email', this.loginForm.get('email').value );
-  //       } else {
-  //         localStorage.removeItem('email');
-  //       }
-
-  //       // Navegar al Dashboard
-  //       this.router.navigateByUrl('/');
-  //       this.logueado = true;
-
-  //     }, (err) => {
-  //       // Si sucede un error
-  //       Swal.fire('Error', err.error.msg, 'error' );
-  //       this.logueado = false;
-
-  //     });
-
-  // }
-  
-  // renderButton() {
-  //   gapi.signin2.render('my-signin2', {
-  //     'scope': 'profile email',
-  //     'width': 240,
-  //     'height': 50,
-  //     'longtitle': true,
-  //     'theme': 'dark',
-  //   });
-
-  //   this.startApp();
-
-  // }
-
-  // async startApp() {
-    
-  //   await this.usuarioService.googleInit();
-  //   this.auth2 = this.usuarioService.auth2;
-
-  //   this.attachSignin( document.getElementById('my-signin2') );
-    
-  // };
-
-  // attachSignin(element) {
-    
-  //   this.auth2.attachClickHandler( element, {},
-  //       (googleUser) => {
-  //           const id_token = googleUser.getAuthResponse().id_token;
-  //           // console.log(id_token);
-  //           this.usuarioService.loginGoogle( id_token )
-  //             .subscribe( resp => {
-  //               // Navegar al Dashboard
-  //               this.ngZone.run( () => {
-  //                 this.router.navigateByUrl('/');
-  //               })
-  //             });
-
-  //       }, (error) => {
-  //           alert(JSON.stringify(error, undefined, 2));
-  //       });
-  // }
-
-
-forgotPass(){
-
-}
 
 }

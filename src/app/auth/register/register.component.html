@@ -1,72 +1,71 @@
 <div class="limiter animated fadeInRight contenedor">
     <br>
-    
+
     <div class="container-fluid">
 
 
         <div class="container-login100">
 
 
-                <div class="row">
+            <div class="row">
 
-                    <div class="col">
-                        <div class="wrap-login100 p-t-50 p-b-90">
-                            <div class="login100-form-title"> Registrarse
+                <div class="col">
+                    <div class="wrap-login100 p-t-50 p-b-90">
+                        <div class="login100-form-title"> Registrarse
+                        </div>
+                        <br>
+
+
+
+
+                        <!-- FORMULARIO -->
+                        <form class="login100-form validate-form flex-sb flex-w" (ngSubmit)="crearUsuario()"
+                            id="loginform" autocomplete="off" [formGroup]="registerForm">
+
+                            <!-- èrror email -->
+                            <span *ngIf="campoNoValido('email')" class="text-danger animated fadeIn">* El email
+                                es obligatorio y
+                                debe ser válido</span>
+
+                            <!-- ìnput email -->
+                            <div class="wrap-input100 m-b-16">
+
+                                <input tabindex="1" class="input100" type="email" formControlName="email" placeholder="Email">
+
+                                <span class="focus-input100"></span>
                             </div>
-                            <br>
+
+                            <!-- ìnput nombre completo -->
+                            <!-- error nombre -->
+                            <span *ngIf="campoNoValido('nombre')" class="text-danger animated fadeIn">* El
+                                nombre es
+                                obligatorio</span>
+
+                            <div class="wrap-input100 m-b-16">
+                                <input  tabindex="2" class="input100 " type="text" (input)="inputValidatorSinNumero($event)"
+                                    formControlName="nombre" minlength="2" placeholder="Nombre y apellidos">
+
+                                <span class="focus-input100"></span>
+                            </div>
 
 
-
-                      
-                                <!-- FORMULARIO -->
-                                <form class="login100-form validate-form flex-sb flex-w" (ngSubmit)="crearUsuario()"
-                                    id="loginform" autocomplete="off" [formGroup]="registerForm">
-
-                                    <!-- èrror email -->
-                                    <span *ngIf="campoNoValido('email')" class="text-danger animated fadeIn">* El email
-                                        es obligatorio y
-                                        debe ser válido</span>
-
-                                    <!-- ìnput email -->
-                                    <div class="wrap-input100 m-b-16">
-
-                                        <input class="input100" type="email" formControlName="email"
-                                            placeholder="Email">
-
-                                        <span class="focus-input100"></span>
-                                    </div>
-
-                                    <!-- ìnput nombre completo -->
-                                    <!-- error nombre -->
-                                    <span *ngIf="campoNoValido('nombre')" class="text-danger animated fadeIn">* El
-                                        nombre es
-                                        obligatorio</span>
-
-                                    <div class="wrap-input100 m-b-16">
-                                        <input class="input100 " type="text" (input)="inputValidatorSinNumero($event)" formControlName="nombre" minlength="2"
-                                            placeholder="Nombre y apellidos">
-
-                                        <span class="focus-input100"></span>
-                                    </div>
+                            <div class="row" style="width: 110%;">
+                                <div class="col-xl-6 col-12 col-md-6 col-sm-12 col-lg-6">
 
 
-                                    <div class="row" style="width: 110%;" >
-                                        <div class="col-xl-6 col-12 col-md-6 col-sm-12 col-lg-6" >
-
-
-                                            <!-- ìnput prov completo -->
-                                            <!-- error prov -->
-                                            <span *ngIf="campoNoValido('provincia')"
-                                                class="text-danger animated fadeIn">* Provincia es
-                                                obligatoria</span>
-<!-- 
+                                    <!-- ìnput prov completo -->
+                                    <!-- error prov -->
+                                    <span *ngIf="campoNoValido('provincia')" class="text-danger animated fadeIn">*
+                                        Provincia es
+                                        obligatoria</span>
+                                    <!-- 
                                             <div class="wrap-input100 m-b-16">
                                                 <input class="input100 " type="text" formControlName="provincia"
                                                     minlength="2" placeholder="provincia">
 
                                                 <span class="focus-input100"></span>
                                             </div> -->
-<!-- <div class=" wrap-input100 m-b-16" >
+                                    <!-- <div class=" wrap-input100 m-b-16" >
     <select class="form-select input100" style="border: white; " formControlName="provincia" >
         <option value="" disabled selected>Selecciona una provincia</option>
         <option *ngFor="let provincia of provincias" value="{{provincia?.provincia}}">{{provincia?.provincia | titlecase}}</option>
@@ -77,87 +76,44 @@
 
 
 
-<mat-form-field class="  wrap-inputprov m-b-16" >
-    <mat-select class="" formControlName="provincia">
-        <mat-option style="color: grey;" class="input100prov" value="" disabled selected class="input100prov" >    Selecciona una provincia</mat-option>
-      <mat-option class="input100prov" *ngFor="let provincia of provincias" [value]="provincia?.provincia">
-        {{provincia?.provincia | titlecase}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>  
-  
-                                          
-
-                                            <!-- ìnput direccion completo -->
-                                            <!-- error direccion -->
-                                            <span *ngIf="campoNoValido('direccion')"
-                                                class="text-danger animated fadeIn">* Dirección es
-                                                obligatoria</span>
-
-                                            <div class="wrap-input100 m-b-16">
-                                                <input (input)="inputValidator($event)"  class="input100 " type="text" formControlName="direccion"
-                                                    minlength="2" placeholder="Dirección">
-
-                                                <span class="focus-input100"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-12 col-md-6 col-sm-12 col-lg-6" >
-
-
-                                            <!-- ìnput localidad completo -->
-                                            <!-- error localidad -->
-                                            <span *ngIf="campoNoValido('localidad')"
-                                                class="text-danger animated fadeIn">* Localidad es
-                                                obligatoria</span>
-
-                                            <div class="wrap-input100 m-b-16">
-                                                <input  (input)="inputValidatorSinNumero($event)" class="input100 " type="text" formControlName="localidad"
-                                                    minlength="2" placeholder="Localidad">
-
-                                                <span class="focus-input100"></span>
-                                            </div>
+                                    <mat-form-field class="  wrap-inputprov m-b-16">
+                                        <mat-select tabindex="3" class="" formControlName="provincia">
+                                            <mat-option style="color: grey;" class="input100prov" value="" disabled
+                                                selected class="input100prov"> Selecciona una provincia</mat-option>
+                                            <mat-option class="input100prov" *ngFor="let provincia of provincias"
+                                                [value]="provincia?.provincia">
+                                                {{provincia?.provincia | titlecase}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
 
 
 
-
-
-
-
-                                            <!-- ìnput codigoPostal completo -->
-                                            <!-- error codigoPostal -->
-                                            <span *ngIf="campoNoValido('codigoPostal')"
-                                                class="text-danger animated fadeIn">* Código Postal es
-                                                obligatorio</span>
-
-                                                <span *ngIf="registerForm.get('celular').dirty && registerForm.get('celular').invalid"
-                                                class="text-danger animated fadeIn">* Código Postal debe contener 4 números.</span>
-
-                                            <div class="wrap-input100 m-b-16">
-                                                <input (input)="inputValidator($event)"  class="input100 " type="number" formControlName="codigoPostal"
-                                                    minlength="2" placeholder="Código Postal">
-
-                                                <span class="focus-input100"></span>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-
-
-
-                                    <!-- ìnput celular completo -->
-                                    <!-- error celular -->
-                                    <span *ngIf="campoNoValido('celular')" class="text-danger animated fadeIn">* Número de celular
-                                        es
-                                        obligatorio</span>
-
-                                        <span *ngIf="registerForm.get('celular').dirty && registerForm.get('celular').invalid"
-                                        class="text-danger animated fadeIn">* Celular debe contener al menos 12 números.</span>
-
+                                    <!-- ìnput direccion completo -->
+                                    <!-- error direccion -->
+                                    <span *ngIf="campoNoValido('direccion')" class="text-danger animated fadeIn">*
+                                        Dirección es
+                                        obligatoria</span>
 
                                     <div class="wrap-input100 m-b-16">
-                                        <input minlength="5" (input)="inputValidator($event)"  id="celular" class="input100 " type="number" formControlName="celular" minlength="2"
-                                            placeholder="Celular">
+                                        <input tabindex="5" (input)="inputValidator($event)" class="input100 " type="text"
+                                            formControlName="direccion" minlength="2" placeholder="Dirección">
+
+                                        <span class="focus-input100"></span>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-12 col-md-6 col-sm-12 col-lg-6">
+
+
+                                    <!-- ìnput localidad completo -->
+                                    <!-- error localidad -->
+                                    <span *ngIf="campoNoValido('localidad')" class="text-danger animated fadeIn">*
+                                        Localidad es
+                                        obligatoria</span>
+
+                                    <div class="wrap-input100 m-b-16">
+                                        <input tabindex="4" (input)="inputValidator($event)" class="input100 " type="text"
+                                            formControlName="localidad" minlength="2" placeholder="Localidad">
 
                                         <span class="focus-input100"></span>
                                     </div>
@@ -167,48 +123,94 @@
 
 
 
-                                    <span *ngIf="campoNoValido('password')"
-                                    class="text-danger animated fadeIn">* La contraseña es
-                                    obligatoria</span>
+
+                                    <!-- ìnput codigoPostal completo -->
+                                    <!-- error codigoPostal -->
+                                    <span *ngIf="campoNoValido('codigoPostal')" class="text-danger animated fadeIn">*
+                                        Código Postal es
+                                        obligatorio</span>
 
 
 
+                                    <div class="wrap-input100 m-b-16">
+                                        <input tabindex="6" (input)="inputValidator($event)" class="input100 " type="number"
+                                            formControlName="codigoPostal" minlength="2"
+                                            placeholder="Código Postal (Ej: 4000)">
 
-
-                                    <div class="row" style="width: 110%;">
-
-                                        <div class="col-xl-6 col-12 col-md-6 col-sm-12 col-lg-6">
-
-                                            <!-- ìnput contraseña -->
-                                            <!--                 <span *ngIf="contrasenasNoValidas()" class="text-danger animated fadeIn">* Las contraseñas deben de ser iguales</span>
- -->
-                                            <div class="wrap-input100 m-b-16">
-
-                                                <input class="input100 " type="password" formControlName="password"
-                                                    placeholder="Password">
-
-                                                <span class="focus-input100"></span>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-xl-6 col-12 col-md-6 col-sm-12 col-lg-6 ">
-
-                                            <span *ngIf="contrasenasNoValidas()" class="text-danger animated fadeIn">*
-                                                Las contraseñas deben de ser
-                                                iguales</span>
-                                            <div class="wrap-input100 m-b-16">
-
-                                                <input class="input100" type="password" formControlName="password2"
-                                                    placeholder="Confirmar Password">
-
-                                                <span class="focus-input100"></span>
-                                            </div>
-                                        </div>
+                                        <span class="focus-input100"></span>
                                     </div>
 
 
+                                </div>
+                            </div>
 
-                                    <!-- 
+
+
+                            <!-- ìnput celular completo -->
+                            <!-- error celular -->
+                            <span *ngIf="campoNoValido('celular')" class="text-danger animated fadeIn">* Número de
+                                celular
+                                es
+                                obligatorio</span>
+
+
+
+
+                            <div class="wrap-input100 m-b-16">
+                                <input tabindex="7" minlength="5" (input)="inputValidator($event)" id="celular" class="input100 "
+                                    type="number" formControlName="celular" minlength="2"
+                                    placeholder="Celular (Ej: 543815392249)">
+
+                                <span class="focus-input100"></span>
+                            </div>
+
+
+
+
+
+
+                            <span *ngIf="campoNoValido('password')" class="text-danger animated fadeIn">* La contraseña
+                                es
+                                obligatoria</span>
+
+
+
+
+
+                            <div class="row" style="width: 110%;">
+
+                                <div class="col-xl-6 col-12 col-md-6 col-sm-12 col-lg-6">
+
+                                    <!-- ìnput contraseña -->
+                                    <!--                 <span *ngIf="contrasenasNoValidas()" class="text-danger animated fadeIn">* Las contraseñas deben de ser iguales</span>
+ -->
+                                    <div class="wrap-input100 m-b-16">
+
+                                        <input tabindex="8" class="input100 " type="password" formControlName="password"
+                                            placeholder="Password">
+
+                                        <span class="focus-input100"></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-xl-6 col-12 col-md-6 col-sm-12 col-lg-6 ">
+
+                                    <span *ngIf="contrasenasNoValidas()" class="text-danger animated fadeIn">*
+                                        Las contraseñas deben de ser
+                                        iguales</span>
+                                    <div class="wrap-input100 m-b-16">
+
+                                        <input tabindex="9" class="input100" type="password" formControlName="password2"
+                                            placeholder="Confirmar Password">
+
+                                        <span class="focus-input100"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- 
                 <div class="flex-sb-m w-full p-t-3 p-b-24">
                     <div class="contact100-form-checkbox">
 
@@ -230,36 +232,36 @@
                     </div>
                 </div> -->
 
-                                    <div class="row">
-                                        <div class="col text-danger">
+                            <div class="row">
+                                <div class="col text-danger">
 
 
-
-                                        </div>
-                                    </div>
-
-                                    <div class="container-login100-form-btn m-t-17">
-                                        <button class="login100-form-btn" type="submit">
-                                            Crear cuenta
-                                        </button>
-                                    </div>
-
-                                </form>
-                                <div class="d-none dsm-block">
 
                                 </div>
-                                <div class="text-center">
-                                    <br>
-                                    <a routerLink="/login" class="txt1">
-                                        ¿Ya tienes cuenta? / Ingresar
-                                    </a>
-                                </div>
-
                             </div>
-                        </div>
 
+                            <div class="container-login100-form-btn m-t-17">
+                                <button class="login100-form-btn" type="submit">
+                                    Crear cuenta
+                                </button>
+                            </div>
+
+                        </form>
+                        <div class="d-none dsm-block">
+
+                        </div>
+                        <div class="text-center">
+                            <br>
+                            <a routerLink="/login" class="txt1">
+                                ¿Ya tienes cuenta? / Ingresar
+                            </a>
+                        </div>
 
                     </div>
                 </div>
+
+
             </div>
         </div>
+    </div>
+</div>

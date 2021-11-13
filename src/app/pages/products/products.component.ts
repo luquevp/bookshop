@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BusquedasService } from '../../services/busquedas.service';
 import { IItem, Autor } from '../../interfaces/item.interface';
 import { ProductsService } from '../../services/products.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -22,14 +23,18 @@ export class ProductsComponent implements OnInit {
 public terminoIngresado : string = "";
 
 
-  constructor(private productsService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router, private busquedasService: BusquedasService) { }
+  constructor(private spinner: NgxSpinnerService,
+    private productsService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router, private busquedasService: BusquedasService) { }
 
   ngOnInit(): void {
+    this.spinner.show();
 
 
     this.activatedRoute.params
       .subscribe(({ termino }) => this.buscarLibroAutor(termino));
-  }
+      this.spinner.hide();
+
+    }
 
   buscarLibroAutor(termino: string) {
 

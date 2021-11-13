@@ -14,7 +14,8 @@ export class ProductComponent implements OnInit {
 
 libros =  [];
 
-  constructor( private productsService: ProductsService, private spinner: NgxSpinnerService) { }
+  constructor( private productsService: ProductsService, 
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
 

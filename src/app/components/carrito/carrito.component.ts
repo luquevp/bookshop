@@ -103,16 +103,17 @@ export class CarritoComponent implements OnInit {
       }
 
 console.log(this.items);
-      if ( !this.items === null || this.items.length === 0) {
-        console.log(this.items.length);
+      if ( this.items === null ) {
+        console.log(this.items?.length);
         document.getElementById("carrovacio").style.display = '';
         document.getElementById("cart").style.display = 'none';
         document.getElementById("formcupon").className = "disabled";
 
-  console.log(this.items);
-  console.log(this.items.length);
   
-      }
+      } else if (this?.items?.length === 0){ 
+        document.getElementById("carrovacio").style.display = '';
+        document.getElementById("cart").style.display = 'none';
+        document.getElementById("formcupon").className = "disabled"; }
       else if (this.items || this.items.length) {
        
         // document.getElementById("carrovacio").style.display = 'none';

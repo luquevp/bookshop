@@ -5,6 +5,7 @@ import { Recup } from 'src/app/interfaces/auth.interface';
 import { AuthService } from '../../services/auth.service';
 import { StorageServiceService } from '../../services/storage-service.service';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -25,13 +26,16 @@ export class ForgotpassComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private ngZone: NgZone,
-    public storageService: StorageServiceService) { }
+    public storageService: StorageServiceService,
+    private spinner: NgxSpinnerService) { }
 
 
   ngOnInit(): void {
   }
 
   enviarmail() {
+    this.spinner.show();
+
 
     this.destEmail = this.loginForm.value
 
@@ -54,6 +58,8 @@ export class ForgotpassComponent implements OnInit {
 
 
       })
+
+      this.spinner.hide();
 
 
   }

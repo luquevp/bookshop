@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { UsuarioService } from '../../services/usuario.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Provincia } from '../../interfaces/provincia.interface';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -43,17 +44,23 @@ export class RegisterComponent implements OnInit{
   constructor(private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
+    private spinner: NgxSpinnerService
     ) {
       
      }
 
     
      ngOnInit(){
+      this.spinner.show();
+
       this.auth.getProvincias()
       .subscribe(provincias => {
         this.provincias = provincias;
         console.log(this.provincias);
      })
+
+           this.spinner.hide();
+
     }
      
 

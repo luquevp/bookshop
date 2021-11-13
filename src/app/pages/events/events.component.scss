@@ -5,6 +5,13 @@ body{
     img{
 width: 400px;    }
 
+
+.animatedf {
+    animation: fadeIn;
+    /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s;
+}
+
 .events-date {
     text-align: center;
     position: absolute;

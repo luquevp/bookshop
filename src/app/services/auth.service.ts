@@ -67,6 +67,24 @@ export class AuthService {
 
 
 
+  // login(email: string, password: string) {
+
+  //   const url = `${this.baseUrl}/auth/login`;
+  //   const body = { email, password };
+
+  //   return this.http.post<AuthResponse>(url, body)
+  //     .pipe(
+  //       tap(resp => {
+  //         if (resp.ok) {
+  //           this.setToken(resp)
+  //           console.log(resp);
+  //         }
+  //       }),
+  //       map(resp => resp.ok),
+  //       catchError(err => of(err.error.msg))
+  //     );
+  // }
+  
   login(email: string, password: string) {
 
     const url = `${this.baseUrl}/auth/login`;
@@ -81,7 +99,7 @@ export class AuthService {
           }
         }),
         map(resp => resp.ok),
-        catchError(err => of(err.error.msg))
+        catchError(err => of(err))
       );
   }
 

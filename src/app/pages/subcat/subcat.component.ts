@@ -23,9 +23,6 @@ export class SubcatComponent implements OnInit {
 
   ngOnInit(): void {
 
-   // this.activatedRoute.params
-    //.subscribe(({ termino }) => this.getSubcategoriasPorCategoria(termino));
-
 
 
     this.spinner.show();
@@ -49,15 +46,7 @@ export class SubcatComponent implements OnInit {
 
       }})
     
-    //this.categoriasService.getCategorias()
-    //.subscribe(categorias => {
-      //console.log(categorias); 
-      //this.categorias = categorias});
 
-     // this.categoriasService.getSubCategorias()
-    //.subscribe(subcategorias => {
-      //console.log(subcategorias); 
-      //this.subcategorias = subcategorias});
 
       this.categoriasService.getCategorias()
     .subscribe(categorias => {

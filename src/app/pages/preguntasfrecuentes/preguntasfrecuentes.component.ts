@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IPreguntaFrecuente } from '../../interfaces/preguntasfrecuentes.interface';
 import { preguntasfrecuentes } from '../../interfaces/preguntas.interface';
 import { BusquedasService } from '../../services/busquedas.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-preguntasfrecuentes',
@@ -16,14 +17,21 @@ export class PreguntasfrecuentesComponent implements OnInit {
 
 
 
-  constructor( private busquedasService : BusquedasService) { }
+  constructor( private spinner: NgxSpinnerService,
+    private busquedasService : BusquedasService) { }
 
   ngOnInit(): void {
+    this.spinner.show();
+
     this.busquedasService.getPreguntasFrecuentes()
    .subscribe(preguntas => {
      this.preguntas = preguntas;
      console.log(preguntas);
      });
+     this.spinner.hide();
+
   }
+
+
 
 }
