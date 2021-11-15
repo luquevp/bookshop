@@ -8,6 +8,7 @@ import { Provincia } from '../../interfaces/provincia.interface';
 import { FileUploadService } from '../../services/file-upload.service';
 import { UsuarioService } from '../../services/usuario.service';
 import {  faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -56,11 +57,14 @@ export class PerfileditarComponent implements OnInit {
   constructor(private usuarioService: UsuarioService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private spinner: NgxSpinnerService,
+
     private fileUploadService: FileUploadService,
      private auth: AuthService,
   ) { }
 
   ngOnInit(): void {
+    this.spinner.show();
 
     this.idUsuario = localStorage.getItem('id');
 
@@ -82,13 +86,14 @@ export class PerfileditarComponent implements OnInit {
     this.auth.getProvincias()
       .subscribe(provincias => {
         this.provincias = provincias
+        this.spinner.hide();
+
       })
   }
 
   cambiarImagen(event: any): any {
     this.imagenSubir = event.target.files[0];
 
-    console.log(event.target.files[0])
     if (!event.target.files[0]) { return }
 
     const reader = new FileReader();
@@ -116,14 +121,12 @@ export class PerfileditarComponent implements OnInit {
   }
 
   guardar() {
-    if (this.usuario.password === undefined) {
-
-      Swal.fire('Error', 'Por favor ingrese su contraseÃ±a', 'error')
-
-    } else if (this.usuario.nombre.trim().length === 0 || this.usuario.password.trim().length === 0 || this.usuario.email.trim().length === 0
-      || this.usuario.localidad.trim().length === 0 || this.usuario.provincia.trim().length === 0 || this.usuario.direccion.trim().length === 0) {
+     if (this.usuario.nombre.trim().length === 0 || this.usuario.email.trim().length === 0
+      || this.usuario.localidad.trim().length === 0 || this.usuario.provincia.trim().length === 0 || this.usuario.direccion.trim().length === 0 || this.usuario.celular === null) {
 
       Swal.fire('Error', 'Campos obligatorios vacios', 'error')
+
+      
 
     } else {
 
@@ -131,7 +134,7 @@ export class PerfileditarComponent implements OnInit {
         .subscribe(ok => {
           if (ok === true) {
             Swal.fire('Usuario modificado correctamente', this.usuario.nombre, 'success')
-            this.router.navigate(['/gestion/usuario'])
+            this.router.navigate(['/perfil'])
           } else {
             Swal.fire('Error', ok, 'error')
           }

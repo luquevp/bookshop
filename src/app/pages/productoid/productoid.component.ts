@@ -44,13 +44,12 @@ export class ProductoidComponent implements OnInit {
     .pipe(
       switchMap( ( { id} ) => this.productsService.getLibroPorId(id))
       )
-    .subscribe(libro => {console.log(libro);
+    .subscribe(libro => {
       this.libro = libro;
       this.spinner.hide();})
 
 
 
-console.log(this.libro);
 
 
 

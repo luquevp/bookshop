@@ -54,22 +54,20 @@ export class PerfilComponent implements OnInit {
   ngOnInit(): void {
     this.spinner.show();
 
-    this.auth.getProvincias()
-      .subscribe(provincias => {
-        this.provincias = provincias;
-        console.log(this.provincias);
-     })
-
+ 
 
     this.idUsuario = localStorage.getItem('id');
-    console.log(this.idUsuario);
+
 
     this.ActivatedRoute.params
     .pipe(
       switchMap( ( { id} ) => this.usuarioService.getUsuarioPorId(this.idUsuario))
       )
-    .subscribe(usuario => {console.log(usuario);
+    .subscribe(usuario => {
       this.usuario = usuario;
+
+      this.spinner.hide();
+
     })
 
     console.log(this.idUsuario);
@@ -80,9 +78,9 @@ export class PerfilComponent implements OnInit {
       )
     .subscribe((comprobantes: any) => {console.log(comprobantes);
       this.comprobantes = comprobantes
+      
    })
 
-   this.spinner.hide();
 
   }
 

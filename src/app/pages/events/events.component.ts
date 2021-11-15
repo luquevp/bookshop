@@ -3,6 +3,7 @@ import { EventosService } from '../../services/eventos.service';
 import { Evento } from '../../interfaces/eventos.interface';
 import { BusquedasService } from '../../services/busquedas.service';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-events',
@@ -12,26 +13,28 @@ import Swal from 'sweetalert2';
 export class EventsComponent implements OnInit {
   public eventos : Evento[];
 
-  constructor( private eventosService : EventosService, private busquedasService: BusquedasService) { }
+  constructor( private spinner: NgxSpinnerService,private eventosService : EventosService, private busquedasService: BusquedasService) { }
 
   ngOnInit(): void {
+
+    this.spinner.show();
+
     this.eventosService.getEventos()
    .subscribe(eventos => {
      this.eventos = eventos;
-     console.log(eventos);
+     this.spinner.hide();
+
      });
 
      
   }
 
   buscarEvento(termino : string) {
- console.log(termino);
 
  if(termino.trim().length === 0){
   this.eventosService.getEventos()
   .subscribe(eventos => {
     this.eventos = eventos;
-    console.log(eventos);
     });
  }
  else {

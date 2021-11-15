@@ -32,7 +32,7 @@ export class SubcatComponent implements OnInit {
     .pipe(
       switchMap( ( { termino } ) => this.busquedasService.getLibroPorSubcat(termino))
       )
-    .subscribe((libros: any) => {console.log(libros);
+    .subscribe((libros: any) => {
       
       this.libros = libros.filter(libro => libro.stock > 0)
       if( this.libros.length > 0 ){

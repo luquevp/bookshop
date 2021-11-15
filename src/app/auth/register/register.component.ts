@@ -16,7 +16,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class RegisterComponent implements OnInit{
 
-  
+  public contraseñaNoEsIgual = false;
   public formSubmitted = false;
   public provincias : Provincia[];
 
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit{
     localidad: ['', Validators.required],
     direccion: ['', Validators.required],
     codigoPostal: ['', Validators.required],
-    celular: ['', Validators.compose([Validators.required, Validators.minLength(12)])],
+    celular: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
 
 
 
@@ -94,15 +94,19 @@ export class RegisterComponent implements OnInit{
     console.log(this.registerForm.value);
 
     if (this.registerForm.value.nombre.trim().length === 0 ||  this.registerForm.value.password.trim().length === 0 || this.registerForm.value.email.trim().length === 0 ||
-       this.registerForm.value.localidad.trim().length === 0 || this.registerForm.value.provincia.trim().length === 0 || this.registerForm.value.direccion.trim().length === 0) {
+       this.registerForm.value.localidad.trim().length === 0 || this.registerForm.value.provincia.trim().length === 0 || this.registerForm.value.direccion.trim().length === 0 || this.registerForm.value.password2.trim().length === 0) {
       Swal.fire('Error', 'Campos obligatorios vacios', 'error')
     } else {
 
       if (this.registerForm.value.codigoPostal?.toString().length !== 4) {
         Swal.fire('Error', 'Codigo postal inválido. Ej: 4107', 'error')
-      } else if (this.registerForm.value.celular?.toString().trim().length !== 12) {
+      } else if (this.registerForm.value.celular?.toString().trim().length !== 10) {
         Swal.fire('Error', 'Celular ingresado inválido. Ej: 543813025984', 'error')
-      } else {
+      }else if(this.contraseñaNoEsIgual === true) {
+        Swal.fire('Error', 'Las contraseñas deben ser iguales.', 'error')
+
+      }
+       else {
         this.auth.registro(nombre, email, password, rol, provincia,
           localidad,
           direccion,
@@ -150,6 +154,7 @@ export class RegisterComponent implements OnInit{
     const pass2 = this.registerForm.get('password2').value;
 
     if ((pass1 !== pass2) && this.formSubmitted) {
+
       return true;
     } else {
       return false;
@@ -170,7 +175,11 @@ export class RegisterComponent implements OnInit{
 
       if (pass1Control.value === pass2Control.value) {
         pass2Control.setErrors(null)
+        this.contraseñaNoEsIgual = false;
+
       } else {
+        this.contraseñaNoEsIgual = true;
+
         pass2Control.setErrors({ noEsIgual: true })
       }
 

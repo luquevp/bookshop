@@ -95,7 +95,6 @@ export class AuthService {
         tap(resp => {
           if (resp.ok) {
             this.setToken(resp)
-            console.log(resp);
           }
         }),
         map(resp => resp.ok),
@@ -175,7 +174,6 @@ export class AuthService {
     return this.http.post<any>(`${ this.baseUrl }/nodemailers/enviar-codigo`, destinatario) .pipe(
       tap(( resp ) => {
         if (resp.ok) {
-          console.log(resp);
         }
       }),
       map(resp => resp),
@@ -191,7 +189,6 @@ export class AuthService {
      .pipe(
       tap(( resp ) => {
         if (resp.ok) {
-          console.log(resp);
         }
       }),
       map(resp => resp),
@@ -207,7 +204,6 @@ export class AuthService {
      .pipe(
       tap(( resp ) => {
         if (resp.ok) {
-          console.log(resp);
         }
       }),
       map(resp => resp),

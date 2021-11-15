@@ -26,9 +26,9 @@ export class PreguntasfrecuentesComponent implements OnInit {
     this.busquedasService.getPreguntasFrecuentes()
    .subscribe(preguntas => {
      this.preguntas = preguntas;
-     console.log(preguntas);
-     });
      this.spinner.hide();
+
+     });
 
   }
 

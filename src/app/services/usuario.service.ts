@@ -78,7 +78,7 @@ export class UsuarioService {
 
   actualizarUsuario(usuario : Usuario) {
 
-    return this.http.put<Usuario>(`${this.baseUrl}/usuarios/${usuario.uid}`, usuario, this.headers)
+    return this.http.put<Usuario>(`${this.baseUrl}/usuarios/registro/${usuario.uid}`, usuario, this.headers)
       .pipe(
         map(resp => resp.ok),
         catchError(err => of(err.error.msg))

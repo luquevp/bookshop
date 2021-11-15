@@ -33,7 +33,7 @@ export class CategoriasComponent implements OnInit {
     .pipe(
       switchMap( ( { termino} ) => this.busquedasService.getSubcategoriasPorCategoria(termino))
       )
-    .subscribe((subcategorias: any) => {console.log(subcategorias);
+    .subscribe((subcategorias: any) => {;
       this.subcategorias = subcategorias})
 
 

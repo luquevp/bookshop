@@ -42,7 +42,6 @@ export class ForgotpassComponent implements OnInit {
     this.authService.solicitarCodRecuperacion(this.destEmail)
       .subscribe(resp => {
 
-        console.log(resp);
         if (resp.ok === true) {
           Swal.fire('Buen Trabajo!', 'El correo fue enviado con éxito!', 'success');
           this.router.navigateByUrl(`/olvidemicontraseña/codigo`)
@@ -55,11 +54,12 @@ export class ForgotpassComponent implements OnInit {
           Swal.fire('Error!', 'Debe ingresar un correo válido.', 'error');
 
         }
+        this.spinner.hide();
 
 
       })
 
-      this.spinner.hide();
+   
 
 
   }

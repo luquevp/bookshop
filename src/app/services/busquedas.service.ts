@@ -76,7 +76,6 @@ export class BusquedasService {
     return this.http.get<any>( url).pipe(
       tap(( resp ) => {
         if (resp) {
-          console.log(resp);
         }
       }),
       map(resp => resp),

@@ -66,7 +66,6 @@ export class CarritoComponent implements OnInit {
 
   ngOnInit() {
 
-    // console.log(this.items);
 
     // this.storageService.setCart(this.items);
 
@@ -102,9 +101,7 @@ export class CarritoComponent implements OnInit {
 
       }
 
-console.log(this.items);
       if ( this.items === null ) {
-        console.log(this.items?.length);
         document.getElementById("carrovacio").style.display = '';
         document.getElementById("cart").style.display = 'none';
         document.getElementById("formcupon").className = "disabled";
@@ -113,7 +110,7 @@ console.log(this.items);
       } else if (this?.items?.length === 0){ 
         document.getElementById("carrovacio").style.display = '';
         document.getElementById("cart").style.display = 'none';
-        document.getElementById("formcupon").className = "disabled"; }
+        document.getElementById('formcupon').className = "disabled"; }
       else if (this.items || this.items.length) {
        
         // document.getElementById("carrovacio").style.display = 'none';
@@ -154,7 +151,7 @@ console.log(this.items);
 
   renderizarBotones() {
     this.quantity = localStorage.getItem('CartQuantity');
-    console.log(localStorage.getItem('token'));
+    // console.log(localStorage.getItem('token'));
 
     if (localStorage.getItem('token') && localStorage.getItem('token') != "undefined"  && this.quantity != "0" && this.quantity != null) {
       this.botonLoguear = false;
@@ -197,7 +194,6 @@ console.log(this.items);
         },
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
-          console.log(order);
           this.comprar();
           //  this.emptyCart();
 
@@ -245,7 +241,6 @@ console.log(this.items);
 
     // }
     if ( this.items === null ) {
-      console.log(this.items?.length);
       document.getElementById("carrovacio").style.display = '';
       document.getElementById("cart").style.display = 'none';
       document.getElementById("formcupon").className = "disabled";
@@ -255,7 +250,7 @@ console.log(this.items);
       document.getElementById("carrovacio").style.display = '';
       document.getElementById("cart").style.display = 'none';
       document.getElementById("formcupon").className = "disabled"; }
-    else if (this.items || this.items.length) {
+    else if (this.items || this?.items?.length) {
      
       // document.getElementById("carrovacio").style.display = 'none';
       // document.getElementById("cart").style.display = '';
@@ -264,7 +259,6 @@ console.log(this.items);
 
     }
 
-    console.log(this.items);
     this._cartService.currentDataCart$.subscribe(x => {
       if (x) {
         this.items = x;
@@ -293,7 +287,6 @@ console.log(this.items);
 
 
   public comprar() {
-    console.log(this.items);
 
 
     if (this.cupon) {
@@ -328,7 +321,6 @@ console.log(this.items);
 
     this.productsService.postComprobante(this.comprobante)
       .subscribe(resp => {
-        console.log('Respuesta', resp);
 
         Swal.fire('Buen Trabajo!', 'La compra fue exitosa!', 'success');
         this.router.navigateByUrl(`/`)
@@ -405,7 +397,6 @@ console.log(this.items);
   continuarCompra() {
 
     this.quantity = localStorage.getItem('CartQuantity');
-    console.log(this.quantity);
     if (this.quantity != "0" && this.quantity != null) {
       this.router.navigateByUrl(`/login`)
     }
@@ -440,14 +431,11 @@ console.log(this.items);
 
 
     } else {
-      console.log(termino);
 
       this.cuponService.postCupon(termino)
         .subscribe(resp => {
           this.cupon = resp
 
-          console.log(resp.ok);
-          console.log(this.cupon);
           if (resp.ok === true) {
 
 
@@ -474,9 +462,7 @@ console.log(this.items);
               console.log('voucher');
               this.porcentajeDescuento = this.cupon.cupon.porcentaje;
               this.descuento = this.totalPrice * (this.porcentajeDescuento / 100)
-              console.log(this.descuento);
 
-              console.log(this.totalPrice);
 
               this.totalFinal = this.totalPrice - this.descuento;
 
@@ -490,7 +476,6 @@ console.log(this.items);
 
               if (this.descuento > this.totalPrice) {
 
-                console.log('es mayor');
                 Swal.fire('Oops!', 'La orden de compra debe ser mayor al monto de la gift card. ( $' + this.descuento + ')', 'error');
                 this.descuento = 0;
 

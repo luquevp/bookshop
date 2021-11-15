@@ -32,7 +32,6 @@ public terminoIngresado : string = "";
 
     this.activatedRoute.params
       .subscribe(({ termino }) => this.buscarLibroAutor(termino));
-      this.spinner.hide();
 
     }
 
@@ -44,6 +43,8 @@ public terminoIngresado : string = "";
 
     this.busquedasService.buscarLibroAutor(termino).subscribe((resp: any) => {
 
+      this.spinner.hide();
+
 this.terminoIngresado = termino;
       // this.libros = resp.libros;
       // this.autores = resp.autores;
@@ -54,19 +55,22 @@ this.terminoIngresado = termino;
 
       this.libros = todo.filter(libro => libro.stock > 0);
 
-     console.log(this.libros);
      if( this.libros.length > 0){
       document.getElementById("404").style.display = 'none';
 
     }
     else{
       document.getElementById("404").style.display = '';
+
     }
+    
       
     }, err => {
       // Entra aquí si el servicio entrega un código http de error EJ: 404, 
       console.log(err)
-    });
+    }
+    
+    );
   }
 
 

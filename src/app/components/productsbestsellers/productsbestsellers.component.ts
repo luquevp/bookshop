@@ -23,7 +23,6 @@ export class ProductsbestsellersComponent implements OnInit {
     .subscribe(libros => {
       this.libros = libros.filter(libro => libro.stock > 0 );
       this.libros = libros.sort((a,b) => b.vendidos - a.vendidos);
-      console.log(libros);
       this.spinner.hide();});
 
 

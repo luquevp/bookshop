@@ -30,7 +30,7 @@ export class EditorialComponent implements OnInit {
     .pipe(
       switchMap( ( { termino} ) => this.busquedasService.getLibroPorEditorial(termino))
       )
-    .subscribe((libros: any) => {console.log(libros);
+    .subscribe((libros: any) => {
       this.libros = libros;
       this.spinner.hide();})
 

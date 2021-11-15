@@ -119,23 +119,25 @@
             </div>
         </aside>
         <aside class="col-xl-3 col-lg-4 col-md-12">
-            <div class="card mb-3">
+            <div class="card mb-3" >
                 <div class="card-body">
 
+<div  id="formcupon">
+    <form (submit)="aplicarCupon( txtTermino.value )">
+        <div class="form-group"> <label>Tienes un cupón?</label>
+            <div class="input-group"> <input type="search" id="inputCupon" class="form-control coupon"
+                    name="" placeholder="Código cupón" #txtTermino> <span class="input-group-append">
+                    <button id="btnApply" class="btn btn-primary btn-apply coupon">Apply</button>
+                </span> </div>
+        </div>
+        <!-- <p id="elemento"  style="display:none;">cupón aplicado: {{cuponCodigo}} <button>X</button></p>  -->
+    </form>
+    <p id="elemento" style="display:none;">cupón aplicado: {{cuponCodigo}} <button
+            (click)="quitarCupon()" style="color: brown;">X</button></p>
 
-                    <form (submit)="aplicarCupon( txtTermino.value )" id="formcupon">
-                        <div class="form-group"> <label>Tienes un cupón?</label>
-                            <div class="input-group"> <input type="search" id="inputCupon" class="form-control coupon"
-                                    name="" placeholder="Código cupón" #txtTermino> <span class="input-group-append">
-                                    <button id="btnApply" class="btn btn-primary btn-apply coupon">Apply</button>
-                                </span> </div>
-                        </div>
-                        <!-- <p id="elemento"  style="display:none;">cupón aplicado: {{cuponCodigo}} <button>X</button></p>  -->
-                    </form>
-                    <p id="elemento" style="display:none;">cupón aplicado: {{cuponCodigo}} <button
-                            (click)="quitarCupon()" style="color: brown;">X</button></p>
-
-                </div>
+</div>
+</div>
+                  
             </div>
             <div class="card">
                 <div class="card-body">

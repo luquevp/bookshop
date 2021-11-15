@@ -1,9 +1,16 @@
+<ngx-spinner 
+    bdColor = "rgba(0,0,0,0.28)" 
+    size = "medium" color = "#fff" 
+    type = "ball-clip-rotate" 
+    [fullScreen] = "true">
+    </ngx-spinner>
 
+    
 <div class="container">
 <br>
 <br>
-<mat-card          class="animate__animated animate__fadeIn"
- class="" style="display: flex;justify-content: center ">
+<mat-card          class="animate__animated animate__fadeIn "
+ class="" style="display: flex;justify-content: center; width: 100%; ">
     <h4 class="animate__animated animate__fadeIn" style="font-weight: 500;"> Modificar Información Personal <small></small></h4>
 
 </mat-card>
@@ -12,14 +19,15 @@
     <div fxLayout="row"
          fxLayoutGap="40px"
          class="animate__animated animate__fadeIn"
-         fxLayout.xs="column">
+         fxLayout.xs="column" style="display: flex; justify-content: right;"  >
     
         <mat-card fxLayout="row" 
                   fxLayoutGap="40px"
                   class="animate__animated animate__fadeIn"
-                  fxFlex="50">
+                  fxFlex="50" >
     
-            <div fxLayout="column" fxFlex="100%">
+            <div fxLayout="column" fxFlex="100%" style="    justify-content: space-between;
+            ">
            
                 <mat-form-field>
                     <mat-label>Nombre</mat-label>
@@ -27,7 +35,7 @@
                             (input)="inputValidator($event)"
                             type="text"
                             [(ngModel)]="usuario.nombre"
-                            required>
+                            required disabled>
                 </mat-form-field>
     
                 <mat-form-field>
@@ -35,11 +43,11 @@
                     <input matInput
                             type="email"
                             [(ngModel)]="usuario.email"
-                            required>
+                            required disabled>
                 </mat-form-field>            
             
             
-                <mat-form-field >
+                <!-- <mat-form-field >
                     <mat-label>Contraseña</mat-label>
                     <input matInput
                             type="password"
@@ -56,7 +64,7 @@
                                     {{role.desc}}
                         </mat-option>
                   </mat-select>
-                </mat-form-field>
+                </mat-form-field> -->
     
                 <mat-form-field>
                     <mat-label>Provincia</mat-label>
@@ -75,22 +83,24 @@
                             [(ngModel)]="usuario.localidad"
                             required>
                 </mat-form-field>
-                <div fxLayout="row" fxFlex="100%" fxLayoutGap="40px">
-                    <mat-form-field fxFlex="50">
+
+
+
+                    <mat-form-field >
                         <mat-label>Codigo Postal</mat-label>
                         <input matInput
                                 type="number"
                                 [(ngModel)]="usuario.codigoPostal"
                                 required>
                     </mat-form-field>
-                    <mat-form-field fxFlex="50">
+                    <mat-form-field>
                         <mat-label>Celular</mat-label>
                         <input matInput
                                 type="number"
                                 [(ngModel)]="usuario.celular"
                                 required>
                     </mat-form-field>
-                </div>
+              
                 <mat-form-field>
                     <mat-label>Direccion</mat-label>
                     <input matInput
@@ -104,14 +114,15 @@
               
     
                 <button class="btn btn-light btn-block mb-2"
-                (click)="guardar()"  >
+                (click)="guardar()" >
                 <fa-icon [icon]="faPencilAlt"></fa-icon> Guardar cambios
               </button>
             </div>
     
         </mat-card>
     
-        <div fxFlex="50">
+        <div fxFlex="50" style="display: flex;     justify-content: space-evenly;
+        ">
             <mat-card class="example-card animate__animated animate__fadeIn">
                 <mat-card-header style="justify-content: center">
                   <h4>Imagen del Usuario</h4>
@@ -124,7 +135,7 @@
                             [disabled]="!imagenSubir"
                            (click)="subirImagen()"
                            style="margin-left: 10px; margin-bottom: 10px;"
-                           routerLink="/gestion/usuario"
+                           routerLink="/perfil"
                            >Subir Foto</button>
                   <input type="file" style="margin-left: 10px;" 
                          (change)="cambiarImagen($event)">

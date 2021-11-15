@@ -108,7 +108,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     FontAwesomeModule,
     MatProgressBarModule,
     NgxSpinnerModule ,
-    IvyCarouselModule
+    IvyCarouselModule,
   ],
   exports: [
     
