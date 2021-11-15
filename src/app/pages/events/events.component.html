@@ -4,16 +4,27 @@
 
 <div class="container animatedf">
     <!-- start event block -->
-    
+    <div class="search">
+        <form class="search-form" (ngSubmit)="buscarEvento( txtTermino.value)">
+            <input type="text" placeholder="Buscar por nombre de Evento"  #txtTermino>
+            <button type="submit" class="btnsubmit" value="Submit"><i class="fa fa-search"></i></button>
+            
+        </form>
+    </div>
+
+
+
+
+      <br>
+
+      
     <div class="row align-items-center event-block no-gutters margin-40px-bottom" *ngFor="let evento of eventos">
-        <div class="col-lg-5 col-sm-12">
+        <div class="col-lg-5 col-sm-12" style="padding: 20px;">
            
-            <div class="position-relative">
                 <img src={{evento.img}} alt="">
                 
-            </div>
         </div>
-        <div class="col-lg-7 col-sm-12">
+        <div class="col-lg-7 col-sm-12" style="padding: 20px;">
             <div class="padding-60px-lr md-padding-50px-lr sm-padding-30px-all xs-padding-25px-all">
                 <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500"><a  class="text-theme-color">{{evento?.nombre}}</a></h5>
                 <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
@@ -22,7 +33,11 @@
                    
                 </ul>
                 <p>{{evento?.descripcion}}</p>
-                <a class="butn small margin-10px-top md-no-margin-top" >Lugar del evento: {{evento?.lugar}} <i class="fas fa-long-arrow-alt-right margin-10px-left"></i></a>
+                <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
+                   
+                    <li><i class="far fa-clock margin-10px-right"></i> Lugar del Evento: {{evento?.lugar}}</li>
+                   
+                </ul>
             </div>
         </div>
     </div>

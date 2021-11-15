@@ -31,6 +31,7 @@ import { LoaderInterceptor } from './interceptors/loader-interceptor.service';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { InterceptorService } from './interceptors/interceptor.service';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { PerfileditarComponent } from './pages/perfileditar/perfileditar.component';
 
 
 
@@ -43,6 +44,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     RegisterComponent,
     NotyfToast,
     MyLoaderComponent,
+    PerfileditarComponent,
 
     
     

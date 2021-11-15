@@ -72,7 +72,7 @@ button {
 
 /* Importing Bootstrap SCSS file. */
 
-@import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
@@ -80,6 +80,11 @@ button {
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+// /* Importing Bootstrap SCSS file. */
+// @import '~bootstrap/scss/bootstrap';
 
+.card {
+    animation: fadeIn;
+    /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1s;
+}

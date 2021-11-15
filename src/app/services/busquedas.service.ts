@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { map } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 
 import { Usuario } from '../models/usuario.model';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { IItem } from '../interfaces/item.interface';
 import { SubCategoria } from '../interfaces/categoria.interface';
 import { Comprobante, ComprobanteConDetalle, Detalle } from '../interfaces/comprobante.interface';
@@ -70,6 +70,19 @@ export class BusquedasService {
 
   // }
 
+  buscarEvento( termino:string){
+
+    const url = `${ base_url }/buscar/eventos/nombre/${ termino }`;
+    return this.http.get<any>( url).pipe(
+      tap(( resp ) => {
+        if (resp) {
+          console.log(resp);
+        }
+      }),
+      map(resp => resp),
+      catchError(err => of(err.msg))
+    );
+  }
 
   buscarLibroAutor( termino:string){
 

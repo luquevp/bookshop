@@ -1,0 +1,138 @@
+
+<div class="container">
+<br>
+<br>
+<mat-card          class="animate__animated animate__fadeIn"
+ class="" style="display: flex;justify-content: center ">
+    <h4 class="animate__animated animate__fadeIn" style="font-weight: 500;"> Modificar Información Personal <small></small></h4>
+
+</mat-card>
+<br>
+
+    <div fxLayout="row"
+         fxLayoutGap="40px"
+         class="animate__animated animate__fadeIn"
+         fxLayout.xs="column">
+    
+        <mat-card fxLayout="row" 
+                  fxLayoutGap="40px"
+                  class="animate__animated animate__fadeIn"
+                  fxFlex="50">
+    
+            <div fxLayout="column" fxFlex="100%">
+           
+                <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+                    <input matInput
+                            (input)="inputValidator($event)"
+                            type="text"
+                            [(ngModel)]="usuario.nombre"
+                            required>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput
+                            type="email"
+                            [(ngModel)]="usuario.email"
+                            required>
+                </mat-form-field>            
+            
+            
+                <mat-form-field >
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput
+                            type="password"
+                            [(ngModel)]="usuario.password"
+                            required>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <mat-label>Rol</mat-label>
+                    <mat-select [(ngModel)]="usuario.rol"
+                                required>
+                        <mat-option *ngFor="let role of Roles"
+                                    [value]="role.id">
+                                    {{role.desc}}
+                        </mat-option>
+                  </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <mat-label>Provincia</mat-label>
+                    <mat-select [(ngModel)]="usuario.provincia"
+                                required>
+                        <mat-option *ngFor="let provincia of provincias"
+                                    [value]="provincia.provincia">
+                                    {{provincia.provincia}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Localidad</mat-label>
+                    <input matInput
+                            type="text"
+                            [(ngModel)]="usuario.localidad"
+                            required>
+                </mat-form-field>
+                <div fxLayout="row" fxFlex="100%" fxLayoutGap="40px">
+                    <mat-form-field fxFlex="50">
+                        <mat-label>Codigo Postal</mat-label>
+                        <input matInput
+                                type="number"
+                                [(ngModel)]="usuario.codigoPostal"
+                                required>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="50">
+                        <mat-label>Celular</mat-label>
+                        <input matInput
+                                type="number"
+                                [(ngModel)]="usuario.celular"
+                                required>
+                    </mat-form-field>
+                </div>
+                <mat-form-field>
+                    <mat-label>Direccion</mat-label>
+                    <input matInput
+                            type="text"
+                            [(ngModel)]="usuario.direccion"
+                            required>
+                </mat-form-field>
+    
+                <br>
+    
+              
+    
+                <button class="btn btn-light btn-block mb-2"
+                (click)="guardar()"  >
+                <fa-icon [icon]="faPencilAlt"></fa-icon> Guardar cambios
+              </button>
+            </div>
+    
+        </mat-card>
+    
+        <div fxFlex="50">
+            <mat-card class="example-card animate__animated animate__fadeIn">
+                <mat-card-header style="justify-content: center">
+                  <h4>Imagen del Usuario</h4>
+                </mat-card-header>
+                <img *ngIf="!imgTemp" mat-card-image [src]="usuario.img" class="animate__animated animate__fadeIn">
+                <img *ngIf="imgTemp" mat-card-image [src]="imgTemp" class="animate__animated animate__fadeIn">
+                
+                <mat-card-actions>
+                  <button mat-raised-button color="secondary"
+                            [disabled]="!imagenSubir"
+                           (click)="subirImagen()"
+                           style="margin-left: 10px; margin-bottom: 10px;"
+                           routerLink="/gestion/usuario"
+                           >Subir Foto</button>
+                  <input type="file" style="margin-left: 10px;" 
+                         (change)="cambiarImagen($event)">
+                </mat-card-actions> 
+            </mat-card>
+        </div>
+    
+    </div>
+    
+</div>
+

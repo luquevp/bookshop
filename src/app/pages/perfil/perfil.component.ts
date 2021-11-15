@@ -13,6 +13,8 @@ import { numberFormat } from 'highcharts';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from '../../services/auth.service';
+import { Provincia } from '../../interfaces/provincia.interface';
 
 
 
@@ -41,13 +43,22 @@ export class PerfilComponent implements OnInit {
                private fileUploadService: FileUploadService,
                private spinner: NgxSpinnerService,
                private ActivatedRoute: ActivatedRoute,
-               private busquedasService: BusquedasService) {
+               private busquedasService: BusquedasService,private auth:AuthService) {
     
   }
+
+  public provincias : Provincia[];
+
 
  
   ngOnInit(): void {
     this.spinner.show();
+
+    this.auth.getProvincias()
+      .subscribe(provincias => {
+        this.provincias = provincias;
+        console.log(this.provincias);
+     })
 
 
     this.idUsuario = localStorage.getItem('id');

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
+import { Routes, RouterModule, ActivatedRoute, CanActivate } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
 
 import { RegisterComponent } from './auth/register/register.component';
@@ -27,6 +27,7 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ForgotpassComponent } from './pages/forgotpass/forgotpass.component';
 import { ForgotpasscodigoComponent } from './pages/forgotpasscodigo/forgotpasscodigo.component';
 import { ResetpassComponent } from './pages/resetpass/resetpass.component';
+import { PerfileditarComponent } from './pages/perfileditar/perfileditar.component';
 
 
 const routes: Routes = [
@@ -52,10 +53,12 @@ const routes: Routes = [
       { path: 'subcategorias/:termino', component: SubcatComponent, },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'perfil', component: PerfilComponent },
+      { path: 'perfil', component: PerfilComponent, },
       { path: 'olvidemicontraseña', component: ForgotpassComponent },
       { path: 'olvidemicontraseña/codigo', component: ForgotpasscodigoComponent },
-      { path: 'restaurarcontraseña', component: ResetpassComponent },
+      { path: 'restaurarcontraseña', component: ResetpassComponent,  },
+      { path: 'perfil/editar', component: PerfileditarComponent, },
+
 
 
 

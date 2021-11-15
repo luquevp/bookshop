@@ -24,6 +24,10 @@ body{
     // border: transparent
 }
 
+.table th   { 
+    border-top: none !important;
+    border-left: none !important;
+}
 
 .card {
     position: relative;

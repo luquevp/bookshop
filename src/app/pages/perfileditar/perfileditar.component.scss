@@ -1,0 +1,38 @@
+.example-card {
+    max-width: 450px;
+  }
+
+  .example-header-image {
+    background-size: cover;
+  }
+
+  img{
+    width: 100%;
+    border-radius:5px;
+    margin-left: 1px
+  }
+
+  .btn-light {
+    color: #ffffff;
+    background-color: #362A89;
+    border-color: #f8f9fa;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.btn-light:hover {
+    color: #ffffff;
+    background-color: #2a206d;
+    border-color: #2a206d
+}
+.table th, .table td { 
+  border-top: none !important;
+  border-left: none !important;
+}
+
+.container {
+  font-family:'Poppins', sans-serif; 
+  padding-bottom: 60px;
+
+}

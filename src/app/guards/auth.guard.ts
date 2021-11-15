@@ -17,7 +17,7 @@ export class AuthGuard implements CanLoad {
             .pipe(
                 tap(valid => {
                     if (!valid) {
-                        this.router.navigateByUrl('auth/login')
+                        this.router.navigateByUrl('/login')
                     }
                 })
             );
@@ -28,7 +28,7 @@ export class AuthGuard implements CanLoad {
             .pipe(
                 tap(valid => {
                     if (!valid) {
-                        this.router.navigateByUrl('auth/login')
+                        this.router.navigateByUrl('/login')
                     }
                 })
             );

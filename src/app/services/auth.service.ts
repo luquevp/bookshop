@@ -106,11 +106,30 @@ export class AuthService {
 
 
 
+  // validarToken(): Observable<boolean> {
+
+  //   const url = `${this.baseUrl}/auth/renew`;
+  //   const headers = new HttpHeaders()
+  //     .set(' token', localStorage.getItem('token') || '');
+
+  //   return this.http.get<AuthResponse>(url, { headers })
+  //     .pipe(
+  //       tap(resp => {
+  //         if (resp.ok) {
+  //           this.setToken(resp)
+  //         }
+  //       }),
+  //       map(resp => resp.ok),
+  //       catchError(err => of(err.error.msg))
+  //     );
+
+  // }
+
   validarToken(): Observable<boolean> {
 
-    const url = `${this.baseUrl}/auth/renew`;
+    const url =`${this.baseUrl}/auth/renew`;
     const headers = new HttpHeaders()
-      .set('x-token', localStorage.getItem('token') || '');
+      .set('x-token', localStorage.getItem('token') || '')
 
     return this.http.get<AuthResponse>(url, { headers })
       .pipe(
@@ -122,11 +141,16 @@ export class AuthService {
         map(resp => resp.ok),
         catchError(err => of(err.error.msg))
       );
-
   }
 
   logout() {
-    localStorage.clear();
+    // localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('id');
+
+
+
   }
 
   setToken(resp: AuthResponse) {

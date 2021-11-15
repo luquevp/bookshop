@@ -154,12 +154,17 @@ console.log(this.items);
 
   renderizarBotones() {
     this.quantity = localStorage.getItem('CartQuantity');
+    console.log(localStorage.getItem('token'));
 
-    if (localStorage.getItem('token') && this.quantity != "0" && this.quantity != null) {
+    if (localStorage.getItem('token') && localStorage.getItem('token') != "undefined"  && this.quantity != "0" && this.quantity != null) {
       this.botonLoguear = false;
 
       this.paypal();
-    } else {
+    }else if (localStorage.getItem('token') === undefined) {
+      this.botonLoguear = true;
+
+    }
+    else {
       this.botonLoguear = true;
     }
 
@@ -224,18 +229,37 @@ console.log(this.items);
   }
 
   onChange() {
-    if (this.items.length > 0) {
-      document.getElementById("carrovacio").style.display = 'none';
-      document.getElementById("cart").style.display = '';
-      document.getElementById("formcupon").className = "enabled";
+    // if (this.items.length > 0) {
+    //   document.getElementById("carrovacio").style.display = 'none';
+    //   document.getElementById("cart").style.display = '';
+    //   document.getElementById("formcupon").className = "enabled";
 
 
 
-    }
-    else {
+    // }
+    // else {
+    //   document.getElementById("carrovacio").style.display = '';
+    //   document.getElementById("cart").style.display = 'none';
+    //   document.getElementById("formcupon").className = "disabled";
+
+
+    // }
+    if ( this.items === null ) {
+      console.log(this.items?.length);
       document.getElementById("carrovacio").style.display = '';
       document.getElementById("cart").style.display = 'none';
       document.getElementById("formcupon").className = "disabled";
+
+
+    } else if (this?.items?.length === 0){ 
+      document.getElementById("carrovacio").style.display = '';
+      document.getElementById("cart").style.display = 'none';
+      document.getElementById("formcupon").className = "disabled"; }
+    else if (this.items || this.items.length) {
+     
+      // document.getElementById("carrovacio").style.display = 'none';
+      // document.getElementById("cart").style.display = '';
+      document.getElementById("formcupon").className = "enabled";
 
 
     }
@@ -317,10 +341,15 @@ console.log(this.items);
     //limpiar
     localStorage.setItem('CartQuantity', "0");
     localStorage.setItem('cart', "null")
-    this.items = [];
-    this.totalPrice = 0;
-    this.descuento = 0;
-    this.totalFinal = 0;
+    // this.items = null;
+    // this.totalPrice = 0;
+    // this.descuento = 0;
+    // this.totalFinal = 0;
+    this.emptyCart();
+    
+
+
+
     // this.storageService.clear();
 
   }

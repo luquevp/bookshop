@@ -10,19 +10,20 @@ export class FileUploadService {
 
   constructor() { }
 
+
   async actualizarFoto(
     archivo: File,
-    tipo: 'usuarios'|'medicos'|'clinicas',
-    id: string
+    tipo: 'usuarios' | 'productos' | 'eventos',
+    id?: string
   ) {
 
     try {
 
-      const url = `${ base_url }/upload/${ tipo }/${ id }`;
+      const url = `${base_url}/uploads/${tipo}/${id}`;
       const formData = new FormData();
-      formData.append('imagen', archivo);
+      formData.append('archivo', archivo);
 
-      const resp = await fetch( url, {
+      const resp = await fetch(url, {
         method: 'PUT',
         headers: {
           'x-token': localStorage.getItem('token') || ''
@@ -32,12 +33,9 @@ export class FileUploadService {
 
       const data = await resp.json();
 
-      if ( data.ok ) {
-        return data.nombreArchivo;
-      } else {
-        console.log(data.msg);
-        return false;
-      }
+
+
+      return console.log(data) ;
 
     } catch (error) {
       console.log(error);
@@ -45,7 +43,5 @@ export class FileUploadService {
     }
 
   }
-
-
 
 }
