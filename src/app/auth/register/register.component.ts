@@ -124,7 +124,7 @@ export class RegisterComponent implements OnInit{
               console.log(ok);
             
     
-              Swal.fire('Error', 'Debe completar los campos obligatorios correctamente.', 'error');
+              Swal.fire('Error', 'El email ingresado ya existe o es inválido. Ej: thebookshop@gmail.com', 'error');
             }
           }
           );

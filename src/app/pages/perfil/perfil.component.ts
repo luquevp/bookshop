@@ -77,7 +77,11 @@ export class PerfilComponent implements OnInit {
       switchMap( ( { termino } ) => this.busquedasService.getComprobantesPorUsuario(this.idUsuario))
       )
     .subscribe((comprobantes: any) => {console.log(comprobantes);
-      this.comprobantes = comprobantes
+      if (comprobantes) {
+        this.comprobantes = comprobantes
+      } else {
+        return
+      }
       
    })
 

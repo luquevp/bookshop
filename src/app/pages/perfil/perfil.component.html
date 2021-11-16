@@ -117,7 +117,7 @@
                 <tbody>
                   <tr *ngFor="let comprobante of comprobantes">
                     <td scope="row">{{comprobante?.numero}}</td>
-                    <td>{{comprobante?.fecha | date:"medium"}}</td>
+                    <td>{{comprobante?.fecha | date:"mediumDate"}}</td>
                     <td>${{comprobante?.total}}</td>
                     <td> <button class="btn btn-light btn-block mb-2"
                         (click)="traerDetalleComprobante(comprobante?.numero)" data-toggle="modal"
@@ -165,7 +165,7 @@
                   <div class="billed"><span class="font-weight-bold text-uppercase">Usuario:</span><span
                       class="ml-1">{{comprobante?.usuario.nombre}}</span></div>
                   <div class="billed"><span class="font-weight-bold text-uppercase">Fecha:</span><span
-                      class="ml-1">{{comprobante?.fecha | date:"short"}}</span></div>
+                      class="ml-1">{{comprobante?.fecha | date:"mediumDate"}}</span></div>
                   <div class="billed"><span class="font-weight-bold text-uppercase">N° Comp:</span><span
                       class="ml-1">{{comprobante?.numero}}</span></div>
                 </div>

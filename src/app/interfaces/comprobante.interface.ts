@@ -39,7 +39,7 @@ export interface ComprobanteConDetalle {
     //     _id?: number;
     // }
 
-
+        
         _id?:string;
         numero?: number;
         fecha?: Date;
